@@ -1,0 +1,22 @@
+{
+    "1601b18339c": {
+        "path": "UI\\scene\\BeginScene.ts",
+        "class": "BeginScene",
+        "parentPath": ""
+    },
+    "1601b199196": {
+        "path": "UI\\scene\\SaveScene.ts",
+        "class": "SaveScene",
+        "parentPath": ""
+    },
+    "1601b19ed72": {
+        "path": "UI\\scene\\RaceScene.ts",
+        "class": "RaceScene",
+        "parentPath": ""
+    },
+    "1601b1a39ed": {
+        "path": "UI\\scene\\MainScene.ts",
+        "class": "MainScene",
+        "parentPath": ""
+    }
+}

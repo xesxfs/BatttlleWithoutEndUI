@@ -22,9 +22,9 @@
 		"bin-debug/framework/SceneConst.js",
 		"bin-debug/framework/SceneManager.js",
 		"bin-debug/framework/SoundManager.js",
-		"bin-debug/UI/scene/BeginScene.js",
-		"bin-debug/UI/scene/MainScene.js",
-		"bin-debug/UI/scene/RaceScene.js",
-		"bin-debug/UI/scene/SaveScene.js"
+		"bin-debug/UI/begin/BeginScene.js",
+		"bin-debug/UI/main/MainScene.js",
+		"bin-debug/UI/race/RaceScene.js",
+		"bin-debug/UI/save/SaveScene.js"
 	]
 }

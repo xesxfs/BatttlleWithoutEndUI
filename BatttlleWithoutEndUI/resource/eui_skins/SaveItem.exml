@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="SaveItemSkin"  xmlns:e="http://ns.egret.com/eui">
+	<e:Rect width="580" height="90" strokeWeight="3" fillAlpha="0" anchorOffsetY="0" strokeColor="0x2b2727"/>
+	<e:Label text="角色:" x="28" verticalCenter="0" textColor="0x141313"/>
+	<e:TextInput width="160" height="40" x="113" verticalCenter="0" prompt="名字"/>
+	<e:Button label="新建" x="430" top="7" anchorOffsetX="0" width="79" anchorOffsetY="0" height="38"/>
+	<e:Button label=" 读取" x="430" anchorOffsetX="0" width="79" anchorOffsetY="0" height="38" visible="false"/>
+	<e:Button label="删除" x="501.5" anchorOffsetX="0" width="73" anchorOffsetY="0" height="35" bottom="5"/>
+	<e:Label text="[05/12/2017]" x="263" y="66" textColor="0x474242" size="22"/>
+</e:Skin>

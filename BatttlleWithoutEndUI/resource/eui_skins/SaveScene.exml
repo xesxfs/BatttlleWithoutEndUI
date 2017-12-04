@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="SaveSceneSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+<e:Skin class="SaveSceneSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" >
 	<w:Config id="1601b199196" ></w:Config>
-	<e:Button id="SaveScene" label="SaveScene" horizontalCenter="1" verticalCenter="-160"/>
-	<e:Button id="raceBtn" label="raceBtn" x="79" y="503"/>
-	<e:Button id="mainBtn" label="mainBtn" x="420" y="503"/>
+	<e:Button id="SaveScene" label="SaveScene" x="240" top="10"/>
+	<e:Button id="raceBtn" label="raceBtn" x="79" top="10"/>
+	<e:Button id="mainBtn" label="mainBtn" x="420" top="10"/>
+	<ns1:SaveItem y="142" skinName="SaveItemSkin" horizontalCenter="0"/>
+	<ns1:SaveItem y="382" skinName="SaveItemSkin" x="16" horizontalCenter="0"/>
+	<ns1:SaveItem y="622" skinName="SaveItemSkin" x="16" horizontalCenter="0"/>
+	<ns1:SaveItem y="862" skinName="SaveItemSkin" horizontalCenter="0"/>
 </e:Skin>

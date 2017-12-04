@@ -31,6 +31,7 @@
     "resource/eui_skins/ProgressBarSkin.exml",
     "resource/eui_skins/RaceScene.exml",
     "resource/eui_skins/RadioButtonSkin.exml",
+    "resource/eui_skins/SaveItem.exml",
     "resource/eui_skins/SaveScene.exml",
     "resource/eui_skins/ScrollerSkin.exml",
     "resource/eui_skins/TextInputSkin.exml",

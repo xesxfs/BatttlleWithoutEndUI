@@ -1,3 +1,7 @@
+declare class AllInfoPanelSkin extends eui.Skin{
+}
+declare class BattleSkillInfoPanelSkin extends eui.Skin{
+}
 declare class BeginSceneSkin extends eui.Skin{
 }
 declare module skins{
@@ -20,11 +24,19 @@ declare module skins{
 	class ItemRendererSkin extends eui.Skin{
 	}
 }
+declare class LootInfoPanelSkin extends eui.Skin{
+}
 declare class MainSceneSkin extends eui.Skin{
+}
+declare class MonsterInfoPanelSkin extends eui.Skin{
 }
 declare module skins{
 	class PanelSkin extends eui.Skin{
 	}
+}
+declare class PetInfoPanelSkin extends eui.Skin{
+}
+declare class PlayInfoPanelSkin extends eui.Skin{
 }
 declare module skins{
 	class ProgressBarSkin extends eui.Skin{

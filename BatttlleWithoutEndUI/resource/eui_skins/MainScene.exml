@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="MainSceneSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+<e:Skin class="MainSceneSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" >
 	<w:Config id="1601b1a39ed" ></w:Config>
 	<e:Button label="MainScene" x="245" y="407"/>
-	<e:Group id="playInfoGroup" top="0" left="0" anchorOffsetX="0" width="392" anchorOffsetY="0" height="345.67">
-		<e:Label text="名字" x="10" y="8" textColor="0x474040" size="18"/>
-		<e:Label text="Ssssss" x="63.33" y="8" textColor="0x474040" size="18"/>
-		<e:Label text="种族" x="10.01" y="35" textColor="0x474040" size="18"/>
-		<e:Label text="人类" x="60.01" y="35" textColor="0x474040" size="18"/>
-		<e:Label text="力量" x="168.67" y="35" textColor="0x474040" size="18"/>
-		<e:Label text="14(14)" x="213.32" y="35" textColor="0x474040" size="18"/>
-		<e:Label text="攻击" x="285.31" y="35" textColor="0x474040" size="18"/>
-		<e:Label text="15~69" x="331.29" y="35" textColor="0x474040" size="18"/>
-		<e:ProgressBar x="58.34" y="136.99" width="103"/>
+	<e:Group id="playInfoGroup" top="0" left="0" anchorOffsetX="0" anchorOffsetY="0" height="300" width="440">
+		<ns1:PlayInfoPanel height="100%" anchorOffsetX="0"/>
+
+
+
+
+
+
+
+
+
 	</e:Group>
-	<e:Group id="otherInfoGroup" width="200" height="100%" x="-203.67" y="2.67" anchorOffsetY="0"/>
-	<e:Group id="allInfoGroup" width="429" height="645" top="350" left="0" x="10" y="10" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Group id="monsterInfoGroup" width="245" height="174.67" y="0" right="0" anchorOffsetY="0" anchorOffsetX="0">
-		<e:Label text="怪物" textColor="0x474040" size="18" y="13" scaleX="1" scaleY="1"/>
-		<e:Label text="弱小的小白蜘蛛" textColor="0x474040" size="18" y="13" scaleX="1" scaleY="1" x="52.67"/>
+	<e:Group id="otherInfoGroup" width="200" height="100%" x="-203.67" y="2.67" anchorOffsetY="0">
 	</e:Group>
-	<e:Group id="petInfoGroup" width="245" height="162.67" right="0" anchorOffsetY="0" y="179.31"/>
-	<e:Group id="battleSkillInfoGroup" width="200" height="325.33" top="349" y="10" right="0" anchorOffsetY="0"/>
-	<e:Group id="lootInfoGroup" width="200" height="308" top="682" y="10" right="0" anchorOffsetY="0"/>
+	<e:Group id="allInfoGroup" width="436" height="716" top="301" left="1" x="10" y="10" anchorOffsetX="0" anchorOffsetY="0">
+		<ns1:AllInfoPanel/>
+	</e:Group>
+	<e:Group id="monsterInfoGroup" width="200" height="176" y="0" anchorOffsetY="0" anchorOffsetX="0" x="440">
+		<ns1:MonsterInfoPanel width="100%" height="100%"/>
+
+
+	</e:Group>
+	<e:Group id="petInfoGroup" width="200" height="122" anchorOffsetY="0" y="178" anchorOffsetX="0" x="440">
+		<ns1:PetInfoPanel/>
+	</e:Group>
+	<e:Group id="battleSkillInfoGroup" width="200" height="380" top="302" y="10" right="0" anchorOffsetY="0">
+		<ns1:BattleSkillInfoPanel/>
+	</e:Group>
+	<e:Group id="lootInfoGroup" width="200" height="330" top="687" y="10" right="0" anchorOffsetY="0">
+		<ns1:LootInfoPanel/>
+	</e:Group>
+	<e:Group width="100%" height="112.67" anchorOffsetY="0" x="0" y="1020.65">
+		<e:Rect width="100%" height="100%" fillAlpha="0" strokeWeight="2" scaleX="1" scaleY="1"/>
+	</e:Group>
 </e:Skin>

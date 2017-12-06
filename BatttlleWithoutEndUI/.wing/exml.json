@@ -29,6 +29,14 @@
     "globalBackgroundHeight": -1,
     "globalBackgroundColor": "#ffffff",
     "globalBackgroundImage": "",
-    "globalAutoLayerMarkEnable": false
+    "globalAutoLayerMarkEnable": false,
+    "globalBindingDataTestObj": [],
+    "globalAdsorbEnable": false
+  },
+  "16026fe56d0": {
+    "path": "UI\\main\\PlayInfoPanel.ts",
+    "class": "PlayInfoPanel",
+    "parentPath": "",
+    "bindingDataTestObj": []
   }
 }

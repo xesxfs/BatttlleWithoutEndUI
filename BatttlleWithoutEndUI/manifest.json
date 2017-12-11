@@ -10,8 +10,8 @@
 	],
 	"game": [
 		"bin-debug/base/BaseUI.js",
-		"bin-debug/base/BaseScene.js",
 		"bin-debug/base/SingleClass.js",
+		"bin-debug/base/BaseScene.js",
 		"bin-debug/framework/SoundManager.js",
 		"bin-debug/adapter/ThemeAdapter.js",
 		"bin-debug/base/BasePanel.js",
@@ -21,7 +21,7 @@
 		"bin-debug/framework/LayerManager.js",
 		"bin-debug/framework/SceneConst.js",
 		"bin-debug/framework/SceneManager.js",
-		"bin-debug/LoadingUI.js",
+		"bin-debug/UI/save/SaveScene.js",
 		"bin-debug/UI/begin/BeginScene.js",
 		"bin-debug/UI/main/AllInfoPanel.js",
 		"bin-debug/UI/main/BattleSkillInfoPanel.js",
@@ -32,6 +32,6 @@
 		"bin-debug/UI/main/PlayInfoPanel.js",
 		"bin-debug/UI/race/RaceScene.js",
 		"bin-debug/UI/save/SaveItem.js",
-		"bin-debug/UI/save/SaveScene.js"
+		"bin-debug/LoadingUI.js"
 	]
 }

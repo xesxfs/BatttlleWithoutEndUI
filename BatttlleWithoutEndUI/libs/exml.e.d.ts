@@ -12,6 +12,10 @@ declare module skins{
 	class CheckBoxSkin extends eui.Skin{
 	}
 }
+declare class EquipWindowSkin extends eui.Skin{
+}
+declare class EquipmentItemSkin extends eui.Skin{
+}
 declare module skins{
 	class HScrollBarSkin extends eui.Skin{
 	}
@@ -23,6 +27,8 @@ declare module skins{
 declare module skins{
 	class ItemRendererSkin extends eui.Skin{
 	}
+}
+declare class ItemWindowSkin extends eui.Skin{
 }
 declare class LootInfoPanelSkin extends eui.Skin{
 }

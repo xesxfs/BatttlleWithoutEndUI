@@ -1,42 +1,57 @@
 {
-  "1601b18339c": {
-    "path": "UI\\scene\\BeginScene.ts",
-    "class": "BeginScene",
-    "parentPath": ""
-  },
-  "1601b199196": {
-    "path": "UI\\scene\\SaveScene.ts",
-    "class": "SaveScene",
-    "parentPath": "",
-    "backgroundType": "user",
-    "backgroundAlpha": 100
-  },
-  "1601b19ed72": {
-    "path": "UI\\scene\\RaceScene.ts",
-    "class": "RaceScene",
-    "parentPath": ""
-  },
-  "1601b1a39ed": {
-    "path": "UI\\scene\\MainScene.ts",
-    "class": "MainScene",
-    "parentPath": ""
-  },
-  "global": {
-    "globalBackgroundAlpha": 100,
-    "globalBackgroundX": 0,
-    "globalBackgroundY": 0,
-    "globalBackgroundWidth": -1,
-    "globalBackgroundHeight": -1,
-    "globalBackgroundColor": "#ffffff",
-    "globalBackgroundImage": "",
-    "globalAutoLayerMarkEnable": false,
-    "globalBindingDataTestObj": [],
-    "globalAdsorbEnable": false
-  },
-  "16026fe56d0": {
-    "path": "UI\\main\\PlayInfoPanel.ts",
-    "class": "PlayInfoPanel",
-    "parentPath": "",
-    "bindingDataTestObj": []
-  }
+    "1601b18339c": {
+        "path": "UI\\scene\\BeginScene.ts",
+        "class": "BeginScene",
+        "parentPath": ""
+    },
+    "1601b199196": {
+        "path": "UI\\scene\\SaveScene.ts",
+        "class": "SaveScene",
+        "parentPath": "",
+        "backgroundType": "user",
+        "backgroundAlpha": 100
+    },
+    "1601b19ed72": {
+        "path": "UI\\scene\\RaceScene.ts",
+        "class": "RaceScene",
+        "parentPath": ""
+    },
+    "1601b1a39ed": {
+        "path": "UI\\scene\\MainScene.ts",
+        "class": "MainScene",
+        "parentPath": ""
+    },
+    "global": {
+        "globalBackgroundAlpha": 100,
+        "globalBackgroundX": 0,
+        "globalBackgroundY": 0,
+        "globalBackgroundWidth": -1,
+        "globalBackgroundHeight": -1,
+        "globalBackgroundColor": "#ffffff",
+        "globalBackgroundImage": "",
+        "globalAutoLayerMarkEnable": true,
+        "globalBindingDataTestObj": [],
+        "globalAdsorbEnable": false
+    },
+    "16026fe56d0": {
+        "path": "UI\\main\\PlayInfoPanel.ts",
+        "class": "PlayInfoPanel",
+        "parentPath": "",
+        "bindingDataTestObj": []
+    },
+    "1604af7a2ad": {
+        "path": "UI\\windows\\ItemWindow.ts",
+        "class": "ItemWindow",
+        "parentPath": ""
+    },
+    "1604b05c246": {
+        "path": "UI\\windows\\EquipmentItem.ts",
+        "class": "EquipmentItem",
+        "parentPath": ""
+    },
+    "1604b5b55bd": {
+        "path": "UI\\windows\\EquipWindow.ts",
+        "class": "EquipWindow",
+        "parentPath": ""
+    }
 }

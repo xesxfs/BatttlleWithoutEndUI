@@ -53,5 +53,15 @@
         "path": "UI\\windows\\EquipWindow.ts",
         "class": "EquipWindow",
         "parentPath": ""
+    },
+    "16050739130": {
+        "path": "UI/windows/TitleCell.ts",
+        "class": "TitleCell",
+        "parentPath": ""
+    },
+    "1605075d2a3": {
+        "path": "UI/windows/TitleWindow.ts",
+        "class": "TitleWindow",
+        "parentPath": ""
     }
 }

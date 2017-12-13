@@ -66,6 +66,10 @@ declare module skins{
 	class TextInputSkin extends eui.Skin{
 	}
 }
+declare class TitleCellSkin extends eui.Skin{
+}
+declare class TitleWindowSkin extends eui.Skin{
+}
 declare module skins{
 	class ToggleSwitchSkin extends eui.Skin{
 	}

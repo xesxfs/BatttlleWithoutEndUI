@@ -12,7 +12,7 @@
 		"bin-debug/base/BaseUI.js",
 		"bin-debug/base/BaseScene.js",
 		"bin-debug/base/SingleClass.js",
-		"bin-debug/UI/begin/BeginScene.js",
+		"bin-debug/UI/main/AllInfoPanel.js",
 		"bin-debug/adapter/ThemeAdapter.js",
 		"bin-debug/base/BasePanel.js",
 		"bin-debug/App.js",
@@ -22,8 +22,8 @@
 		"bin-debug/framework/SceneConst.js",
 		"bin-debug/framework/SceneManager.js",
 		"bin-debug/framework/SoundManager.js",
+		"bin-debug/UI/begin/BeginScene.js",
 		"bin-debug/LoadingUI.js",
-		"bin-debug/UI/main/AllInfoPanel.js",
 		"bin-debug/UI/main/BattleSkillInfoPanel.js",
 		"bin-debug/UI/main/LootInfoPanel.js",
 		"bin-debug/UI/main/MainScene.js",
@@ -35,6 +35,8 @@
 		"bin-debug/UI/save/SaveScene.js",
 		"bin-debug/UI/windows/EquipmentItem.js",
 		"bin-debug/UI/windows/EquipWindow.js",
-		"bin-debug/UI/windows/ItemWindow.js"
+		"bin-debug/UI/windows/ItemWindow.js",
+		"bin-debug/UI/windows/TitleCell.js",
+		"bin-debug/UI/windows/TitleWindow.js"
 	]
 }

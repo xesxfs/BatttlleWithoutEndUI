@@ -33,19 +33,19 @@
 		<e:Button id="otherBtn" label="Other" y="39" anchorOffsetX="0" width="72" x="567"  name="6"/>
 	</e:Group>
 	<e:Group id="otherInfoGroup" width="400" height="1016" x="116.33" y="22.67" anchorOffsetY="0">
-		<e:ViewStack id="otherView" width="100%" height="100%" selectedIndex="1">
-		<e:Group width="100%" height="100%" name="Group">
-			<e:Label text="L1" x="64" y="121" textColor="0x1c1515" visible="false"/>
+		<e:ViewStack id="otherView" width="100%" height="100%" selectedIndex="3">
+		<e:Group width="100%" height="100%" name="Group" visible="false">
 			<ns1:ItemWindow anchorOffsetX="0" anchorOffsetY="0"/>
 		</e:Group>
-		<e:Group width="100%" height="100%" name="Group">
+		<e:Group width="100%" height="100%" name="Group" visible="false">
 			<ns1:EquipWindow/>
 		</e:Group>
-		<e:Group width="100%" height="100%" name="Group">
+		<e:Group width="100%" height="100%" name="Group" visible="false">
 			<e:Label text="L3" x="64.00000000000003" y="121" textColor="0x1C1515" scaleX="1" scaleY="1"/>
 		</e:Group>
 		<e:Group width="100%" height="100%" name="Group">
 			<e:Label text="L4" x="64.00000000000003" y="121" textColor="0x1C1515" scaleX="1" scaleY="1"/>
+			<ns1:TitleWindow/>
 		</e:Group>
 		<e:Group width="100%" height="100%" name="Group">
 			<e:Label text="L5" x="64.00000000000003" y="121" textColor="0x1C1515" scaleX="1" scaleY="1"/>

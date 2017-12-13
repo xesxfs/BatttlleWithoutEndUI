@@ -21,6 +21,8 @@
     "EquipmentItem": "resource/eui_skins/EquipmentItem.exml",
     "ItemWindow": "resource/eui_skins/ItemWindow.exml",
     "EquipWindow": "resource/eui_skins/EquipWindow.exml",
+    "TitleWindow":"resource/eui_skins/TitleWindow.exml",
+	  "TitleCell":"resource/eui_skins/TitleCell.exml",
     "PetInfoPanel": "resource/eui_skins/PetInfoPanel.exml",
     "AllInfoPanel": "resource/eui_skins/AllInfoPanel.exml",
     "MonsterInfoPanel": "resource/eui_skins/MonsterInfoPanel.exml",

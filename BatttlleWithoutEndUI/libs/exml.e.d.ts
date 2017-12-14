@@ -36,11 +36,17 @@ declare class MainSceneSkin extends eui.Skin{
 }
 declare class MonsterInfoPanelSkin extends eui.Skin{
 }
+declare class OtherWindowSkin extends eui.Skin{
+}
 declare module skins{
 	class PanelSkin extends eui.Skin{
 	}
 }
+declare class PetCellSkin extends eui.Skin{
+}
 declare class PetInfoPanelSkin extends eui.Skin{
+}
+declare class PetWindowSkin extends eui.Skin{
 }
 declare class PlayInfoPanelSkin extends eui.Skin{
 }
@@ -61,6 +67,8 @@ declare class SaveSceneSkin extends eui.Skin{
 declare module skins{
 	class ScrollerSkin extends eui.Skin{
 	}
+}
+declare class SystemWindowSkin extends eui.Skin{
 }
 declare module skins{
 	class TextInputSkin extends eui.Skin{

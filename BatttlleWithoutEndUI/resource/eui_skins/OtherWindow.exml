@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="OtherWindowSkin" width="300" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="16056010207" ></w:Config>
+	<e:Button label="地图" y="30" horizontalCenter="0"/>
+	<e:Button label="帮助" x="100" y="124"/>
+	<e:Button label="商店" x="100" y="218"/>
+	<e:Button label="特殊商店" x="100" y="312"/>
+	<e:Button label="转生" x="100" y="376"/>
+	<e:Label text="当你达到20岁之后\n可以选择转生\n技能和装备会保留" x="106" y="430" textColor="0x705050" size="20" multiline="true"/>
+	<e:Button label="保存" x="101" y="510" horizontalCenter="0"/>
+	<e:Label text="自动保存/30s" x="106" y="560" textColor="0x705050" size="20"/>
+</e:Skin>

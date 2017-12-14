@@ -5,7 +5,6 @@
 	<e:Group id="playInfoGroup" top="0" left="0" anchorOffsetX="0" anchorOffsetY="0" height="300" width="440">
 		<ns1:PlayInfoPanel height="100%" anchorOffsetX="0" />
 	</e:Group>
-
 	<e:Group id="allInfoGroup" width="436" height="716" top="301" left="1" x="10" y="10" anchorOffsetX="0"
 	         anchorOffsetY="0">
 		<ns1:AllInfoPanel id="allnfoPanel" anchorOffsetY="0" height="690" x="0" y="12" />
@@ -24,38 +23,37 @@
 	</e:Group>
 	<e:Group id="menuBtnsGroup" width="100%" height="112.67" anchorOffsetY="0" x="0" y="1020.65">
 		<e:Rect width="100%" height="100%" fillAlpha="0" strokeWeight="2" scaleX="1" scaleY="1" />
-		<e:Button id="itemBtn" label="Item" y="39" width="60" x="4"  name="0"/>
-		<e:Button id="equipBtn" label="Equip" x="87" y="39" anchorOffsetX="0" width="78"  name="1"/>
-		<e:Button id="petBtn" label="Pet" x="478" y="39" anchorOffsetX="0" width="60"  name="5"/>
-		<e:Button id="skillBtn" label="Skill" x="185" y="39" anchorOffsetX="0" width="72"  name="2"/>
-		<e:Button id="titleBtn" label="Title" x="286" y="39" anchorOffsetX="0" width="63"  name="3"/>
-		<e:Button id="systemBtn" label="System" x="370" y="39" anchorOffsetX="0" width="86"  name="4"/>
-		<e:Button id="otherBtn" label="Other" y="39" anchorOffsetX="0" width="72" x="567"  name="6"/>
+		<e:Button id="itemBtn" label="Item" y="39" width="60" x="4" name="0" />
+		<e:Button id="equipBtn" label="Equip" x="87" y="39" anchorOffsetX="0" width="78" name="1" />
+		<e:Button id="petBtn" label="Pet" x="478" y="39" anchorOffsetX="0" width="60" name="5" />
+		<e:Button id="skillBtn" label="Skill" x="185" y="39" anchorOffsetX="0" width="72" name="2" />
+		<e:Button id="titleBtn" label="Title" x="286" y="39" anchorOffsetX="0" width="63" name="3" />
+		<e:Button id="systemBtn" label="System" x="370" y="39" anchorOffsetX="0" width="86" name="4" />
+		<e:Button id="otherBtn" label="Other" y="39" anchorOffsetX="0" width="72" x="567" name="6" />
 	</e:Group>
-	<e:Group id="otherInfoGroup" width="400" height="1016" x="116.33" y="22.67" anchorOffsetY="0">
-		<e:ViewStack id="otherView" width="100%" height="100%" selectedIndex="3">
-		<e:Group width="100%" height="100%" name="Group" visible="false">
-			<ns1:ItemWindow anchorOffsetX="0" anchorOffsetY="0"/>
-		</e:Group>
-		<e:Group width="100%" height="100%" name="Group" visible="false">
-			<ns1:EquipWindow/>
-		</e:Group>
-		<e:Group width="100%" height="100%" name="Group" visible="false">
-			<e:Label text="L3" x="64.00000000000003" y="121" textColor="0x1C1515" scaleX="1" scaleY="1"/>
-		</e:Group>
-		<e:Group width="100%" height="100%" name="Group">
-			<e:Label text="L4" x="64.00000000000003" y="121" textColor="0x1C1515" scaleX="1" scaleY="1"/>
-			<ns1:TitleWindow/>
-		</e:Group>
-		<e:Group width="100%" height="100%" name="Group">
-			<e:Label text="L5" x="64.00000000000003" y="121" textColor="0x1C1515" scaleX="1" scaleY="1"/>
-		</e:Group>
-		<e:Group width="100%" height="100%" name="Group">
-			<e:Label text="L6" x="64.00000000000003" y="121" textColor="0x1C1515" scaleX="1" scaleY="1"/>
-		</e:Group>
-		<e:Group width="100%" height="100%" name="Group">
-			<e:Label text="L7" x="64.00000000000003" y="121" textColor="0x1C1515" scaleX="1" scaleY="1"/>
-		</e:Group>
+	<e:Group id="otherInfoGroup" width="400" height="800" x="26.33" y="242.67" anchorOffsetY="0">
+		<e:ViewStack id="otherView" width="100%" height="100%" selectedIndex="1">
+			<e:Group width="100%" height="100%" name="Group">
+				<ns1:ItemWindow anchorOffsetX="0" anchorOffsetY="0" />
+			</e:Group>
+			<e:Group width="100%" height="100%" name="Group">
+				<ns1:EquipWindow/>
+			</e:Group>
+			<e:Group width="100%" height="100%" name="Group">
+				<ns1:SkillWindow/>
+			</e:Group>
+			<e:Group width="100%" height="100%" name="Group">
+				<ns1:TitleWindow/>
+			</e:Group>
+			<e:Group width="100%" height="100%" name="Group">
+				<ns1:SystemWindow/>
+			</e:Group>
+			<e:Group width="100%" height="100%" name="Group">
+				<ns1:PetWindow/>
+			</e:Group>
+			<e:Group width="100%" height="100%" name="Group">
+				<ns1:OtherWindow/>
+			</e:Group>
 		</e:ViewStack>
 	</e:Group>
 	<e:Button id="testBtn" label="testBtn" x="245" y="407" />

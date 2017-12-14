@@ -29,7 +29,7 @@
         "globalBackgroundHeight": -1,
         "globalBackgroundColor": "#ffffff",
         "globalBackgroundImage": "",
-        "globalAutoLayerMarkEnable": true,
+        "globalAutoLayerMarkEnable": false,
         "globalBindingDataTestObj": [],
         "globalAdsorbEnable": false
     },
@@ -62,6 +62,26 @@
     "1605075d2a3": {
         "path": "UI/windows/TitleWindow.ts",
         "class": "TitleWindow",
+        "parentPath": ""
+    },
+    "16055d5fcd5": {
+        "path": "UI\\windows\\PetWindow.ts",
+        "class": "PetWindow",
+        "parentPath": ""
+    },
+    "16055dbe7a4": {
+        "path": "UI\\windows\\PetCell.ts",
+        "class": "PetCell",
+        "parentPath": ""
+    },
+    "16056010207": {
+        "path": "UI\\windows\\OtherWindow.ts",
+        "class": "OtherWindow",
+        "parentPath": ""
+    },
+    "16056100509": {
+        "path": "UI\\windows\\SkillWindow.ts",
+        "class": "SkillWindow",
         "parentPath": ""
     }
 }

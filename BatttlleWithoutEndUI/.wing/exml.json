@@ -83,5 +83,10 @@
         "path": "UI\\windows\\SkillWindow.ts",
         "class": "SkillWindow",
         "parentPath": ""
+    },
+    "1605aef3657": {
+        "path": "UI/windows/SkillCell.ts",
+        "class": "SkillCell",
+        "parentPath": ""
     }
 }

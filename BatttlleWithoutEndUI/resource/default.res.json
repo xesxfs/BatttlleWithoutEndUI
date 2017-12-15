@@ -1,6 +1,6 @@
 {
 	"groups":[{
-			"keys":"checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,before_dwarf_png,before_elf_png,before_giant_png,before_human_png,before_undeath_png,brand_exclamation_png,head_heavy_png,head_medium_png,people_use1_png,people_use2_png,pet_spider_png",
+			"keys":"checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,before_dwarf_png,before_elf_png,before_giant_png,before_human_png,before_undeath_png,brand_exclamation_png,head_heavy_png,head_medium_png,people_use1_png,people_use2_png,pet_spider_png,mc_mana_shield_png,mc_mirage_missile_png,mc_range_mastery_png,mc_smash_png",
 			"name":"preload"
 		}],
 	"resources":[
@@ -173,6 +173,26 @@
 			"name":"pet_spider_png",
 			"type":"image",
 			"url":"assets/game/pet/pet_spider.png"
+		},
+		{
+			"name":"mc_mana_shield_png",
+			"type":"image",
+			"url":"assets/game/skill/mc_mana_shield.png"
+		},
+		{
+			"name":"mc_mirage_missile_png",
+			"type":"image",
+			"url":"assets/game/skill/mc_mirage_missile.png"
+		},
+		{
+			"name":"mc_range_mastery_png",
+			"type":"image",
+			"url":"assets/game/skill/mc_range_mastery.png"
+		},
+		{
+			"name":"mc_smash_png",
+			"type":"image",
+			"url":"assets/game/skill/mc_smash.png"
 		}
 	]
 }

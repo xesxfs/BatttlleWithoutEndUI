@@ -13,5 +13,8 @@ class BattleSkillInfoPanel extends eui.Component implements  eui.UIComponent {
 	{
 		super.childrenCreated();
 	}
+		public update(){
+		
+	}
 	
 }

@@ -33,4 +33,3 @@ var BasePanel = (function (_super) {
     return BasePanel;
 }(BaseUI));
 __reflect(BasePanel.prototype, "BasePanel");
-//# sourceMappingURL=BasePanel.js.map

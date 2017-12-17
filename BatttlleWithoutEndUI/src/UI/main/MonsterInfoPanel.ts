@@ -13,5 +13,16 @@ class MonsterInfoPanel extends eui.Component implements  eui.UIComponent {
 	{
 		super.childrenCreated();
 	}
+	public update(){
+		
+	}
+
+	public updateHp(){
+		
+	}
+
+	public updateBuff(){
+		
+	}
 	
 }

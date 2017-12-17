@@ -2,7 +2,22 @@ class MainScene extends BaseScene {
 	public constructor() {
 		super();
 	}
-	private allnfoPanel: AllInfoPanel;
+	public static allInfoPanel: AllInfoPanel;
+	public static playerInfoPanel:PlayInfoPanel;
+	public static monsterInfoPanel:MonsterInfoPanel;
+	public static petInfoPanel:PetInfoPanel;
+	public static battleSkillPanel:BattleSkillInfoPanel;
+	public static lootPanel:LootInfoPanel;
+
+	public  allInfoPanel: AllInfoPanel;
+	public  playerInfoPanel:PlayInfoPanel;
+	public  monsterInfoPanel:MonsterInfoPanel;
+	public  petInfoPanel:PetInfoPanel;
+	public  battleSkillPanel:BattleSkillInfoPanel;
+	public  lootPanel:LootInfoPanel;
+
+	public static battle:iData.Battle;
+
 	private testBtn: eui.Button;
 
 	public itemBtn: eui.Button;
@@ -26,9 +41,22 @@ class MainScene extends BaseScene {
 		this.menuBtnsGroup.addEventListener("touchTap", this.onMenusBtn, this);
 		this.otherView.selectedIndex = 0;
 		this.testBtn.addEventListener("touchTap", () => {
-			this.allnfoPanel.addText(this.htlmStr.replace("{%s}", "你好旅行者！！" + this.c++));
+			MainScene.allInfoPanel.addText(this.htlmStr.replace("{%s}", "你好旅行者！！" + this.c++));
 		}, this)
 
+		MainScene.allInfoPanel=this.allInfoPanel;
+		MainScene.playerInfoPanel=this.playerInfoPanel;
+		MainScene.lootPanel=this.lootPanel;
+		MainScene.petInfoPanel=this.petInfoPanel;
+		MainScene.monsterInfoPanel=this.monsterInfoPanel;
+		MainScene.battleSkillPanel=this.battleSkillPanel;
+
+		this.setBattle();
+
+	}
+	private setBattle(){
+		MainScene.battle = new iData.Battle();
+		MainScene.battle.init();
 	}
 
 	/**添加到场景中*/

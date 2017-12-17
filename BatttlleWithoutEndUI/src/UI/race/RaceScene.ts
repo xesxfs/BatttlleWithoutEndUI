@@ -3,6 +3,8 @@ class RaceScene extends BaseScene {
 		super();
 	}
 	private selectRaceBtn: eui.Button;
+	private chosenRace:iData.Race=iData.RaceList.HUMAN;
+	private chosenAge:number = 10;
 
 	protected childrenCreated(): void {
 		this.selectRaceBtn.addEventListener("touchTap", () => {
@@ -13,7 +15,7 @@ class RaceScene extends BaseScene {
 
 	/**添加到场景中*/
 	protected onEnable() {
-
+		iGlobal.Player.burn(this.chosenAge,this.chosenRace);
 	}
 
 	/**从场景中移除*/

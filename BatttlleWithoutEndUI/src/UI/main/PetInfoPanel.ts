@@ -13,5 +13,17 @@ class PetInfoPanel extends eui.Component implements  eui.UIComponent {
 	{
 		super.childrenCreated();
 	}
+
+	public update(){
+		
+	}
+
+	public updateHp(){
+		
+	}
+
+	public updateExp(){
+		
+	}
 	
 }

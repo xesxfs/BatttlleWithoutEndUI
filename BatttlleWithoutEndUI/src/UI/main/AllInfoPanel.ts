@@ -26,7 +26,9 @@ class AllInfoPanel extends eui.Component implements eui.UIComponent {
 		this.originHeight = this.textGroup.height;
 	}
 
-	public addText(info: string) {
+	public addText(info: string,toggle:string="other") {
+		if(!iGlobal.Global[toggle + "_toggle"])return;
+		
 		if (this.list.length >= this.limit) {
 			let lab = this.list.shift();
 			this.textGroup.removeChild(lab);

@@ -3,6 +3,8 @@ class SaveScene extends BaseScene {
 		super();
 	}
 
+	public static slot:string="slot1";
+
 	private raceBtn: eui.Button;
 	private mainBtn: eui.Button;
 

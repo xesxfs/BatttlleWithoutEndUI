@@ -8,3 +8,6 @@ BatttlleWithoutEndUI/bin-debug/UI/scene/BeginScene.js.map
 BatttlleWithoutEndUI/bin-debug/UI/scene/BeginScene.js.map
 BatttlleWithoutEndUI/libs/modules/game/game.js
 BatttlleWithoutEndUI/index.html
+BatttlleWithoutEndUI/.DS_Store
+*.js
+*.map

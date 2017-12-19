@@ -104,19 +104,19 @@ module iData {
 			}
 
 			public get money(): number {
-				var _loc1_: number = (this.CP / iGlobal.Player.combatPower + iGlobal.Global.map.mapData.modifier) * this.CP / 10 * (1 + iGlobal.Player.luck / 300);
+				var clacMoney: number = (this.CP / iGlobal.Player.combatPower + iGlobal.Global.map.mapData.modifier) * this.CP / 10 * (1 + iGlobal.Player.luck / 300);
 				if (this.title) {
-					_loc1_ = _loc1_ * this.title.goldMul;
+					clacMoney = clacMoney * this.title.goldMul;
 				}
-				return _loc1_;
+				return Math.round(clacMoney);
 			}
 
 			public get exp(): number {
-				var _loc1_: number = (this.CP / iGlobal.Player.combatPower + iGlobal.Global.map.mapData.modifier) * this.CP * (1 + iGlobal.Player.luck / 300);
+				var clacExp: number = (this.CP / iGlobal.Player.combatPower + iGlobal.Global.map.mapData.modifier) * this.CP * (1 + iGlobal.Player.luck / 300);
 				if (this.title) {
-					_loc1_ = _loc1_ * this.title.xpMul;
+					clacExp = clacExp * this.title.xpMul;
 				}
-				return _loc1_;
+				return Math.round(clacExp);
 			}
 
 			public get dropRate(): number {
@@ -141,10 +141,10 @@ module iData {
 						_loc2_ = new iData.iItem.Equipment(_loc1_, this.dropRate);
 					}
 					_loc3_ = false;
-					if (<any>!iGlobal.Global["item" + _loc2_.quality + "_toggle"]) {
+					if (!iGlobal.Global["item" + _loc2_.quality + "_toggle"]) {
 						_loc3_ = true;
 					}
-					if (<any>!_loc3_) {
+					if (!_loc3_) {
 						if ((_loc2_ instanceof iData.iItem.Weapon) || _loc2_.type == iData.iItem.EquipType.ACCESORY) {
 							if (<any>!iGlobal.Global[_loc2_.name + "_toggle"]) {
 								_loc3_ = true;
@@ -154,7 +154,7 @@ module iData {
 							_loc3_ = true;
 						}
 					}
-					if (<any>!_loc3_ && iGlobal.Player.addItem(_loc2_)) {
+					if (!_loc3_ && iGlobal.Player.addItem(_loc2_)) {
 						if (MainScene.lootPanel) {
 							switch (_loc2_.quality) {
 								case 0:

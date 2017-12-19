@@ -4,90 +4,90 @@
 	<e:Rect width="100%" height="100%" fillAlpha="0" strokeWeight="2" locked="true"/>
 	<e:Group y="10" x="20">
 		<e:Label text="名字" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="初心者Ssssss" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="pname" text="初心者Ssssss" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="46" x="20">
 		<e:Label text="种族" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="人类" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="race" text="人类" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="46" x="170">
 		<e:Label text="力量" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="26(28)" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="str" text="26(28)" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="46" x="310">
 		<e:Label text="攻击" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="26~36" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="attack" text="26~36" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="82" x="20">
 		<e:Label text="年龄" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="100" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="age" text="100" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="82" x="169">
 		<e:Label text="敏捷" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="26(28)" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="dex" text="26(28)" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="82" x="309">
 		<e:Label text="平衡" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="28" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="balance" text="28" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="117" x="20">
 		<e:Label text="LV" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="100" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="lv" text="100" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="117" x="170">
 		<e:Label text="智力" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="26(28)" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="intelligence" text="26(28)" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="117" x="310">
 		<e:Label text="暴击" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="28" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="crit" text="28" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="260" x="20">
 		<e:Label text="金钱" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="123456789" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="gold" text="123456789" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="260" x="171">
 		<e:Label text="战斗力" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="123.12" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="60"/>
+		<e:Label id="cp" text="123.12" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="60"/>
 	</e:Group>
 	<e:Group y="260" x="311">
 		<e:Label text="无视护甲" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="10" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="80"/>
+		<e:Label id="pro_ignore" text="10" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="80"/>
 	</e:Group>
 	<e:Group y="153" x="20">
 		<e:Label text="HP" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:ProgressBar width="103" x="40"/>
+		<e:ProgressBar id="hp" width="103" x="40"/>
 	</e:Group>
 	<e:Group y="224" x="20">
 		<e:Label text="EXP" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:ProgressBar width="103" x="40"/>
+		<e:ProgressBar id="exp" width="103" x="40"/>
 	</e:Group>
 	<e:Group y="224" x="171">
 		<e:Label text="AP" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="12" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="ap" text="12" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="224" x="311">
 		<e:Label text="护甲" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="10" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="protection" text="10" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="153" x="171">
 		<e:Label text="意志" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="26(28)" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="will" text="26(28)" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="153" x="311">
 		<e:Label text="暴击倍数" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="150%" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="70"/>
+		<e:Label id="crit_mul" text="150%" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="70"/>
 	</e:Group>
 	<e:Group y="189" x="20">
 		<e:Label text="MP" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:ProgressBar width="103" x="40"/>
+		<e:ProgressBar id="mp" width="103" x="40"/>
 	</e:Group>
 	<e:Group y="189" x="171">
 		<e:Label text="幸运" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="26(28)" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="luck" text="26(28)" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 	<e:Group y="189" x="311">
 		<e:Label text="防御" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="10" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
+		<e:Label id="defence" text="10" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="40"/>
 	</e:Group>
 </e:Skin>

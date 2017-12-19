@@ -3,14 +3,14 @@
 	<w:Config id="16027308899" ></w:Config>
 	<e:Rect width="100%" height="100%" fillAlpha="0" strokeWeight="2" locked="true"/>
 	<e:Label text="怪物" textColor="0x474040" size="18" y="13" scaleX="1" scaleY="1" x="8"/>
-	<e:Label text="弱小的小白蜘蛛" textColor="0x474040" size="18" y="13" scaleX="1" scaleY="1" x="56"/>
-	<e:Label text="远古的" textColor="0x474040" size="18" y="36" scaleX="1" scaleY="1" x="88"/>
+	<e:Label id="mname" text="弱小的小白蜘蛛" textColor="0x474040" size="18" y="13" scaleX="1" scaleY="1" x="56"/>
+	<e:Label id="title" text="远古的" textColor="0x474040" size="18" y="36" scaleX="1" scaleY="1" x="68"/>
 	<e:Group y="113" x="20">
 		<e:Label text="HP" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:ProgressBar width="103" x="40"/>
+		<e:ProgressBar id="hp" width="103" x="40"/>
 	</e:Group>
 	<e:Group y="146" x="20">
 		<e:Label text="战斗力" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="200" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="60"/>
+		<e:Label id="cp" text="200" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="60"/>
 	</e:Group>
 </e:Skin>

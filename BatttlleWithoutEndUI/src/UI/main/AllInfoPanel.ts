@@ -7,7 +7,6 @@ class AllInfoPanel extends eui.Component implements eui.UIComponent {
 	private textScroller: eui.Scroller;
 	private originHeight: number;
 	private limit: number = 100;
-	private htmlParse: egret.HtmlTextParser;
 
 	protected partAdded(partName: string, instance: any): void {
 		super.partAdded(partName, instance);
@@ -20,15 +19,14 @@ class AllInfoPanel extends eui.Component implements eui.UIComponent {
 	}
 
 	private init() {
-		this.htmlParse = new egret.HtmlTextParser();
 		this.list = [];
 		this.validateNow();
 		this.originHeight = this.textGroup.height;
 	}
 
-	public addText(info: string,toggle:string="other") {
-		if(!iGlobal.Global[toggle + "_toggle"])return;
-		
+	public addText(info: string, toggle: string = "other") {
+		if (!iGlobal.Global[toggle + "_toggle"]) return;
+
 		if (this.list.length >= this.limit) {
 			let lab = this.list.shift();
 			this.textGroup.removeChild(lab);
@@ -38,7 +36,7 @@ class AllInfoPanel extends eui.Component implements eui.UIComponent {
 		let txtLab = new eui.Label();
 		// this.htmlParse.parse(time+info);
 		// txtLab.size = 18;
-		txtLab.textFlow = this.htmlParse.parser(time + info);
+		txtLab.textFlow = iGlobal.Global.htmlParse.parser(time + info);
 		txtLab.textColor = 0x000000
 		this.textGroup.addChild(txtLab);
 		this.list.push(txtLab);
@@ -59,8 +57,8 @@ class AllInfoPanel extends eui.Component implements eui.UIComponent {
 			this.textScroller.viewport.scrollV += 30;
 
 		}
-		console.log("this.textGroup.height:", this.textGroup.height, " lastY:", lastY);
-		console.log("list:", length);
+		// console.log("this.textGroup.height:", this.textGroup.height, " lastY:", lastY);
+		// console.log("list:", length);
 	}
 
 }

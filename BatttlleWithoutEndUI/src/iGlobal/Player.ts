@@ -94,7 +94,7 @@ module iGlobal {
 				iGlobal.Player.addAp(_loc1_);
 			}
 			iGlobal.Player.updateInfoWindow();
-			// iPanel.iScene.MainScene.allInfoPanel.addText("<font color=\'#ff4040\'>你长大了! 你现在" + iGlobal.Player.age + "岁了!</font>");
+			MainScene.allInfoPanel.addText("<font color=\'#ff4040\'>你长大了! 你现在" + iGlobal.Player.age + "岁了!</font>");
 			iData.iPlayer.TitleList.updateTitleInfo("age", iGlobal.Player.age);
 			// iPanel.iScene.MainScene.otherPanel.otherWindow.updateBirth();
 		}
@@ -113,12 +113,12 @@ module iGlobal {
 
 		public static addItem(equipmentData: iData.iItem.Equipment): boolean {
 			if (iGlobal.Player.itemList.length >= iGlobal.Player.BAGMAX) {
-				//iPanel.iScene.MainScene.allInfoPanel.addText("背包满了!", iGlobal.Global.item);
+				MainScene.allInfoPanel.addText("背包满了!", iGlobal.Global.item);
 				return false;
 			}
 			iGlobal.Player.itemList.push(equipmentData);
 			if (MainScene.allInfoPanel) {
-				// MainScene.allInfoPanel.addText("你获得了" + equipmentData.getNameHTML() + "!", iGlobal.Global.item);
+				MainScene.allInfoPanel.addText("你获得了" + equipmentData.getNameHTML() + "!", iGlobal.Global.item);
 			}
 			// if (MainScene.otherPanel) {
 			// 	if (MainScene.otherPanel.itemWindow) {
@@ -130,13 +130,13 @@ module iGlobal {
 
 		public static addPet(param1: iData.iPet.Pet): boolean {
 			if (iGlobal.Player.petList.length >= iGlobal.Player.PETMAX) {
-				// MainScene.allInfoPanel.addText("宠物栏满了!", iGlobal.Global.item);
+				MainScene.allInfoPanel.addText("宠物栏满了!", iGlobal.Global.item);
 				return false;
 			}
 			iGlobal.Player.petList.push(param1);
-			// if (MainScene.allInfoPanel) {
-			// 	MainScene.allInfoPanel.addText("你获得了" + param1.name + "!", iGlobal.Global.item);
-			// }
+			if (MainScene.allInfoPanel) {
+				MainScene.allInfoPanel.addText("你获得了" + param1.name + "!", iGlobal.Global.item);
+			}
 			// if (MainScene.otherPanel) {
 			// 	MainScene.otherPanel.petWindow.update();
 			// }
@@ -373,11 +373,11 @@ module iGlobal {
 
 		public static loseMoney(param1: number): any {
 			iGlobal.Player.gold = iGlobal.Player.gold - param1;
-			//MainScene.allInfoPanel.addText("你<font color=\'#FF4040\'>失去了" + "$" + param1 + "</font>.", iGlobal.Global.money);
+			MainScene.allInfoPanel.addText("你<font color=\'#FF4040\'>失去了" + "$" + param1 + "</font>.", iGlobal.Global.money);
 			iGlobal.Player.updateInfoWindow();
-			// if (MainScene.lootPanel) {
-			// 	MainScene.lootPanel.money = MainScene.lootPanel.money - param1;
-			// }
+			if (MainScene.lootPanel) {
+				MainScene.lootPanel.money = MainScene.lootPanel.money - param1;
+			}
 			// if (iGlobal.Global.shopPanel) {
 			// 	iGlobal.Global.shopPanel.updateMoneyButton();
 			// }
@@ -389,11 +389,11 @@ module iGlobal {
 		public static addMoney(param1: number): any {
 			if (iGlobal.Player.gold <= 1000000000) {
 				iGlobal.Player.gold = iGlobal.Player.gold + param1;
-				//MainScene.allInfoPanel.addText("你获得了<font color=\'#FFA640\'>" + "$" + param1 + "</font>.", iGlobal.Global.money);
+				MainScene.allInfoPanel.addText("你获得了<font color=\'#FFA640\'>" + "$" + param1 + "</font>.", iGlobal.Global.money);
 				iGlobal.Player.updateInfoWindow();
-				// if (MainScene.lootPanel) {
-				// 	MainScene.lootPanel.money = MainScene.lootPanel.money + param1;
-				// }
+				if (MainScene.lootPanel) {
+					MainScene.lootPanel.money = MainScene.lootPanel.money + param1;
+				}
 			}
 			// if (iGlobal.Global.shopPanel) {
 			// 	iGlobal.Global.shopPanel.updateMoneyButton();
@@ -401,19 +401,19 @@ module iGlobal {
 			// if (iGlobal.Global.specialShopPanel) {
 			// 	iGlobal.Global.specialShopPanel.update();
 			// }
-			if (iGlobal.Global.kongregate) {
-				iGlobal.Global.kongregate.stats.submit("Money", iGlobal.Player.gold);
-			}
+			// if (iGlobal.Global.kongregate) {
+			// 	iGlobal.Global.kongregate.stats.submit("Money", iGlobal.Player.gold);
+			// }
 		}
 
 		public static loseExp(): any {
 			var _loc1_: number = iGlobal.Player.xp / 100;
-			//MainScene.allInfoPanel.addText("你<font color=\'#ff4040\'>失去了" + _loc1_ + "</font>经验.", iGlobal.Global.exp);
+			MainScene.allInfoPanel.addText("你<font color=\'#ff4040\'>失去了" + _loc1_ + "</font>经验.", iGlobal.Global.exp);
 			iGlobal.Player.xp = iGlobal.Player.xp - _loc1_;
 			iGlobal.Player.updateXpBar();
-			// if (MainScene.lootPanel) {
-			// 	MainScene.lootPanel.exp = MainScene.lootPanel.exp - _loc1_;
-			// }
+			if (MainScene.lootPanel) {
+				MainScene.lootPanel.exp = MainScene.lootPanel.exp - _loc1_;
+			}
 		}
 
 		public static addExp(param1: number): any {
@@ -421,14 +421,14 @@ module iGlobal {
 				return;
 			}
 			iGlobal.Player.xp = iGlobal.Player.xp + param1;
-			//MainScene.allInfoPanel.addText("你获得了<font color=\'#4a60d7\'>" + param1 + "</font>经验.", iGlobal.Global.exp);
+			MainScene.allInfoPanel.addText("你获得了<font color=\'#4a60d7\'>" + param1 + "</font>经验.", iGlobal.Global.exp);
 			if (iGlobal.Player.xp > iGlobal.Player.getLevelExp()) {
 				iGlobal.Player.levelUp();
 			}
 			iGlobal.Player.updateXpBar();
-			// if (MainScene.lootPanel) {
-			// 	MainScene.lootPanel.exp = MainScene.lootPanel.exp + param1;
-			// }
+			if (MainScene.lootPanel) {
+				MainScene.lootPanel.exp = MainScene.lootPanel.exp + param1;
+			}
 		}
 
 		private static levelUp(): any {
@@ -458,14 +458,14 @@ module iGlobal {
 			if (iGlobal.Player.age == 10) {
 				iData.iPlayer.TitleList.updateTitleInfo("age10", iGlobal.Player.lv);
 			}
-			if (iGlobal.Global.kongregate) {
-				iGlobal.Global.kongregate.stats.submit("CP", iGlobal.Player.combatPower);
-				iGlobal.Global.kongregate.stats.submit("STR", iGlobal.Player.str);
-				iGlobal.Global.kongregate.stats.submit("DEX", iGlobal.Player.dex);
-				iGlobal.Global.kongregate.stats.submit("INT", iGlobal.Player.intelligence);
-				iGlobal.Global.kongregate.stats.submit("WILL", iGlobal.Player.will);
-				iGlobal.Global.kongregate.stats.submit("LUCK", iGlobal.Player.luck);
-			}
+			// if (iGlobal.Global.kongregate) {
+			// 	iGlobal.Global.kongregate.stats.submit("CP", iGlobal.Player.combatPower);
+			// 	iGlobal.Global.kongregate.stats.submit("STR", iGlobal.Player.str);
+			// 	iGlobal.Global.kongregate.stats.submit("DEX", iGlobal.Player.dex);
+			// 	iGlobal.Global.kongregate.stats.submit("INT", iGlobal.Player.intelligence);
+			// 	iGlobal.Global.kongregate.stats.submit("WILL", iGlobal.Player.will);
+			// 	iGlobal.Global.kongregate.stats.submit("LUCK", iGlobal.Player.luck);
+			// }
 		}
 
 		public static getLevelExp(): number {
@@ -483,7 +483,7 @@ module iGlobal {
 			else {
 				_loc1_ = iGlobal.Player.attMin + (iGlobal.Player.attMax - iGlobal.Player.attMin) * Tool.MyMath.balanceRandom(iGlobal.Player.balance);
 			}
-			return _loc1_;
+			return Math.round(_loc1_);
 		}
 
 		public static get attMin(): number {
@@ -499,7 +499,7 @@ module iGlobal {
 				_loc1_ = _loc1_ + iGlobal.Player.dex / 3;
 			}
 			_loc1_ = iGlobal.Player.formula_title_stat(_loc1_, iData.iItem.Stat.ATTACK);
-			return _loc1_;
+			return Math.round(_loc1_);
 		}
 
 		public static get attMax(): number {
@@ -515,7 +515,7 @@ module iGlobal {
 				_loc1_ = _loc1_ + iGlobal.Player.dex / 2.5;
 			}
 			_loc1_ = iGlobal.Player.formula_title_stat(_loc1_, iData.iItem.Stat.ATTACK);
-			return _loc1_;
+			return Math.round(_loc1_);
 		}
 		/**当前人物血量 */
 		public static get hp(): number {
@@ -525,35 +525,35 @@ module iGlobal {
 		public static get mp(): number {
 			return iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.mp), iData.iItem.Stat.mp);
 		}
-
+		/***力量 */
 		public static get str(): number {
 			var _loc1_: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.str), iData.iItem.Stat.str);
 			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.str, _loc1_);
 			return _loc1_;
 		}
-
+		/**敏捷 */
 		public static get dex(): number {
 			var _loc1_: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.dex), iData.iItem.Stat.dex);
 			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.dex, _loc1_);
-			return _loc1_;
+			return Math.round(_loc1_);
 		}
 
 		public static get intelligence(): number {
 			var _loc1_: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.intelligence), iData.iItem.Stat.intelligence);
 			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.intelligence, _loc1_);
-			return _loc1_;
+			return Math.round(_loc1_);
 		}
 
 		public static get will(): number {
 			var _loc1_: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.will), iData.iItem.Stat.will);
 			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.will, _loc1_);
-			return _loc1_;
+			return Math.round(_loc1_);
 		}
 
 		public static get luck(): number {
 			var _loc1_: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.luck), iData.iItem.Stat.luck);
 			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.luck, _loc1_);
-			return _loc1_;
+			return Math.round(_loc1_);
 		}
 
 		public static get defence(): number {
@@ -561,7 +561,8 @@ module iGlobal {
 		}
 
 		public static get protection(): number {
-			return iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.protection), iData.iItem.Stat.protection);
+			return Math.round(
+				iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.protection), iData.iItem.Stat.protection));
 		}
 
 		public static get balance(): number {
@@ -569,15 +570,18 @@ module iGlobal {
 			if (_loc1_ > 100) {
 				_loc1_ = 100;
 			}
-			return _loc1_;
+			return Math.round(_loc1_);
 		}
 
 		public static get crit(): number {
-			return iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.crit) + iGlobal.Player.will / 5 + iGlobal.Player.luck / 5, iData.iItem.Stat.crit);
+			return Math.round
+				(iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.crit) + iGlobal.Player.will / 5 + iGlobal.Player.luck / 5,
+					iData.iItem.Stat.crit));
 		}
 
 		public static get crit_mul(): number {
-			return iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.crit_mul) + 100, iData.iItem.Stat.crit_mul);
+			return Math.round
+				(iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.crit_mul) + 100, iData.iItem.Stat.crit_mul));
 		}
 
 		/**法术释放几率 */
@@ -655,16 +659,16 @@ module iGlobal {
 			return iGlobal.Player.basicStatus[param1] + iGlobal.Player.skillStatus[param1];
 		}
 
-		private static updateInfoWindow(): any {
-			// if (MainScene.playerInfoPanel) {
-			// 	MainScene.playerInfoPanel.upDate();
-			// }
+		private static updateInfoWindow() {
+			if (MainScene.playerInfoPanel) {
+				MainScene.playerInfoPanel.update();
+			}
 		}
 
 		public static updatePetInfoWindow(): any {
-			// if (MainScene.petInfoPanel) {
-			// 	MainScene.petInfoPanel.update();
-			// }
+			if (MainScene.petInfoPanel) {
+				MainScene.petInfoPanel.update();
+			}
 		}
 
 		public static updateAllInfo(): any {
@@ -790,7 +794,7 @@ module iGlobal {
 
 		public static updateBattleSkillWindow(): any {
 			if (MainScene.battleSkillPanel) {
-			// 	MainScene.battleSkillPanel.update();
+				// 	MainScene.battleSkillPanel.update();
 			}
 		}
 

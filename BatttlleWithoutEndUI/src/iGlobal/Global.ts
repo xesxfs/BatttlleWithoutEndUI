@@ -1,6 +1,6 @@
 module iGlobal {
 	export class Global {
-		public static kongregate: any;
+	
 		public static stage: egret.Stage;
 		// public static stringInfoWindow: iPanel.iCell.StringInfoWindow;
 		// public static itemInfoWindow: iPanel.iCell.ItemInfoWindow;
@@ -81,6 +81,7 @@ module iGlobal {
 		public static sound: egret.Sound;
 		public static soundChannel: egret.SoundChannel;
 		public static sound_toggle: boolean;
+		public static htmlParse: egret.HtmlTextParser = new egret.HtmlTextParser();
 
 		public constructor() {
 

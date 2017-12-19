@@ -20,6 +20,4 @@ class BeginScene extends BaseScene {
 
 	}
 
-
-
 }

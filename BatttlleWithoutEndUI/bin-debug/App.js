@@ -47,3 +47,4 @@ var App = (function (_super) {
     return App;
 }(SingleClass));
 __reflect(App.prototype, "App");
+//# sourceMappingURL=App.js.map

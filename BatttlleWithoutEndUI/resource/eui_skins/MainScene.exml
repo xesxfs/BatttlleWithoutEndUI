@@ -31,31 +31,10 @@
 		<e:Button id="systemBtn" label="System" x="370" y="39" anchorOffsetX="0" width="86" name="4" />
 		<e:Button id="otherBtn" label="Other" y="39" anchorOffsetX="0" width="72" x="567" name="6" />
 	</e:Group>
-	<e:Group id="otherInfoGroup" width="400" height="800" x="26.33" y="242.67" anchorOffsetY="0" visible="false">
+	<e:Group id="otherInfoGroup" width="400" height="800" x="26.33" y="242.67" anchorOffsetY="0">
 		<e:Rect width="100%" height="100%" fillAlpha="1" strokeWeight="1" scaleX="1" scaleY="1" fillColor="0xffffff"/>
-		<e:ViewStack id="otherView" width="100%" height="100%" selectedIndex="1">
-			<e:Group width="100%" height="100%" name="Group">
-				<ns1:ItemWindow anchorOffsetX="0" anchorOffsetY="0" />
-			</e:Group>
-			<e:Group width="100%" height="100%" name="Group">
-				<ns1:EquipWindow/>
-			</e:Group>
-			<e:Group width="100%" height="100%" name="Group">
-				<ns1:SkillWindow/>
-			</e:Group>
-			<e:Group width="100%" height="100%" name="Group">
-				<ns1:TitleWindow/>
-			</e:Group>
-			<e:Group width="100%" height="100%" name="Group">
-				<ns1:SystemWindow/>
-			</e:Group>
-			<e:Group width="100%" height="100%" name="Group">
-				<ns1:PetWindow/>
-			</e:Group>
-			<e:Group width="100%" height="100%" name="Group">
-				<ns1:OtherWindow/>
-			</e:Group>
-		</e:ViewStack>
+		<ns1:OtherPanel id="otherPanle"/>
+
 	</e:Group>
 	<e:Button id="testBtn" label="testBtn" x="245" y="407" />
 </e:Skin>

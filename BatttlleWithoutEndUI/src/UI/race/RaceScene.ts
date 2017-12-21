@@ -3,7 +3,7 @@ class RaceScene extends BaseScene {
 		super();
 	}
 	private selectRaceBtn: eui.Button;
-	private chosenRace:iData.Race=iData.RaceList.HUMAN;
+	private chosenRace:iData.Race=iData.RaceList.DWARF;
 	private chosenAge:number = 10;
 
 	protected childrenCreated(): void {

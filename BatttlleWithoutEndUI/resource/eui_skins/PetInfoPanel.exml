@@ -8,14 +8,14 @@
 	</e:Group>
 	<e:Group y="52.66" x="10.02">
 		<e:Label text="Lv" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:Label text="200" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="23.37"/>
+		<e:Label id="lv" text="200" textColor="0x474040" size="18" scaleX="1" scaleY="1" x="23.37"/>
 	</e:Group>
 	<e:Group y="53.02" x="69.99">
 		<e:Label text="Exp" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:ProgressBar width="88" x="33.34" anchorOffsetX="0"/>
+		<e:ProgressBar id="exp" width="88" x="33.34" anchorOffsetX="0"/>
 	</e:Group>
 	<e:Group y="86.35" x="10.01">
 		<e:Label text="HP" textColor="0x474040" size="18" scaleX="1" scaleY="1"/>
-		<e:ProgressBar width="103" x="40"/>
+		<e:ProgressBar id="hp" width="103" x="40"/>
 	</e:Group>
 </e:Skin>

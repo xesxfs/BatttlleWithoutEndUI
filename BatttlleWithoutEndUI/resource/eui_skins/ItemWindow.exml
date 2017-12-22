@@ -4,12 +4,11 @@
 	<w:Config id="1604af7a2ad"></w:Config>
 	<e:Rect width="100%" height="58" fillAlpha="1" strokeWeight="2" scaleX="1" scaleY="1" x="0" fillColor="0xfcfcfc"
 	        anchorOffsetY="0" />
-	<e:Label text="价值" y="10" textColor="0x191313" left="10" />
-	<e:Label text="类型" y="10" textColor="0x191313" right="10" />
-	<e:Label text="30/50" y="20" textColor="0x191313" horizontalCenter="0" />
+	<e:Label id="orderValue" text="价值" y="10" textColor="0x191313" left="10" />
+	<e:Label id="orderType" text="类型" y="10" textColor="0x191313" right="10" />
+	<e:Label id="textBag" text="30/50" y="20" textColor="0x191313" horizontalCenter="0" />
 	<e:Scroller width="100%" height="451" y="57" anchorOffsetY="0" anchorOffsetX="0" horizontalCenter="0">
 		<e:Group>
-			<e:Rect width="100%" height="100%" fillAlpha="1" strokeWeight="2" scaleX="1" scaleY="1" x="0" fillColor="0x756d6d" />
 			<ns1:EquipmentItem x="0" />
 			<ns1:EquipmentItem x="0" y="93" />
 			<ns1:EquipmentItem x="0" y="187" />
@@ -31,9 +30,11 @@
 	<e:Group width="266" height="247" y="524" horizontalCenter="0" anchorOffsetX="0" anchorOffsetY="0">
 		<e:Rect width="100%" height="100%" fillAlpha="1" strokeWeight="2" scaleX="1" scaleY="1" fillColor="0xFCFCFC" anchorOffsetY="0"/>
 		<e:Label text="费用" x="15" y="12" textColor="0x2d2a2a"/>
+		<e:Label id="text" text="88%" x="118" y="55" textColor="0x2D2A2A" size="22"/>
+		<e:Label id="money" text="$45" x="78" y="17" textColor="0x2D2A2A" size="22"/>
 		<e:Label text="成功率" x="15" y="52" textColor="0x2D2A2A"/>
-		<e:CheckBox label="音效" x="64" y="135"/>
-		<e:CheckBox label="自动+5" x="64" y="175"/>
-		<e:Button label="锻造" x="181" y="137" anchorOffsetX="0" width="68" anchorOffsetY="0" height="68"/>
+		<e:CheckBox id="soundsBox" label="音效" x="64" y="135"/>
+		<e:CheckBox id="autoBox" label="自动+5" x="64" y="175"/>
+		<e:Button id="forgeButton" label="锻造" x="181" y="137" anchorOffsetX="0" width="68" anchorOffsetY="0" height="68"/>
 	</e:Group>
 </e:Skin>

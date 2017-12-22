@@ -36,6 +36,8 @@ declare class MainSceneSkin extends eui.Skin{
 }
 declare class MonsterInfoPanelSkin extends eui.Skin{
 }
+declare class OtherPanelSkin extends eui.Skin{
+}
 declare class OtherWindowSkin extends eui.Skin{
 }
 declare module skins{

@@ -33,7 +33,8 @@
     "BattleSkillInfoPanel": "resource/eui_skins/BattleSkillInfoPanel.exml",
     "LootInfoPanel": "resource/eui_skins/LootInfoPanel.exml",
     "SkillWindow": "resource/eui_skins/SkillWindow.exml",
-    "SkillCell": "resource/eui_skins/SkillCell.exml"
+    "SkillCell": "resource/eui_skins/SkillCell.exml",
+    "OtherPanel": "resource/eui_skins/OtherPanel.exml"
   },
   "autoGenerateExmlsList": true,
   "exmls": [
@@ -51,6 +52,7 @@
     "resource/eui_skins/LootInfoPanel.exml",
     "resource/eui_skins/MainScene.exml",
     "resource/eui_skins/MonsterInfoPanel.exml",
+    "resource/eui_skins/OtherPanel.exml",
     "resource/eui_skins/OtherWindow.exml",
     "resource/eui_skins/PanelSkin.exml",
     "resource/eui_skins/PetCell.exml",

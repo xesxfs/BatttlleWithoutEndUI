@@ -3,8 +3,7 @@ module Tool {
 
 		public constructor()
 		{
-			super();
-			super();
+			super();			
 		}
 
 		public static fadeIn(param1:egret.Sprite,param2:number = 10):any

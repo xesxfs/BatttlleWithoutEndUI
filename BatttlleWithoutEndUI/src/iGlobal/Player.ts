@@ -43,7 +43,7 @@ module iGlobal {
 			iGlobal.Player.race = race;
 			iGlobal.Player.lv = 1;
 			iGlobal.Player.caculateInitStat();
-			if (<any>!iGlobal.Player.leftHand) {
+			if (!iGlobal.Player.leftHand) {
 				iGlobal.Player.equip(new iData.iItem.Weapon((iData.iItem.EquipmentList.list[1] as iData.iItem.WeaponData), 1));
 			}
 			iGlobal.Player.addSkill(iData.iSkill.SkillDataList.COMBAT_MASTERY);
@@ -60,7 +60,7 @@ module iGlobal {
 			iGlobal.Player.addSkill(iData.iSkill.SkillDataList.MIRAGE_MISSILE);
 			iData.iPlayer.TitleList.updateTitleInfo("begin");
 			iGlobal.Player.updateAllInfo();
-			//iGlobal.Player.save();
+			iGlobal.Player.save();
 		}
 
 		private static caculateInitStat() {
@@ -86,12 +86,13 @@ module iGlobal {
 				iGlobal.Player.basicStatus.mp = iGlobal.Player.basicStatus.mp + 1;
 			}
 			iGlobal.Player.age++;
-			var _loc1_: number = 18 - iGlobal.Player.age;
-			if (_loc1_ < 1 && iGlobal.Player.age <= 25) {
-				_loc1_ = 1;
+			/***19~25增加1ap,25以后不增加,18以内直接增加差值**/
+			var addAp: number = 18 - iGlobal.Player.age;			
+			if (addAp < 1 && iGlobal.Player.age <= 25) {
+				addAp = 1;
 			}
-			if (_loc1_ > 0) {
-				iGlobal.Player.addAp(_loc1_);
+			if (addAp > 0) {
+				iGlobal.Player.addAp(addAp);
 			}
 			iGlobal.Player.updateInfoWindow();
 			MainScene.allInfoPanel.addText("<font color=\'#ff4040\'>你长大了! 你现在" + iGlobal.Player.age + "岁了!</font>");
@@ -144,14 +145,14 @@ module iGlobal {
 		}
 
 		public static removeItem(param1: iData.iItem.Equipment): boolean {
-			var _loc2_: number = iGlobal.Player.itemList.length;
-			var _loc3_: number = 0;
-			while (_loc3_ < _loc2_) {
-				if (iGlobal.Player.itemList[_loc3_] == param1) {
-					iGlobal.Player.itemList.splice(_loc3_, 1);
+			var length: number = iGlobal.Player.itemList.length;
+			var index: number = 0;
+			while (index < length) {
+				if (iGlobal.Player.itemList[index] == param1) {
+					iGlobal.Player.itemList.splice(index, 1);
 					return true;
 				}
-				_loc3_++;
+				index++;
 			}
 			return false;
 		}
@@ -359,24 +360,24 @@ module iGlobal {
 			return false;
 		}
 
-		public static addAp(param1: number): any {
-			iGlobal.Player.ap = iGlobal.Player.ap + param1;
+		public static addAp(nAp: number): any {
+			iGlobal.Player.ap = iGlobal.Player.ap + nAp;
 			iGlobal.Player.updateInfoWindow();
 			iGlobal.Player.updateSkillPanel();
-			if (param1 > 0) {
-				MainScene.allInfoPanel.addText("<font color=\'#FF4040\'>你获得了" + param1 + " ap!</font>");
+			if (nAp > 0) {
+				MainScene.allInfoPanel.addText("<font color=\'#FF4040\'>你获得了" + nAp + " ap!</font>");
 			}
 			else {
-				iGlobal.Player.apCost = iGlobal.Player.apCost - param1;
+				iGlobal.Player.apCost = iGlobal.Player.apCost - nAp;
 			}
 		}
 
-		public static loseMoney(param1: number): any {
-			iGlobal.Player.gold = iGlobal.Player.gold - param1;
-			MainScene.allInfoPanel.addText("你<font color=\'#FF4040\'>失去了" + "$" + param1 + "</font>.", iGlobal.Global.money);
+		public static loseMoney(nMoney: number) {
+			iGlobal.Player.gold = iGlobal.Player.gold - nMoney;
+			MainScene.allInfoPanel.addText("你<font color=\'#FF4040\'>失去了" + "$" + nMoney + "</font>.", iGlobal.Global.money);
 			iGlobal.Player.updateInfoWindow();
 			if (MainScene.lootPanel) {
-				MainScene.lootPanel.money = MainScene.lootPanel.money - param1;
+				MainScene.lootPanel.money = MainScene.lootPanel.money - nMoney;
 			}
 			// if (iGlobal.Global.shopPanel) {
 			// 	iGlobal.Global.shopPanel.updateMoneyButton();
@@ -386,13 +387,13 @@ module iGlobal {
 			// }
 		}
 
-		public static addMoney(param1: number): any {
+		public static addMoney(nMoney: number) {
 			if (iGlobal.Player.gold <= 1000000000) {
-				iGlobal.Player.gold = iGlobal.Player.gold + param1;
-				MainScene.allInfoPanel.addText("你获得了<font color=\'#FFA640\'>" + "$" + param1 + "</font>.", iGlobal.Global.money);
+				iGlobal.Player.gold = iGlobal.Player.gold + nMoney;
+				MainScene.allInfoPanel.addText("你获得了<font color=\'#FFA640\'>" + "$" + nMoney + "</font>.", iGlobal.Global.money);
 				iGlobal.Player.updateInfoWindow();
 				if (MainScene.lootPanel) {
-					MainScene.lootPanel.money = MainScene.lootPanel.money + param1;
+					MainScene.lootPanel.money = MainScene.lootPanel.money + nMoney;
 				}
 			}
 			// if (iGlobal.Global.shopPanel) {
@@ -406,7 +407,7 @@ module iGlobal {
 			// }
 		}
 
-		public static loseExp(): any {
+		public static loseExp() {
 			var _loc1_: number = iGlobal.Player.xp / 100;
 			MainScene.allInfoPanel.addText("你<font color=\'#ff4040\'>失去了" + _loc1_ + "</font>经验.", iGlobal.Global.exp);
 			iGlobal.Player.xp = iGlobal.Player.xp - _loc1_;
@@ -416,7 +417,7 @@ module iGlobal {
 			}
 		}
 
-		public static addExp(param1: number): any {
+		public static addExp(param1: number) {
 			if (iGlobal.Player.getLevelExp() < 0) {
 				return;
 			}
@@ -431,7 +432,7 @@ module iGlobal {
 			}
 		}
 
-		private static levelUp(): any {
+		private static levelUp() {
 			iGlobal.Player.lv++;
 			if (iGlobal.Player.age < 25) {
 				iGlobal.Player.basicStatus.hp = iGlobal.Player.basicStatus.hp + (iGlobal.Player.race.ageupList[iGlobal.Player.age - 10].hp / 4 + 1);
@@ -458,6 +459,7 @@ module iGlobal {
 			if (iGlobal.Player.age == 10) {
 				iData.iPlayer.TitleList.updateTitleInfo("age10", iGlobal.Player.lv);
 			}
+			/**上传数据*/
 			// if (iGlobal.Global.kongregate) {
 			// 	iGlobal.Global.kongregate.stats.submit("CP", iGlobal.Player.combatPower);
 			// 	iGlobal.Global.kongregate.stats.submit("STR", iGlobal.Player.str);
@@ -476,14 +478,14 @@ module iGlobal {
 		}
 
 		public static get attack(): number {
-			var _loc1_: number = 0;
+			var attact: number = 0;
 			if (iGlobal.Player.attMin > iGlobal.Player.attMax) {
-				_loc1_ = iGlobal.Player.attMax + (iGlobal.Player.attMin - iGlobal.Player.attMax) * Tool.MyMath.balanceRandom(iGlobal.Player.balance);
+				attact = iGlobal.Player.attMax + (iGlobal.Player.attMin - iGlobal.Player.attMax) * Tool.MyMath.balanceRandom(iGlobal.Player.balance);
 			}
 			else {
-				_loc1_ = iGlobal.Player.attMin + (iGlobal.Player.attMax - iGlobal.Player.attMin) * Tool.MyMath.balanceRandom(iGlobal.Player.balance);
+				attact = iGlobal.Player.attMin + (iGlobal.Player.attMax - iGlobal.Player.attMin) * Tool.MyMath.balanceRandom(iGlobal.Player.balance);
 			}
-			return Math.round(_loc1_);
+			return Math.round(attact);
 		}
 
 		public static get attMin(): number {
@@ -811,7 +813,7 @@ module iGlobal {
 		}
 
 		//手动保存
-		// public static manuallySave():any
+		 public static manuallySave():any
 		// {
 		// 	var _loc4_:number = 0;
 		// 	var _loc1_:any = <any>iGlobal.Player.playerName + "<>" + iPanel.iScene.SaveScene.slot + "<>";
@@ -1104,8 +1106,8 @@ module iGlobal {
 		// }
 
 		//自动保存
-		// public static save():any
-		// {
+		 public static save()
+		{
 		// 	var _loc6_:number = flash.checkInt(0);
 		// 	var _loc1_:flash.SharedObject = flash.SharedObject.getLocal(iPanel.iScene.SaveScene.slot);
 		// 	_loc1_.data["userName"] = iGlobal.Player.playerName;
@@ -1195,11 +1197,11 @@ module iGlobal {
 		// 	_loc7_.compress();
 		// 	_loc1_.data["info"] = tool.Base64.Encode(_loc7_);
 		// 	_loc1_.flush();
-		// }
+		}
 
 		//自动读取
-		// public static load():any
-		// {
+		public static load()
+		{
 		// 	var _loc6_:Array<any> = <any>null;
 		// 	var _loc7_:Array<any> = <any>null;
 		// 	var _loc8_:Array<any> = <any>null;
@@ -1396,7 +1398,7 @@ module iGlobal {
 		// 	}
 		// 	iGlobal.Player.updateAllInfo();
 		// 	iGlobal.Player.updateXpBar();
-		// }
+		}
 
 	}
 }

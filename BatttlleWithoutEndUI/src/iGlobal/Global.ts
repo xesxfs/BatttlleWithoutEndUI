@@ -138,10 +138,10 @@ module iGlobal {
 		}
 
 		public static soundOut(): any {
-			var timer: egret.Timer = <any>null;
+			var timer: egret.Timer = null;
 			var n: number = 0;
 			if (iGlobal.Global.soundChannel) {
-				var onTimer: Function = <any>function (param1: egret.Event): any {
+				var onTimer: Function = <any>function (event: egret.Event): any {
 					iGlobal.Global.soundChannel.volume = (1 - 0.05 * n);
 					n++;
 				};

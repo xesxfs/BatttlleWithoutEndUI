@@ -130,8 +130,8 @@ module iData {
 			public dropItem() {
 				var _loc1_: iData.iItem.EquipmentData = <any>null;
 				var _loc2_: iData.iItem.Equipment = <any>null;
-				var _loc3_: boolean = <any>false;
-				if (Math.random() * 100 < 20 * this.dropRate) {
+				var _loc3_: boolean = false;
+				if (Math.random() * 10 < 20 * this.dropRate) {
 					_loc1_ = iData.iItem.EquipmentList.list[iData.iItem.EquipmentList.list.length * Math.random() >> 0];
 					if (_loc1_ instanceof iData.iItem.WeaponData) {
 						var loc1 = _loc1_ as iData.iItem.WeaponData;

@@ -140,6 +140,7 @@ module iData {
 				if (this.isBoss) {
 					this.quality = Tool.MyMath.balanceRandom(80) * 5.5;
 				}
+				this.quality = Math.round(this.quality);
 				this.generateQualityStat(ratio);
 			}
 			/**生成品质属性 */
@@ -157,8 +158,8 @@ module iData {
 					}
 					if (this instanceof iData.iItem.Weapon) {
 						_loc3_ = iData.iItem.StatList.list.length * Math.random();
-					}   
-					_loc4_ = iData.iItem.StatList.list[_loc3_>>0];
+					}
+					_loc4_ = iData.iItem.StatList.list[_loc3_ >> 0];
 					_loc5_ = _loc4_.value * Math.random() * Math.random() * ratio;
 					if (this.quality == 5) {
 						_loc5_ = _loc4_.value * (Math.random() * Math.random() * 0.85 + 0.15) * ratio;

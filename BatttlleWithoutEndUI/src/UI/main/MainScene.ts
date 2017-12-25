@@ -8,7 +8,7 @@ class MainScene extends BaseScene {
 	public static petInfoPanel: PetInfoPanel;
 	public static battleSkillPanel: BattleSkillInfoPanel;
 	public static lootPanel: LootInfoPanel;
-	public static otherPanle: OtherPanel;
+	public static otherPanel: OtherPanel;
 
 	public allInfoPanel: AllInfoPanel;
 	public playerInfoPanel: PlayInfoPanel;
@@ -16,7 +16,7 @@ class MainScene extends BaseScene {
 	public petInfoPanel: PetInfoPanel;
 	public battleSkillPanel: BattleSkillInfoPanel;
 	public lootPanel: LootInfoPanel;
-	public otherPanle: OtherPanel;
+	public otherPanel: OtherPanel;
 
 	public static battle: iData.Battle;
 
@@ -51,7 +51,7 @@ class MainScene extends BaseScene {
 		MainScene.petInfoPanel = this.petInfoPanel;
 		MainScene.monsterInfoPanel = this.monsterInfoPanel;
 		MainScene.battleSkillPanel = this.battleSkillPanel;
-		MainScene.otherPanle = this.otherPanle;
+		MainScene.otherPanel = this.otherPanel;
 		this.setBattle();
 	}
 
@@ -69,7 +69,7 @@ class MainScene extends BaseScene {
 	private onMenusBtn(e: egret.TouchEvent) {
 		if (e.target instanceof eui.Button) {
 			// this.otherView.selectedIndex = parseInt(e.target.name);
-			this.otherPanle.onSelect(parseInt(e.target.name));
+			this.otherPanel.onSelect(parseInt(e.target.name));
 		}
 
 	}

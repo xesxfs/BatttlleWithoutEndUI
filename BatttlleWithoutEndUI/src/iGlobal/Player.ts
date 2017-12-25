@@ -87,7 +87,7 @@ module iGlobal {
 			}
 			iGlobal.Player.age++;
 			/***19~25增加1ap,25以后不增加,18以内直接增加差值**/
-			var addAp: number = 18 - iGlobal.Player.age;			
+			var addAp: number = 18 - iGlobal.Player.age;
 			if (addAp < 1 && iGlobal.Player.age <= 25) {
 				addAp = 1;
 			}
@@ -121,11 +121,11 @@ module iGlobal {
 			if (MainScene.allInfoPanel) {
 				MainScene.allInfoPanel.addText("你获得了" + equipmentData.getNameHTML() + "!", iGlobal.Global.item);
 			}
-			// if (MainScene.otherPanel) {
-			// 	if (MainScene.otherPanel.itemWindow) {
-			// 		MainScene.otherPanel.itemWindow.addOneItem();
-			// 	}
-			// }
+			if (MainScene.otherPanel) {
+				if (MainScene.otherPanel.itemWindow) {
+					MainScene.otherPanel.itemWindow.addOneItem();
+				}
+			}
 			return true;
 		}
 
@@ -788,120 +788,119 @@ module iGlobal {
 			iGlobal.Player.updateEquipWindow();
 		}
 
-		private static updateEquipWindow(): any {
+		private static updateEquipWindow() {
 			// if (MainScene.otherPanel && MainScene.otherPanel.equipWindow) {
 			// 	MainScene.otherPanel.equipWindow.update();
 			// }
 		}
 
-		public static updateBattleSkillWindow(): any {
+		public static updateBattleSkillWindow() {
 			if (MainScene.battleSkillPanel) {
 				// 	MainScene.battleSkillPanel.update();
 			}
 		}
 
-		private static updateXpBar(): any {
+		private static updateXpBar() {
 			// if (MainScene.playerInfoPanel) {
 			// 	MainScene.playerInfoPanel.upDateExp();
 			// }
 		}
 
-		private static updateSkillPanel(): any {
+		private static updateSkillPanel() {
 			// if (MainScene.otherPanel && MainScene.otherPanel.skillWindow) {
 			// 	MainScene.otherPanel.skillWindow.onUpdate();
 			// }
 		}
 
 		//手动保存
-		 public static manuallySave():any
-		// {
-		// 	var _loc4_:number = 0;
-		// 	var _loc1_:any = <any>iGlobal.Player.playerName + "<>" + iPanel.iScene.SaveScene.slot + "<>";
-		// 	var _loc2_:any = <any>"";
-		// 	_loc2_ = _loc2_ + "@BASIC:";
-		// 	var _loc3_:Array<any> = ["lv","age","ap","xp","gold","apCost","caculate","BAGMAX","PETMAX"];
-		// 	_loc4_ = 0;
-		// 	while(_loc4_ < _loc3_.length)
-		// 	{
-		// 		_loc2_ = _loc2_ + (_loc3_[_loc4_] + "," + iGlobal.Player[_loc3_[_loc4_]] + ",");
-		// 		_loc4_++;
-		// 	}
-		// 	_loc2_ = _loc2_ + "@RACE:";
-		// 	_loc2_ = _loc2_ + iGlobal.Player.race.name;
-		// 	_loc3_ = ["head","body","feet","necklace","ring","leftHand","rightHand"];
-		// 	_loc2_ = _loc2_ + "@EQUIP:";
-		// 	_loc4_ = 0;
-		// 	while(_loc4_ < _loc3_.length)
-		// 	{
-		// 		if(iGlobal.Player[_loc3_[_loc4_]])
-		// 		{
-		// 			_loc2_ = _loc2_ + (_loc3_[_loc4_] + "," + (iGlobal.Player[_loc3_[_loc4_]] as iData.iItem.Equipment).save() + ",");
-		// 		}
-		// 		_loc4_++;
-		// 	}
-		// 	_loc2_ = _loc2_ + "@ITEM:";
-		// 	_loc4_ = 0;
-		// 	while(_loc4_ < iGlobal.Player.itemList.length)
-		// 	{
-		// 		_loc2_ = _loc2_ + (iGlobal.Player.itemList[_loc4_].save() + ",");
-		// 		_loc4_++;
-		// 	}
-		// 	_loc2_ = _loc2_ + "@SKILL:";
-		// 	_loc4_ = 0;
-		// 	while(_loc4_ < iGlobal.Player.skillList.length)
-		// 	{
-		// 		_loc2_ = _loc2_ + (iGlobal.Player.skillList[_loc4_].save() + ",");
-		// 		_loc4_++;
-		// 	}
-		// 	_loc2_ = _loc2_ + "@TITLE:";
-		// 	_loc4_ = 0;
-		// 	while(_loc4_ < iData.iPlayer.TitleList.list.length)
-		// 	{
-		// 		_loc2_ = _loc2_ + (iData.iPlayer.TitleList.list[_loc4_].save() + ",");
-		// 		_loc4_++;
-		// 	}
-		// 	_loc2_ = _loc2_ + "@OTHER:";
-		// 	_loc3_ = ["hp","mp","luck","intelligence","str","dex","will"];
-		// 	_loc4_ = 0;
-		// 	while(_loc4_ < _loc3_.length)
-		// 	{
-		// 		_loc2_ = _loc2_ + (_loc3_[_loc4_] + "," + iGlobal.Player.basicStatus[_loc3_[_loc4_]] + ",");
-		// 		_loc4_++;
-		// 	}
-		// 	_loc2_ = _loc2_ + "@GLOBAL:";
-		// 	_loc3_ = ["battle","battleIntro","money","exp","item","item0","item1","item2","item3","item4","sword","axe","bow","crossbow","sceptre","staff","dagger","tome","shield","head_light","head_medium","head_heavy","body_light","body_medium","body_heavy","feet_light","feet_medium","feet_heavy","ring","necklace"];
-		// 	_loc2_ = _loc2_ + "toggle,";
-		// 	_loc4_ = 0;
-		// 	while(_loc4_ < _loc3_.length)
-		// 	{
-		// 		_loc2_ = _loc2_ + (_loc3_[_loc4_] + "#" + iGlobal.Global[_loc3_[_loc4_] + "_toggle"] + "#");
-		// 		_loc4_++;
-		// 	}
-		// 	_loc2_ = _loc2_ + "@SELECTION:";
-		// 	_loc2_ = _loc2_ + ("map," + iGlobal.Global.map.mapData.name + "#");
-		// 	if(iGlobal.Player.title)
-		// 	{
-		// 		_loc2_ = _loc2_ + ("title," + iGlobal.Player.title.name);
-		// 	}
-		// 	_loc2_ = _loc2_ + "@PET:";
-		// 	_loc4_ = 0;
-		// 	while(_loc4_ < iGlobal.Player.petList.length)
-		// 	{
-		// 		_loc2_ = _loc2_ + (iGlobal.Player.petList[_loc4_].save() + ",");
-		// 		_loc4_++;
-		// 	}
-		// 	_loc2_ = _loc2_ + "@EQUIPEDPET:";
-		// 	if(iGlobal.Player.pet)
-		// 	{
-		// 		_loc2_ = _loc2_ + iGlobal.Player.pet.save();
-		// 	}
-		// 	var _loc5_:egret.ByteArray = new egret.ByteArray();
-		// 	_loc5_.writeUTFBytes(_loc2_);
-		// 	_loc5_.compress();
-		// 	_loc1_ = _loc1_ + tool.Base64.Encode(_loc5_);
-		// 	var _loc6_:flash.net.FileReference = <any>new FileReference();
-		// 	_loc6_["save"](_loc1_,iPanel.iScene.SaveScene.slot);
-		// }
+		public static manuallySave() {
+			// 	var _loc4_:number = 0;
+			// 	var _loc1_:any = <any>iGlobal.Player.playerName + "<>" + iPanel.iScene.SaveScene.slot + "<>";
+			// 	var _loc2_:any = <any>"";
+			// 	_loc2_ = _loc2_ + "@BASIC:";
+			// 	var _loc3_:Array<any> = ["lv","age","ap","xp","gold","apCost","caculate","BAGMAX","PETMAX"];
+			// 	_loc4_ = 0;
+			// 	while(_loc4_ < _loc3_.length)
+			// 	{
+			// 		_loc2_ = _loc2_ + (_loc3_[_loc4_] + "," + iGlobal.Player[_loc3_[_loc4_]] + ",");
+			// 		_loc4_++;
+			// 	}
+			// 	_loc2_ = _loc2_ + "@RACE:";
+			// 	_loc2_ = _loc2_ + iGlobal.Player.race.name;
+			// 	_loc3_ = ["head","body","feet","necklace","ring","leftHand","rightHand"];
+			// 	_loc2_ = _loc2_ + "@EQUIP:";
+			// 	_loc4_ = 0;
+			// 	while(_loc4_ < _loc3_.length)
+			// 	{
+			// 		if(iGlobal.Player[_loc3_[_loc4_]])
+			// 		{
+			// 			_loc2_ = _loc2_ + (_loc3_[_loc4_] + "," + (iGlobal.Player[_loc3_[_loc4_]] as iData.iItem.Equipment).save() + ",");
+			// 		}
+			// 		_loc4_++;
+			// 	}
+			// 	_loc2_ = _loc2_ + "@ITEM:";
+			// 	_loc4_ = 0;
+			// 	while(_loc4_ < iGlobal.Player.itemList.length)
+			// 	{
+			// 		_loc2_ = _loc2_ + (iGlobal.Player.itemList[_loc4_].save() + ",");
+			// 		_loc4_++;
+			// 	}
+			// 	_loc2_ = _loc2_ + "@SKILL:";
+			// 	_loc4_ = 0;
+			// 	while(_loc4_ < iGlobal.Player.skillList.length)
+			// 	{
+			// 		_loc2_ = _loc2_ + (iGlobal.Player.skillList[_loc4_].save() + ",");
+			// 		_loc4_++;
+			// 	}
+			// 	_loc2_ = _loc2_ + "@TITLE:";
+			// 	_loc4_ = 0;
+			// 	while(_loc4_ < iData.iPlayer.TitleList.list.length)
+			// 	{
+			// 		_loc2_ = _loc2_ + (iData.iPlayer.TitleList.list[_loc4_].save() + ",");
+			// 		_loc4_++;
+			// 	}
+			// 	_loc2_ = _loc2_ + "@OTHER:";
+			// 	_loc3_ = ["hp","mp","luck","intelligence","str","dex","will"];
+			// 	_loc4_ = 0;
+			// 	while(_loc4_ < _loc3_.length)
+			// 	{
+			// 		_loc2_ = _loc2_ + (_loc3_[_loc4_] + "," + iGlobal.Player.basicStatus[_loc3_[_loc4_]] + ",");
+			// 		_loc4_++;
+			// 	}
+			// 	_loc2_ = _loc2_ + "@GLOBAL:";
+			// 	_loc3_ = ["battle","battleIntro","money","exp","item","item0","item1","item2","item3","item4","sword","axe","bow","crossbow","sceptre","staff","dagger","tome","shield","head_light","head_medium","head_heavy","body_light","body_medium","body_heavy","feet_light","feet_medium","feet_heavy","ring","necklace"];
+			// 	_loc2_ = _loc2_ + "toggle,";
+			// 	_loc4_ = 0;
+			// 	while(_loc4_ < _loc3_.length)
+			// 	{
+			// 		_loc2_ = _loc2_ + (_loc3_[_loc4_] + "#" + iGlobal.Global[_loc3_[_loc4_] + "_toggle"] + "#");
+			// 		_loc4_++;
+			// 	}
+			// 	_loc2_ = _loc2_ + "@SELECTION:";
+			// 	_loc2_ = _loc2_ + ("map," + iGlobal.Global.map.mapData.name + "#");
+			// 	if(iGlobal.Player.title)
+			// 	{
+			// 		_loc2_ = _loc2_ + ("title," + iGlobal.Player.title.name);
+			// 	}
+			// 	_loc2_ = _loc2_ + "@PET:";
+			// 	_loc4_ = 0;
+			// 	while(_loc4_ < iGlobal.Player.petList.length)
+			// 	{
+			// 		_loc2_ = _loc2_ + (iGlobal.Player.petList[_loc4_].save() + ",");
+			// 		_loc4_++;
+			// 	}
+			// 	_loc2_ = _loc2_ + "@EQUIPEDPET:";
+			// 	if(iGlobal.Player.pet)
+			// 	{
+			// 		_loc2_ = _loc2_ + iGlobal.Player.pet.save();
+			// 	}
+			// 	var _loc5_:egret.ByteArray = new egret.ByteArray();
+			// 	_loc5_.writeUTFBytes(_loc2_);
+			// 	_loc5_.compress();
+			// 	_loc1_ = _loc1_ + tool.Base64.Encode(_loc5_);
+			// 	var _loc6_:flash.net.FileReference = <any>new FileReference();
+			// 	_loc6_["save"](_loc1_,iPanel.iScene.SaveScene.slot);
+		}
 
 		//手动读取
 		// public static manualLoad(param1:string):any
@@ -1106,298 +1105,296 @@ module iGlobal {
 		// }
 
 		//自动保存
-		 public static save()
-		{
-		// 	var _loc6_:number = flash.checkInt(0);
-		// 	var _loc1_:flash.SharedObject = flash.SharedObject.getLocal(iPanel.iScene.SaveScene.slot);
-		// 	_loc1_.data["userName"] = iGlobal.Player.playerName;
-		// 	var _loc2_:flash.As3Date = new flash.As3Date();
-		// 	var _loc3_:any = <any>"[" + (_loc2_.getMonth() + 1) + "/" + _loc2_.getDate() + "/" + _loc2_.getHours() + ":" + _loc2_.getMinutes() + "]";
-		// 	_loc1_.data["time"] = _loc3_;
-		// 	var _loc4_:any = <any>"";
-		// 	_loc4_ = _loc4_ + "@BASIC:";
-		// 	var _loc5_:Array<any> = ["lv","age","ap","xp","gold","apCost","caculate","BAGMAX","PETMAX"];
-		// 	_loc6_ = flash.checkInt(0);
-		// 	while(_loc6_ < _loc5_.length)
-		// 	{
-		// 		_loc4_ = _loc4_ + (_loc5_[_loc6_] + "," + iGlobal.Player[_loc5_[_loc6_]] + ",");
-		// 		_loc6_++;
-		// 	}
-		// 	_loc4_ = _loc4_ + "@RACE:";
-		// 	_loc4_ = _loc4_ + iGlobal.Player.race.name;
-		// 	_loc5_ = ["head","body","feet","necklace","ring","leftHand","rightHand"];
-		// 	_loc4_ = _loc4_ + "@EQUIP:";
-		// 	_loc6_ = flash.checkInt(0);
-		// 	while(_loc6_ < _loc5_.length)
-		// 	{
-		// 		if(iGlobal.Player[_loc5_[_loc6_]])
-		// 		{
-		// 			_loc4_ = _loc4_ + (_loc5_[_loc6_] + "," + (flash.As3As(iGlobal.Player[_loc5_[_loc6_]],iData.iItem.Equipment)).save() + ",");
-		// 		}
-		// 		_loc6_++;
-		// 	}
-		// 	_loc4_ = _loc4_ + "@ITEM:";
-		// 	_loc6_ = flash.checkInt(0);
-		// 	while(_loc6_ < iGlobal.Player.itemList.length)
-		// 	{
-		// 		_loc4_ = _loc4_ + (iGlobal.Player.itemList[_loc6_].save() + ",");
-		// 		_loc6_++;
-		// 	}
-		// 	_loc4_ = _loc4_ + "@SKILL:";
-		// 	_loc6_ = flash.checkInt(0);
-		// 	while(_loc6_ < iGlobal.Player.skillList.length)
-		// 	{
-		// 		_loc4_ = _loc4_ + (iGlobal.Player.skillList[_loc6_].save() + ",");
-		// 		_loc6_++;
-		// 	}
-		// 	_loc4_ = _loc4_ + "@TITLE:";
-		// 	_loc6_ = flash.checkInt(0);
-		// 	while(_loc6_ < iData.iPlayer.TitleList.list.length)
-		// 	{
-		// 		_loc4_ = _loc4_ + (iData.iPlayer.TitleList.list[_loc6_].save() + ",");
-		// 		_loc6_++;
-		// 	}
-		// 	_loc4_ = _loc4_ + "@OTHER:";
-		// 	_loc5_ = ["hp","mp","luck","intelligence","str","dex","will"];
-		// 	_loc6_ = flash.checkInt(0);
-		// 	while(_loc6_ < _loc5_.length)
-		// 	{
-		// 		_loc4_ = _loc4_ + (_loc5_[_loc6_] + "," + iGlobal.Player.basicStatus[_loc5_[_loc6_]] + ",");
-		// 		_loc6_++;
-		// 	}
-		// 	_loc4_ = _loc4_ + "@GLOBAL:";
-		// 	_loc5_ = ["battle","battleIntro","money","exp","item","item0","item1","item2","item3","item4","sword","axe","bow","crossbow","sceptre","staff","dagger","tome","shield","head_light","head_medium","head_heavy","body_light","body_medium","body_heavy","feet_light","feet_medium","feet_heavy","ring","necklace","sound"];
-		// 	_loc4_ = _loc4_ + "toggle,";
-		// 	_loc6_ = flash.checkInt(0);
-		// 	while(_loc6_ < _loc5_.length)
-		// 	{
-		// 		_loc4_ = _loc4_ + (_loc5_[_loc6_] + "#" + iGlobal.Global[_loc5_[_loc6_] + "_toggle"] + "#");
-		// 		_loc6_++;
-		// 	}
-		// 	_loc4_ = _loc4_ + "@SELECTION:";
-		// 	_loc4_ = _loc4_ + ("map," + iGlobal.Global.map.mapData.name + "#");
-		// 	if(iGlobal.Player.title)
-		// 	{
-		// 		_loc4_ = _loc4_ + ("title," + iGlobal.Player.title.name);
-		// 	}
-		// 	_loc4_ = _loc4_ + "@PET:";
-		// 	_loc6_ = flash.checkInt(0);
-		// 	while(_loc6_ < iGlobal.Player.petList.length)
-		// 	{
-		// 		_loc4_ = _loc4_ + (iGlobal.Player.petList[_loc6_].save() + ",");
-		// 		_loc6_++;
-		// 	}
-		// 	_loc4_ = _loc4_ + "@EQUIPEDPET:";
-		// 	if(iGlobal.Player.pet)
-		// 	{
-		// 		_loc4_ = _loc4_ + iGlobal.Player.pet.save();
-		// 	}
-		// 	var _loc7_:flash.ByteArray = new flash.ByteArray();
-		// 	_loc7_.writeUTFBytes(_loc4_);
-		// 	_loc7_.compress();
-		// 	_loc1_.data["info"] = tool.Base64.Encode(_loc7_);
-		// 	_loc1_.flush();
+		public static save() {
+			// 	var _loc6_:number = flash.checkInt(0);
+			// 	var _loc1_:flash.SharedObject = flash.SharedObject.getLocal(iPanel.iScene.SaveScene.slot);
+			// 	_loc1_.data["userName"] = iGlobal.Player.playerName;
+			// 	var _loc2_:flash.As3Date = new flash.As3Date();
+			// 	var _loc3_:any = <any>"[" + (_loc2_.getMonth() + 1) + "/" + _loc2_.getDate() + "/" + _loc2_.getHours() + ":" + _loc2_.getMinutes() + "]";
+			// 	_loc1_.data["time"] = _loc3_;
+			// 	var _loc4_:any = <any>"";
+			// 	_loc4_ = _loc4_ + "@BASIC:";
+			// 	var _loc5_:Array<any> = ["lv","age","ap","xp","gold","apCost","caculate","BAGMAX","PETMAX"];
+			// 	_loc6_ = flash.checkInt(0);
+			// 	while(_loc6_ < _loc5_.length)
+			// 	{
+			// 		_loc4_ = _loc4_ + (_loc5_[_loc6_] + "," + iGlobal.Player[_loc5_[_loc6_]] + ",");
+			// 		_loc6_++;
+			// 	}
+			// 	_loc4_ = _loc4_ + "@RACE:";
+			// 	_loc4_ = _loc4_ + iGlobal.Player.race.name;
+			// 	_loc5_ = ["head","body","feet","necklace","ring","leftHand","rightHand"];
+			// 	_loc4_ = _loc4_ + "@EQUIP:";
+			// 	_loc6_ = flash.checkInt(0);
+			// 	while(_loc6_ < _loc5_.length)
+			// 	{
+			// 		if(iGlobal.Player[_loc5_[_loc6_]])
+			// 		{
+			// 			_loc4_ = _loc4_ + (_loc5_[_loc6_] + "," + (flash.As3As(iGlobal.Player[_loc5_[_loc6_]],iData.iItem.Equipment)).save() + ",");
+			// 		}
+			// 		_loc6_++;
+			// 	}
+			// 	_loc4_ = _loc4_ + "@ITEM:";
+			// 	_loc6_ = flash.checkInt(0);
+			// 	while(_loc6_ < iGlobal.Player.itemList.length)
+			// 	{
+			// 		_loc4_ = _loc4_ + (iGlobal.Player.itemList[_loc6_].save() + ",");
+			// 		_loc6_++;
+			// 	}
+			// 	_loc4_ = _loc4_ + "@SKILL:";
+			// 	_loc6_ = flash.checkInt(0);
+			// 	while(_loc6_ < iGlobal.Player.skillList.length)
+			// 	{
+			// 		_loc4_ = _loc4_ + (iGlobal.Player.skillList[_loc6_].save() + ",");
+			// 		_loc6_++;
+			// 	}
+			// 	_loc4_ = _loc4_ + "@TITLE:";
+			// 	_loc6_ = flash.checkInt(0);
+			// 	while(_loc6_ < iData.iPlayer.TitleList.list.length)
+			// 	{
+			// 		_loc4_ = _loc4_ + (iData.iPlayer.TitleList.list[_loc6_].save() + ",");
+			// 		_loc6_++;
+			// 	}
+			// 	_loc4_ = _loc4_ + "@OTHER:";
+			// 	_loc5_ = ["hp","mp","luck","intelligence","str","dex","will"];
+			// 	_loc6_ = flash.checkInt(0);
+			// 	while(_loc6_ < _loc5_.length)
+			// 	{
+			// 		_loc4_ = _loc4_ + (_loc5_[_loc6_] + "," + iGlobal.Player.basicStatus[_loc5_[_loc6_]] + ",");
+			// 		_loc6_++;
+			// 	}
+			// 	_loc4_ = _loc4_ + "@GLOBAL:";
+			// 	_loc5_ = ["battle","battleIntro","money","exp","item","item0","item1","item2","item3","item4","sword","axe","bow","crossbow","sceptre","staff","dagger","tome","shield","head_light","head_medium","head_heavy","body_light","body_medium","body_heavy","feet_light","feet_medium","feet_heavy","ring","necklace","sound"];
+			// 	_loc4_ = _loc4_ + "toggle,";
+			// 	_loc6_ = flash.checkInt(0);
+			// 	while(_loc6_ < _loc5_.length)
+			// 	{
+			// 		_loc4_ = _loc4_ + (_loc5_[_loc6_] + "#" + iGlobal.Global[_loc5_[_loc6_] + "_toggle"] + "#");
+			// 		_loc6_++;
+			// 	}
+			// 	_loc4_ = _loc4_ + "@SELECTION:";
+			// 	_loc4_ = _loc4_ + ("map," + iGlobal.Global.map.mapData.name + "#");
+			// 	if(iGlobal.Player.title)
+			// 	{
+			// 		_loc4_ = _loc4_ + ("title," + iGlobal.Player.title.name);
+			// 	}
+			// 	_loc4_ = _loc4_ + "@PET:";
+			// 	_loc6_ = flash.checkInt(0);
+			// 	while(_loc6_ < iGlobal.Player.petList.length)
+			// 	{
+			// 		_loc4_ = _loc4_ + (iGlobal.Player.petList[_loc6_].save() + ",");
+			// 		_loc6_++;
+			// 	}
+			// 	_loc4_ = _loc4_ + "@EQUIPEDPET:";
+			// 	if(iGlobal.Player.pet)
+			// 	{
+			// 		_loc4_ = _loc4_ + iGlobal.Player.pet.save();
+			// 	}
+			// 	var _loc7_:flash.ByteArray = new flash.ByteArray();
+			// 	_loc7_.writeUTFBytes(_loc4_);
+			// 	_loc7_.compress();
+			// 	_loc1_.data["info"] = tool.Base64.Encode(_loc7_);
+			// 	_loc1_.flush();
 		}
 
 		//自动读取
-		public static load()
-		{
-		// 	var _loc6_:Array<any> = <any>null;
-		// 	var _loc7_:Array<any> = <any>null;
-		// 	var _loc8_:Array<any> = <any>null;
-		// 	var _loc9_:Array<any> = <any>null;
-		// 	var _loc10_:Array<any> = <any>null;
-		// 	var _loc11_:Array<any> = <any>null;
-		// 	var _loc12_:Array<any> = <any>null;
-		// 	var _loc13_:Array<any> = <any>null;
-		// 	var _loc14_:Array<any> = <any>null;
-		// 	var _loc15_:Array<any> = <any>null;
-		// 	var _loc16_:number = 0;
-		// 	var _loc17_:Array<any> = <any>null;
-		// 	var _loc18_:Array<any> = <any>null;
-		// 	var _loc19_:number = 0;
-		// 	var _loc1_:flash.SharedObject = flash.SharedObject.getLocal(iPanel.iScene.SaveScene.slot);
-		// 	iGlobal.Player.playerName = _loc1_.data["userName"];
-		// 	var _loc2_:flash.ByteArray = tool.Base64.Decode(_loc1_.data["info"]);
-		// 	_loc2_.uncompress();
-		// 	var _loc3_:string = _loc2_.toString();
-		// 	var _loc4_:Array<any> = _loc3_.split("@");
-		// 	var _loc5_:number = 0;
-		// 	while(_loc5_ < _loc4_.length)
-		// 	{
-		// 		_loc6_ = (<string>_loc4_[_loc5_]).split(":");
-		// 		switch(_loc6_[0])
-		// 		{
-		// 		case "BASIC" :
-		// 			_loc7_ = (<string>_loc6_[1]).split(",");
-		// 			_loc16_ = 0;
-		// 			while(_loc16_ < _loc7_.length)
-		// 			{
-		// 				if(_loc7_[_loc16_] != "")
-		// 				{
-		// 					iGlobal.Player[_loc7_[_loc16_]] = _loc7_[_loc16_ + 1];
-		// 				}
-		// 				_loc16_ = _loc16_ + 2;
-		// 			}
-		// 			break;
-		// 		case "RACE" :
-		// 			_loc16_ = 0;
-		// 			while(_loc16_ < iData.RaceList.list.length)
-		// 			{
-		// 				if(_loc6_[1] == "undeath")
-		// 				{
-		// 					iGlobal.Player.race = iData.RaceList.UNDEATH;
-		// 					break;
-		// 				}
-		// 				if(_loc6_[1] == iData.RaceList.list[_loc16_].name)
-		// 				{
-		// 					iGlobal.Player.race = iData.RaceList.list[_loc16_];
-		// 					break;
-		// 				}
-		// 				_loc16_++;
-		// 			}
-		// 			break;
-		// 		case "EQUIP" :
-		// 			_loc8_ = (<string>_loc6_[1]).split(",");
-		// 			_loc16_ = 0;
-		// 			while(_loc16_ < _loc8_.length)
-		// 			{
-		// 				if(_loc8_[_loc16_] != "")
-		// 				{
-		// 					iGlobal.Player[_loc8_[_loc16_]] = iData.iItem.Equipment.load(_loc8_[_loc16_ + 1]);
-		// 				}
-		// 				_loc16_ = _loc16_ + 2;
-		// 			}
-		// 			break;
-		// 		case "ITEM" :
-		// 			_loc9_ = (<string>_loc6_[1]).split(",");
-		// 			_loc16_ = 0;
-		// 			while(_loc16_ < _loc9_.length)
-		// 			{
-		// 				if(_loc9_[_loc16_] != "")
-		// 				{
-		// 					iGlobal.Player.itemList.push(iData.iItem.Equipment.load(_loc9_[_loc16_]));
-		// 				}
-		// 				_loc16_++;
-		// 			}
-		// 			break;
-		// 		case "SKILL" :
-		// 			_loc10_ = (<string>_loc6_[1]).split(",");
-		// 			_loc16_ = 0;
-		// 			while(_loc16_ < _loc10_.length)
-		// 			{
-		// 				if(_loc10_[_loc16_] != "")
-		// 				{
-		// 					iGlobal.Player.skillList.push(iData.iSkill.Skill.load(_loc10_[_loc16_]));
-		// 				}
-		// 				_loc16_++;
-		// 			}
-		// 			break;
-		// 		case "TITLE" :
-		// 			_loc11_ = (<string>_loc6_[1]).split(",");
-		// 			_loc16_ = 0;
-		// 			while(_loc16_ < iData.iPlayer.TitleList.list.length)
-		// 			{
-		// 				iData.iPlayer.TitleList.list[_loc16_].load(_loc11_[_loc16_]);
-		// 				_loc16_++;
-		// 			}
-		// 			break;
-		// 		case "OTHER" :
-		// 			_loc12_ = (<string>_loc6_[1]).split(",");
-		// 			iGlobal.Player.basicStatus = new iData.BasicStatus(0,0,0,0,0,0,0);
-		// 			_loc16_ = 0;
-		// 			while(_loc16_ < _loc12_.length)
-		// 			{
-		// 				if(_loc12_[_loc16_] != "")
-		// 				{
-		// 					iGlobal.Player.basicStatus[_loc12_[_loc16_]] = _loc12_[_loc16_ + 1];
-		// 				}
-		// 				_loc16_ = _loc16_ + 2;
-		// 			}
-		// 			break;
-		// 		case "GLOBAL" :
-		// 			_loc13_ = (<string>_loc6_[1]).split(",");
-		// 			switch(_loc13_[0])
-		// 			{
-		// 			case "toggle" :
-		// 				_loc17_ = (<string>_loc13_[1]).split("#");
-		// 				_loc16_ = 0;
-		// 				while(_loc16_ < _loc17_.length)
-		// 				{
-		// 					if(_loc17_[_loc16_] != "")
-		// 					{
-		// 						if(_loc17_[_loc16_ + 1] == "true")
-		// 						{
-		// 							iGlobal.Global[_loc17_[_loc16_] + "_toggle"] = true;
-		// 						}
-		// 						else
-		// 						{
-		// 							iGlobal.Global[_loc17_[_loc16_] + "_toggle"] = false;
-		// 						}
-		// 					}
-		// 					_loc16_ = _loc16_ + 2;
-		// 				}
-		// 			}
-		// 			break;
-		// 		case "SELECTION" :
-		// 			_loc14_ = (<string>_loc6_[1]).split("#");
-		// 			_loc16_ = 0;
-		// 			while(_loc16_ < _loc14_.length)
-		// 			{
-		// 				_loc18_ = (<string>_loc14_[_loc16_]).split(",");
-		// 				switch(_loc18_[0])
-		// 				{
-		// 				case "map" :
-		// 					_loc19_ = 0;
-		// 					while(_loc19_ < iData.iMap.MapList.list.length)
-		// 					{
-		// 						if(_loc18_[1] == iData.iMap.MapList.list[_loc19_].name)
-		// 						{
-		// 							iGlobal.Global.map = new iData.iMap.Map(iData.iMap.MapList.list[_loc19_]);
-		// 						}
-		// 						_loc19_++;
-		// 					}
-		// 					break;
-		// 				case "title" :
-		// 					_loc19_ = 0;
-		// 					while(_loc19_ < iData.iPlayer.TitleList.list.length)
-		// 					{
-		// 						if(_loc18_[1] == iData.iPlayer.TitleList.list[_loc19_].name)
-		// 						{
-		// 							iGlobal.Player.title = iData.iPlayer.TitleList.list[_loc19_];
-		// 						}
-		// 						_loc19_++;
-		// 					}
-		// 				}
-		// 				_loc16_++;
-		// 			}
-		// 			break;
-		// 		case "PET" :
-		// 			_loc15_ = (<string>_loc6_[1]).split(",");
-		// 			_loc16_ = 0;
-		// 			while(_loc16_ < _loc15_.length)
-		// 			{
-		// 				if(_loc15_[_loc16_] != "")
-		// 				{
-		// 					iGlobal.Player.petList.push(iData.iPet.Pet.load(_loc15_[_loc16_]));
-		// 				}
-		// 				_loc16_++;
-		// 			}
-		// 			break;
-		// 		case "EQUIPEDPET" :
-		// 			if(_loc6_[1] != "")
-		// 			{
-		// 				iGlobal.Player.pet = iData.iPet.Pet.load(_loc6_[1]);
-		// 			}
-		// 		}
-		// 		_loc5_++;
-		// 	}
-		// 	if(<any>!iGlobal.Player.basicStatus)
-		// 	{
-		// 		iGlobal.Player.caculateInitStat();
-		// 	}
-		// 	iGlobal.Player.updateAllInfo();
-		// 	iGlobal.Player.updateXpBar();
+		public static load() {
+			// 	var _loc6_:Array<any> = <any>null;
+			// 	var _loc7_:Array<any> = <any>null;
+			// 	var _loc8_:Array<any> = <any>null;
+			// 	var _loc9_:Array<any> = <any>null;
+			// 	var _loc10_:Array<any> = <any>null;
+			// 	var _loc11_:Array<any> = <any>null;
+			// 	var _loc12_:Array<any> = <any>null;
+			// 	var _loc13_:Array<any> = <any>null;
+			// 	var _loc14_:Array<any> = <any>null;
+			// 	var _loc15_:Array<any> = <any>null;
+			// 	var _loc16_:number = 0;
+			// 	var _loc17_:Array<any> = <any>null;
+			// 	var _loc18_:Array<any> = <any>null;
+			// 	var _loc19_:number = 0;
+			// 	var _loc1_:flash.SharedObject = flash.SharedObject.getLocal(iPanel.iScene.SaveScene.slot);
+			// 	iGlobal.Player.playerName = _loc1_.data["userName"];
+			// 	var _loc2_:flash.ByteArray = tool.Base64.Decode(_loc1_.data["info"]);
+			// 	_loc2_.uncompress();
+			// 	var _loc3_:string = _loc2_.toString();
+			// 	var _loc4_:Array<any> = _loc3_.split("@");
+			// 	var _loc5_:number = 0;
+			// 	while(_loc5_ < _loc4_.length)
+			// 	{
+			// 		_loc6_ = (<string>_loc4_[_loc5_]).split(":");
+			// 		switch(_loc6_[0])
+			// 		{
+			// 		case "BASIC" :
+			// 			_loc7_ = (<string>_loc6_[1]).split(",");
+			// 			_loc16_ = 0;
+			// 			while(_loc16_ < _loc7_.length)
+			// 			{
+			// 				if(_loc7_[_loc16_] != "")
+			// 				{
+			// 					iGlobal.Player[_loc7_[_loc16_]] = _loc7_[_loc16_ + 1];
+			// 				}
+			// 				_loc16_ = _loc16_ + 2;
+			// 			}
+			// 			break;
+			// 		case "RACE" :
+			// 			_loc16_ = 0;
+			// 			while(_loc16_ < iData.RaceList.list.length)
+			// 			{
+			// 				if(_loc6_[1] == "undeath")
+			// 				{
+			// 					iGlobal.Player.race = iData.RaceList.UNDEATH;
+			// 					break;
+			// 				}
+			// 				if(_loc6_[1] == iData.RaceList.list[_loc16_].name)
+			// 				{
+			// 					iGlobal.Player.race = iData.RaceList.list[_loc16_];
+			// 					break;
+			// 				}
+			// 				_loc16_++;
+			// 			}
+			// 			break;
+			// 		case "EQUIP" :
+			// 			_loc8_ = (<string>_loc6_[1]).split(",");
+			// 			_loc16_ = 0;
+			// 			while(_loc16_ < _loc8_.length)
+			// 			{
+			// 				if(_loc8_[_loc16_] != "")
+			// 				{
+			// 					iGlobal.Player[_loc8_[_loc16_]] = iData.iItem.Equipment.load(_loc8_[_loc16_ + 1]);
+			// 				}
+			// 				_loc16_ = _loc16_ + 2;
+			// 			}
+			// 			break;
+			// 		case "ITEM" :
+			// 			_loc9_ = (<string>_loc6_[1]).split(",");
+			// 			_loc16_ = 0;
+			// 			while(_loc16_ < _loc9_.length)
+			// 			{
+			// 				if(_loc9_[_loc16_] != "")
+			// 				{
+			// 					iGlobal.Player.itemList.push(iData.iItem.Equipment.load(_loc9_[_loc16_]));
+			// 				}
+			// 				_loc16_++;
+			// 			}
+			// 			break;
+			// 		case "SKILL" :
+			// 			_loc10_ = (<string>_loc6_[1]).split(",");
+			// 			_loc16_ = 0;
+			// 			while(_loc16_ < _loc10_.length)
+			// 			{
+			// 				if(_loc10_[_loc16_] != "")
+			// 				{
+			// 					iGlobal.Player.skillList.push(iData.iSkill.Skill.load(_loc10_[_loc16_]));
+			// 				}
+			// 				_loc16_++;
+			// 			}
+			// 			break;
+			// 		case "TITLE" :
+			// 			_loc11_ = (<string>_loc6_[1]).split(",");
+			// 			_loc16_ = 0;
+			// 			while(_loc16_ < iData.iPlayer.TitleList.list.length)
+			// 			{
+			// 				iData.iPlayer.TitleList.list[_loc16_].load(_loc11_[_loc16_]);
+			// 				_loc16_++;
+			// 			}
+			// 			break;
+			// 		case "OTHER" :
+			// 			_loc12_ = (<string>_loc6_[1]).split(",");
+			// 			iGlobal.Player.basicStatus = new iData.BasicStatus(0,0,0,0,0,0,0);
+			// 			_loc16_ = 0;
+			// 			while(_loc16_ < _loc12_.length)
+			// 			{
+			// 				if(_loc12_[_loc16_] != "")
+			// 				{
+			// 					iGlobal.Player.basicStatus[_loc12_[_loc16_]] = _loc12_[_loc16_ + 1];
+			// 				}
+			// 				_loc16_ = _loc16_ + 2;
+			// 			}
+			// 			break;
+			// 		case "GLOBAL" :
+			// 			_loc13_ = (<string>_loc6_[1]).split(",");
+			// 			switch(_loc13_[0])
+			// 			{
+			// 			case "toggle" :
+			// 				_loc17_ = (<string>_loc13_[1]).split("#");
+			// 				_loc16_ = 0;
+			// 				while(_loc16_ < _loc17_.length)
+			// 				{
+			// 					if(_loc17_[_loc16_] != "")
+			// 					{
+			// 						if(_loc17_[_loc16_ + 1] == "true")
+			// 						{
+			// 							iGlobal.Global[_loc17_[_loc16_] + "_toggle"] = true;
+			// 						}
+			// 						else
+			// 						{
+			// 							iGlobal.Global[_loc17_[_loc16_] + "_toggle"] = false;
+			// 						}
+			// 					}
+			// 					_loc16_ = _loc16_ + 2;
+			// 				}
+			// 			}
+			// 			break;
+			// 		case "SELECTION" :
+			// 			_loc14_ = (<string>_loc6_[1]).split("#");
+			// 			_loc16_ = 0;
+			// 			while(_loc16_ < _loc14_.length)
+			// 			{
+			// 				_loc18_ = (<string>_loc14_[_loc16_]).split(",");
+			// 				switch(_loc18_[0])
+			// 				{
+			// 				case "map" :
+			// 					_loc19_ = 0;
+			// 					while(_loc19_ < iData.iMap.MapList.list.length)
+			// 					{
+			// 						if(_loc18_[1] == iData.iMap.MapList.list[_loc19_].name)
+			// 						{
+			// 							iGlobal.Global.map = new iData.iMap.Map(iData.iMap.MapList.list[_loc19_]);
+			// 						}
+			// 						_loc19_++;
+			// 					}
+			// 					break;
+			// 				case "title" :
+			// 					_loc19_ = 0;
+			// 					while(_loc19_ < iData.iPlayer.TitleList.list.length)
+			// 					{
+			// 						if(_loc18_[1] == iData.iPlayer.TitleList.list[_loc19_].name)
+			// 						{
+			// 							iGlobal.Player.title = iData.iPlayer.TitleList.list[_loc19_];
+			// 						}
+			// 						_loc19_++;
+			// 					}
+			// 				}
+			// 				_loc16_++;
+			// 			}
+			// 			break;
+			// 		case "PET" :
+			// 			_loc15_ = (<string>_loc6_[1]).split(",");
+			// 			_loc16_ = 0;
+			// 			while(_loc16_ < _loc15_.length)
+			// 			{
+			// 				if(_loc15_[_loc16_] != "")
+			// 				{
+			// 					iGlobal.Player.petList.push(iData.iPet.Pet.load(_loc15_[_loc16_]));
+			// 				}
+			// 				_loc16_++;
+			// 			}
+			// 			break;
+			// 		case "EQUIPEDPET" :
+			// 			if(_loc6_[1] != "")
+			// 			{
+			// 				iGlobal.Player.pet = iData.iPet.Pet.load(_loc6_[1]);
+			// 			}
+			// 		}
+			// 		_loc5_++;
+			// 	}
+			// 	if(<any>!iGlobal.Player.basicStatus)
+			// 	{
+			// 		iGlobal.Player.caculateInitStat();
+			// 	}
+			// 	iGlobal.Player.updateAllInfo();
+			// 	iGlobal.Player.updateXpBar();
 		}
 
 	}

@@ -1,62 +1,51 @@
 module Tool {
 	export class MyMath extends egret.HashObject {
 
-		public constructor()
-		{
+		public constructor() {
 			super();
 
 		}
 
-		public static balanceRandom(param1:number):number
-		{
-			// param1 = flash.checkInt(param1);
-			// var _loc9_:number = flash.checkInt(0);
-			// var _loc11_:number = <any>NaN;
-			// var _loc2_:number = flash.checkInt(param1);
-			// if(param1 < 50)
-			// {
-			// 	_loc2_ = flash.checkInt(100 - param1);
-			// }
-			// var _loc3_:number = (3 * _loc2_ - 100) / (100 - _loc2_);
-			// var _loc4_:Array<any> = new Array();
-			// var _loc5_:Array<any> = new Array();
-			// var _loc6_:number = flash.checkInt(100);
-			// var _loc7_:number = flash.checkInt(1);
-			// var _loc8_:number = _loc7_ / _loc6_;
-			// _loc9_ = flash.checkInt(0);
-			// while(_loc9_ < _loc6_)
-			// {
-			// 	_loc11_ = _loc8_ * _loc9_;
-			// 	_loc4_[_loc9_] = (1 - _loc11_) * Math.pow(_loc11_,_loc3_);
-			// 	if(_loc9_ == 0)
-			// 	{
-			// 		_loc5_[_loc9_] = _loc4_[_loc9_];
-			// 	}
-			// 	else
-			// 	{
-			// 		_loc5_[_loc9_] = _loc5_[_loc9_ - 1] + _loc4_[_loc9_];
-			// 	}
-			// 	_loc9_++;
-			// }
-			// var _loc10_:number = Math.random() * _loc5_[_loc6_ - 1];
-			// _loc9_ = flash.checkInt(0);
-			// while(_loc9_ < _loc6_)
-			// {
-			// 	if(_loc10_ < _loc5_[_loc9_])
-			// 	{
-			// 		if(param1 < 50)
-			// 		{
-			// 			return 1 - _loc8_ * _loc9_;
-			// 		}
-			// 		return _loc8_ * _loc9_;
-			// 	}
-			// 	_loc9_++;
-			// }
-			return 1;
+		public static balanceRandom(param1: number): number {
+
+			var _loc9_: number = 0;
+			var _loc11_: number = 0;
+			var _loc2_: number = param1;
+			if (param1 < 50) {
+				_loc2_ = Math.round(100 - param1);
+			}
+			var _loc3_: number = (3 * _loc2_ - 100) / (100 - _loc2_);
+			var _loc4_: Array<any> = new Array();
+			var _loc5_: Array<any> = new Array();
+			var _loc6_: number = 100;
+			var _loc7_: number = 1;
+			var _loc8_: number = _loc7_ / _loc6_;
+			_loc9_ = 0;
+			while (_loc9_ < _loc6_) {
+				_loc11_ = _loc8_ * _loc9_;
+				_loc4_[_loc9_] = (1 - _loc11_) * Math.pow(_loc11_, _loc3_);
+				if (_loc9_ == 0) {
+					_loc5_[_loc9_] = _loc4_[_loc9_];
+				}
+				else {
+					_loc5_[_loc9_] = _loc5_[_loc9_ - 1] + _loc4_[_loc9_];
+				}
+				_loc9_++;
+			}
+			var _loc10_: number = Math.random() * _loc5_[_loc6_ - 1];
+			_loc9_ = 0;
+			while (_loc9_ < _loc6_) {
+				if (_loc10_ < _loc5_[_loc9_]) {
+					if (param1 < 50) {
+						return 1 - _loc8_ * _loc9_;
+					}
+					return _loc8_ * _loc9_;
+				}
+				_loc9_++;
+			}
 		}
 
-		public static DrawSector(param1:egret.Shape,param2:number = 200,param3:number = 200,param4:number = 100,param5:number = 27,param6:number = 270,param7:number = 16711680)
-		{
+		public static DrawSector(param1: egret.Shape, param2: number = 200, param3: number = 200, param4: number = 100, param5: number = 27, param6: number = 270, param7: number = 16711680) {
 			// var _loc11_:any = undefined;
 			// var _loc12_:any = undefined;
 			// var _loc13_:any = undefined;
@@ -90,22 +79,19 @@ module Tool {
 			// param1.graphics.endFill();
 		}
 
-		public static FirstLetterToUpper(param1:string):string
-		{
-			var _loc2_:Array<any> = param1.split("");
+		public static FirstLetterToUpper(param1: string): string {
+			var _loc2_: Array<any> = param1.split("");
 			_loc2_[0] = _loc2_[0].toUpperCase();
 			return _loc2_.join("");
 		}
 
-		public static StringFormChange(param1:string,param2:string,param3:string):string
-		{
-			var _loc4_:Array<any> = param1.split(param2);
+		public static StringFormChange(param1: string, param2: string, param3: string): string {
+			var _loc4_: Array<any> = param1.split(param2);
 			return _loc4_.join(param3);
 		}
 
-		public static cast(param1:string):string
-		{
-			var _loc2_:egret.ByteArray = new egret.ByteArray();
+		public static cast(param1: string): string {
+			var _loc2_: egret.ByteArray = new egret.ByteArray();
 			// _loc2_.writeMultiByte(param1 + "@","");
 			// var _loc3_:string = "";
 			// var _loc4_:number = 0;
@@ -118,25 +104,21 @@ module Tool {
 			return
 		}
 
-		public static encryptNum(param1:number):number
-		{
+		public static encryptNum(param1: number): number {
 			return param1 / 2 + 1;
 		}
 
-		public static decryptNum(param1:number):number
-		{
+		public static decryptNum(param1: number): number {
 			return (param1 - 1) * 2;
 		}
 
-		public static encryptInt(param1:number):number
-		{
-			
+		public static encryptInt(param1: number): number {
+
 			return param1 + 5;
 		}
 
-		public static decryptInt(param1:number):number
-		{
-		
+		public static decryptInt(param1: number): number {
+
 			return param1 - 5;
 		}
 

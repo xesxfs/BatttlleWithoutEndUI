@@ -10,7 +10,8 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 
 	protected childrenCreated(): void {
 		super.childrenCreated();
-
+		this.itemsGroup.removeChildren();
+		// this.itemsGroup.addEventListener("touchTap", this.onItemChange, this);
 	}
 
 	public orderValue: eui.Label;
@@ -22,6 +23,9 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 	public autoBox: eui.CheckBox;
 	public forgeButton: eui.Button;
 	private selectCell: EquipmentItem;
+	public itemsGroup: eui.Group;
+	private equipmentItems: Array<EquipmentItem> = [];
+	private Gap: number = 100;
 
 
 
@@ -67,7 +71,8 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 		}
 	}
 
-	private onItemChange(param1: egret.Event = null) {
+	private onItemChange(e: egret.TouchEvent = null) {
+		// console.log(e.currentTarget);
 		var _loc3_: egret.Sprite = null;
 		var _loc4_: number = 0;
 		this.checkIfinBag();
@@ -127,15 +132,15 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 				return 0;
 			};
 			iGlobal.Player.itemList.sort(itemSort);
-			// _self__.panel.update();
+			_self__.updateList();
 			_self__.updateBagText();
 		};
 		typeDown = function () {
-			function itemSort(param1: iData.iItem.Equipment, param2: iData.iItem.Equipment): number {
-				if (param1.sortWeight < param2.sortWeight) {
+			function itemSort(a: iData.iItem.Equipment, b: iData.iItem.Equipment): number {
+				if (a.sortWeight < b.sortWeight) {
 					return -1;
 				}
-				if (param1.sortWeight > param2.sortWeight) {
+				if (a.sortWeight > b.sortWeight) {
 					return 1;
 				}
 				return 0;
@@ -171,13 +176,53 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 		var _self__ = this;
 		var onDown: Function = null;
 		onDown = function () {
-			// _self__.setSelectedCell(this);
+			_self__.setSelectedCell(this);
+			console.log(this);
 		};
 		var cell: EquipmentItem = new EquipmentItem(iGlobal.Player.itemList[iGlobal.Player.itemList.length - 1]);
-		// this.listSprite.addChild(cell);
-		cell.y = (iGlobal.Player.itemList.length - 1)// * this.Gap;
+		this.itemsGroup.addChild(cell);
+		cell.y = (iGlobal.Player.itemList.length - 1) * this.Gap;
 		// this.buttonGroup.addButton(cell);
-		// cell.downFunction = onDown;
+		cell.downFunction = onDown;
+		this.equipmentItems.push(cell);
+	}
+
+	public updateList() {
+		for (let i = 0; i < this.itemsGroup.numChildren; i++) {
+			let equipmentItem = this.itemsGroup.getChildAt(i) as EquipmentItem;
+			equipmentItem.y = i * this.Gap;
+		}
+		// this.removeList();
+		// var _self__ = this;
+		// var onDown: Function = null;
+		// onDown = function () {
+		// 	_self__.setSelectedCell(this);
+		// 	console.log(this);
+		// };
+		// this.itemsGroup.removeChildren();
+		// let idx = 0;
+		// iGlobal.Player.itemList.forEach((itemData) => {
+		// 	var cell: EquipmentItem = new EquipmentItem(itemData);
+		// 	this.itemsGroup.addChild(cell);
+		// 	cell.y = idx++ * this.Gap;
+		// 	cell.downFunction = onDown;
+		// })
+	}
+
+	public removeList() {
+		for (let i = this.itemsGroup.numChildren - 1; i >= 0; i--) {
+			let equipmentItem = this.itemsGroup.getChildAt(i) as EquipmentItem;
+			equipmentItem.remove();
+		}
+
+	}
+
+
+	private setSelectedCell(param1: EquipmentItem) {
+		var _self__ = this;
+		this.selectCell = param1;
+		this.onItemChange();
+		// _self__.dispatchEvent(new tool.MyEvent(tool.MyEvent.Change));
 	}
 
 	private setForge() {
@@ -364,8 +409,8 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 		// this.item_mc.y = 75;
 	}
 
-	public addOneItem(): any {
-		// this.panel.addOneCell();
+	public addOneItem() {
+		this.addOneCell();
 		this.updateBagText();
 	}
 

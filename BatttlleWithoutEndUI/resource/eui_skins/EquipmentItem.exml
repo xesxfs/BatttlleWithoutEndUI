@@ -3,7 +3,7 @@
 	<w:Config id="1604b05c246" ></w:Config>
 	<e:Rect width="390" height="88" fillAlpha="1" strokeWeight="2" scaleX="1" scaleY="1" x="0" fillColor="0xfcf9f9" anchorOffsetY="0" anchorOffsetX="0"/>
 	<e:Image source="head_medium_png" width="60" height="60" x="10" verticalCenter="0"/>
-	<e:Label text="铁鞋+10" x="92" textColor="0x211c1c" verticalCenter="0" size="30"/>
-	<e:Button label="装备" x="230" width="60" height="40" verticalCenter="0"/>
-	<e:Button label="卖出" anchorOffsetX="0" width="60" anchorOffsetY="0" height="40" verticalCenter="0" x="315"/>
+	<e:Label id="text" text="铁鞋+10" x="92" textColor="0x211c1c" verticalCenter="0" size="30"/>
+	<e:Button id="equipButton" label="装备" x="230" width="60" height="40" verticalCenter="0"/>
+	<e:Button id="moneyButton" label="卖出" anchorOffsetX="0" width="60" anchorOffsetY="0" height="40" verticalCenter="0" x="315"/>
 </e:Skin>

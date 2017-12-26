@@ -277,8 +277,8 @@ module iGlobal {
 			return _loc1_;
 		}
 
-		public static equip(param1: iData.iItem.Equipment): any {
-			if (param1 as iData.iItem.Weapon) {
+		public static equip(param1: iData.iItem.Equipment) {
+			if (param1 instanceof iData.iItem.Weapon) {
 				switch (param1.position) {
 					case iData.iItem.Weapon.ONEHAND:
 						iGlobal.Player.unequip("leftHand");

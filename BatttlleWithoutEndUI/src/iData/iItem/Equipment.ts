@@ -386,7 +386,7 @@ module iData {
 			}
 
 			public getNameHTML(): string {
-				var _loc1_: string = <any>null;
+				var _loc1_: string = null;
 				switch (this.quality) {
 					case 1:
 						_loc1_ = iData.iItem.Equipment.GREEN;

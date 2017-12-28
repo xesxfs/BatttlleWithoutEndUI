@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="TitleCellSkin" width="200" height="50" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<w:Config id="16050739130" ></w:Config>
-	<e:Label text="10岁达到50级的" textColor="0x494242" size="24" verticalCenter="0" x="10"/>
+	<e:Label id="text" text="10岁达到50级的" textColor="0x494242" size="24" verticalCenter="0" x="10"/>
 </e:Skin>

@@ -11,6 +11,7 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 	protected childrenCreated(): void {
 		super.childrenCreated();
 		this.itemsGroup.removeChildren();
+		this.setForge();
 		// this.itemsGroup.addEventListener("touchTap", this.onItemChange, this);
 	}
 
@@ -71,7 +72,7 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 		}
 	}
 
-	private onItemChange(e: egret.TouchEvent = null) {
+	private onItemChange() {
 		// console.log(e.currentTarget);
 		var _loc3_: egret.Sprite = null;
 		var _loc4_: number = 0;
@@ -218,15 +219,15 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 	}
 
 
-	private setSelectedCell(param1: EquipmentItem) {
+	private setSelectedCell(select: EquipmentItem) {
 		var _self__ = this;
-		this.selectCell = param1;
+		this.selectCell = select;
 		this.onItemChange();
 		// _self__.dispatchEvent(new tool.MyEvent(tool.MyEvent.Change));
 	}
 
 	private setForge() {
-		// var _self__ = this;
+		var _self__ = this;
 		// var autoDown: Function = null;
 		// var autoUp: Function = null;
 		// var soundsDown: Function = null;
@@ -245,125 +246,125 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 		// 	iGlobal.Global.sound_toggle = false;
 		// };
 		// onDown = function (): any {
-		// 	if (<any>!_self__.panel.selectCell) {
-		// 		return;
-		// 	}
-		// 	var _loc1_: number = 0;
-		// 	var _loc2_: number = iGlobal.Player.getSkill(iData.iSkill.SkillDataList.BLACKSMITHING).level;
-		// 	if (_loc2_ > 13) {
-		// 		_loc1_ = 7;
-		// 	}
-		// 	else if (_loc2_ > 9) {
-		// 		_loc1_ = 5;
-		// 	}
-		// 	else if (_loc2_ > 5) {
-		// 		_loc1_ = (3);
-		// 	}
-		// 	else if (_loc2_ > 1) {
-		// 		_loc1_ = (1);
-		// 	}
-		// 	if (_self__.autoEnhance && _self__.panel.selectCell.equip.level < _loc1_) {
-		// 		while (_self__.panel.selectCell.equip.level < _loc1_) {
-		// 			if (<any>!_self__.panel.selectCell) {
-		// 				break;
-		// 			}
-		// 			if (iGlobal.Player.gold < _self__.getMoney()) {
-		// 				break;
-		// 			}
-		// 			forging();
-		// 		}
-		// 	}
-		// 	else {
-		// 		forging();
-		// 	}
+			if (!_self__.selectCell) {
+				return;
+			}
+			var _loc1_: number = 0;
+			var _loc2_: number = iGlobal.Player.getSkill(iData.iSkill.SkillDataList.BLACKSMITHING).level;
+			if (_loc2_ > 13) {
+				_loc1_ = 7;
+			}
+			else if (_loc2_ > 9) {
+				_loc1_ = 5;
+			}
+			else if (_loc2_ > 5) {
+				_loc1_ = (3);
+			}
+			else if (_loc2_ > 1) {
+				_loc1_ = (1);
+			}
+			if (_self__.autoBox.selected && _self__.selectCell.equip.level < _loc1_) {
+				while (_self__.selectCell.equip.level < _loc1_) {
+					if (<any>!_self__.selectCell) {
+						break;
+					}
+					if (iGlobal.Player.gold < _self__.getMoney()) {
+						break;
+					}
+					forging();
+				}
+			}
+			else {
+				forging();
+			}
 		// 	this["setBefore"]();
 		// 	// iGlobal.Player.save();
 		// };
-		// var forging: Function = <any>function (): any {
-		// 	var _loc2_: number = (0);
-		// 	var _loc3_: number = (0);
-		// 	// var _loc4_: flash.Sound = <any>null;
-		// 	// if (<any>!_self__.panel.selectCell) {
-		// 	// 	return;
-		// 	// }
-		// 	iGlobal.Player.loseMoney(_self__.getMoney());
-		// 	var _loc1_: boolean = <any>false;
-		// 	if (Math.random() * 100 < _self__.getSuccessRate()) {
-		// 		_self__.panel.selectCell.equip.levelup();
-		// 		iData.iPlayer.TitleList.updateTitleInfo("forge", _self__.panel.selectCell.equip.level);
-		// 		iData.iPlayer.TitleList.updateTitleInfo("fail", 0, -1);
-		// 		// if (iGlobal.Global.kongregate) {
-		// 		// 	iGlobal.Global.kongregate.stats.submit("Forge", _self__.panel.selectCell.equip.level);
-		// 		// }
-		// 	}
-		// 	else {
-		// 		_loc2_ = (iGlobal.Player.getSkill(iData.iSkill.SkillDataList.BLACKSMITHING).level);
-		// 		_loc3_ = (50);
-		// 		if (_loc2_ > 13) {
-		// 			if (Math.random() * 100 >= _loc3_) {
-		// 				if (_self__.panel.selectCell.equip.level < 7) {
-		// 					_self__.panel.selectCell.equip.setLevel(0);
-		// 				}
-		// 				else {
-		// 					_loc1_ = true;
-		// 				}
-		// 			}
-		// 		}
-		// 		else if (_loc2_ > 9) {
-		// 			if (Math.random() * 100 < _loc3_) {
-		// 				_self__.panel.selectCell.equip.setLevel(_self__.panel.selectCell.equip.level - 1);
-		// 			}
-		// 			else if (_self__.panel.selectCell.equip.level < 5) {
-		// 				_self__.panel.selectCell.equip.setLevel(0);
-		// 			}
-		// 			else {
-		// 				_loc1_ = true;
-		// 			}
-		// 		}
-		// 		else if (_loc2_ > 5) {
-		// 			if (Math.random() * 100 < _loc3_) {
-		// 				_self__.panel.selectCell.equip.setLevel(0);
-		// 			}
-		// 			else if (_self__.panel.selectCell.equip.level < 3) {
-		// 				_self__.panel.selectCell.equip.setLevel(0);
-		// 			}
-		// 			else {
-		// 				_loc1_ = true;
-		// 			}
-		// 		}
-		// 		else if (_loc2_ > 1) {
-		// 			if (_self__.panel.selectCell.equip.level < 1) {
-		// 				_self__.panel.selectCell.equip.setLevel(0);
-		// 			}
-		// 			else {
-		// 				_loc1_ = true;
-		// 			}
-		// 		}
-		// 		else {
-		// 			_loc1_ = true;
-		// 		}
-		// 		iData.iPlayer.TitleList.updateTitleInfo("fail", 0, 1);
-		// 	}
-		// 	if (<any>!_loc1_) {
-		// 		_self__.panel.selectCell.update();
-		// 		_self__.onItemChange();
-		// 		//MainScene.allInfoPanel.addText("你获得了" + _self__.panel.selectCell.equip.getNameHTML() + "<font color=\'" + flash.bind(_self__.panel.selectCell.equip.getColor, _self__.panel.selectCell.equip) + "\'>+" + _self__.panel.selectCell.equip.level + "!");
-		// 	}
-		// 	else {
-		// 		if (_self__.panel.selectCell.equip.level > 8 || _self__.panel.selectCell.equip.quality >= 4) {
-		// 			if (iGlobal.Global.sound_toggle) {
-		// 				// _loc4_ = new yell_sound();
-		// 				// _loc4_.play();
-		// 			}
-		// 		}
-		// 		iGlobal.Player.removeItem(_self__.panel.selectCell.equip);
-		// 		// MainScene.allInfoPanel.addText("<font color=\'#ff4040\'>强化</font>" + _self__.panel.selectCell.equip.getNameHTML() + "<font color=\'" + flash.bind(_self__.panel.selectCell.equip.getColor, _self__.panel.selectCell.equip) + "\'>+" + (_self__.panel.selectCell.equip.level + 1) + " <font color=\'#ff4040\'>失败. 物品消失!</font>");
-		// 		_self__.panel.selectCell = null;
+		var forging: Function = function () {
+			var _loc2_: number = (0);
+			var _loc3_: number = (0);
+			// var _loc4_: flash.Sound = <any>null;
+			if (!_self__.selectCell) {
+				return;
+			}
+			iGlobal.Player.loseMoney(_self__.getMoney());
+			var _loc1_: boolean = false;
+			if (Math.random() * 100 < _self__.getSuccessRate()) {
+				_self__.selectCell.equip.levelup();
+				iData.iPlayer.TitleList.updateTitleInfo("forge", _self__.selectCell.equip.level);
+				iData.iPlayer.TitleList.updateTitleInfo("fail", 0, -1);
+				// if (iGlobal.Global.kongregate) {
+				// 	iGlobal.Global.kongregate.stats.submit("Forge", _self__.panel.selectCell.equip.level);
+				// }
+			}
+			else {
+				_loc2_ = (iGlobal.Player.getSkill(iData.iSkill.SkillDataList.BLACKSMITHING).level);
+				_loc3_ = (50);
+				if (_loc2_ > 13) {
+					if (Math.random() * 100 >= _loc3_) {
+						if (_self__.selectCell.equip.level < 7) {
+							_self__.selectCell.equip.setLevel(0);
+						}
+						else {
+							_loc1_ = true;
+						}
+					}
+				}
+				else if (_loc2_ > 9) {
+					if (Math.random() * 100 < _loc3_) {
+						_self__.selectCell.equip.setLevel(_self__.selectCell.equip.level - 1);
+					}
+					else if (_self__.selectCell.equip.level < 5) {
+						_self__.selectCell.equip.setLevel(0);
+					}
+					else {
+						_loc1_ = true;
+					}
+				}
+				else if (_loc2_ > 5) {
+					if (Math.random() * 100 < _loc3_) {
+						_self__.selectCell.equip.setLevel(0);
+					}
+					else if (_self__.selectCell.equip.level < 3) {
+						_self__.selectCell.equip.setLevel(0);
+					}
+					else {
+						_loc1_ = true;
+					}
+				}
+				else if (_loc2_ > 1) {
+					if (_self__.selectCell.equip.level < 1) {
+						_self__.selectCell.equip.setLevel(0);
+					}
+					else {
+						_loc1_ = true;
+					}
+				}
+				else {
+					_loc1_ = true;
+				}
+				iData.iPlayer.TitleList.updateTitleInfo("fail", 0, 1);
+			}
+			if (!_loc1_) {
+				// _self__.selectCell.update();
+				_self__.onItemChange();
+				MainScene.allInfoPanel.addText("你获得了" + _self__.selectCell.equip.getNameHTML() + "<font color=\'" + _self__.selectCell.equip.getColor+ _self__.selectCell.equip + "\'>+" + _self__.selectCell.equip.level + "!");
+			}
+			else {
+				if (_self__.selectCell.equip.level > 8 || _self__.selectCell.equip.quality >= 4) {
+					if (iGlobal.Global.sound_toggle) {
+						// _loc4_ = new yell_sound();
+						// _loc4_.play();
+					}
+				}
+				iGlobal.Player.removeItem(_self__.selectCell.equip);
+				MainScene.allInfoPanel.addText("<font color=\'#ff4040\'>强化</font>" + _self__.selectCell.equip.getNameHTML() + "<font color=\'" + _self__.selectCell.equip.getColor+ _self__.selectCell.equip+ "\'>+" + _self__.selectCell.equip.level + 1 + " <font color=\'#ff4040\'>失败. 物品消!</font>");
+				_self__.selectCell = null;
 		// 		_self__.panel.update();
-		// 		_self__.onItemChange();
-		// 		_self__.updateBagText();
-		// 	}
-		// };
+				_self__.onItemChange();
+				_self__.updateBagText();
+			}
+		};
 		// // var c: iPanel.iCell.BasicCell = new iPanel.iCell.BasicCell(200, 135);
 		// this.addChild(c);
 		// c.x = 0;

@@ -50,22 +50,22 @@ class OtherPanel extends eui.Component implements eui.UIComponent {
 		};
 		addWindow2 = function () {
 			removeWindow();
-			_self__.window = _self__.petWindow;
+			_self__.window = _self__.skillWindow;
 			addWindow();
 		};
 		addWindow3 = function () {
 			removeWindow();
-			_self__.window = _self__.skillWindow;
+			_self__.window = _self__.titleWindow;
 			addWindow();
 		};
 		addWindow4 = function () {
 			removeWindow();
-			_self__.window = _self__.titleWindow;
+			_self__.window = _self__.systemWindow;
 			addWindow();
 		};
 		addWindow5 = function () {
 			removeWindow();
-			_self__.window = _self__.systemWindow;
+			_self__.window = _self__.petWindow;
 			addWindow();
 		};
 		addWindow6 = function () {

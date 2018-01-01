@@ -138,9 +138,9 @@ module iGlobal {
 			if (MainScene.allInfoPanel) {
 				MainScene.allInfoPanel.addText("你获得了" + param1.name + "!", iGlobal.Global.item);
 			}
-			// if (MainScene.otherPanel) {
-			// 	MainScene.otherPanel.petWindow.update();
-			// }
+			if (MainScene.otherPanel) {
+				MainScene.otherPanel.petWindow.update();
+			}
 			return true;
 		}
 
@@ -667,19 +667,19 @@ module iGlobal {
 			}
 		}
 
-		public static updatePetInfoWindow(): any {
+		public static updatePetInfoWindow() {
 			if (MainScene.petInfoPanel) {
 				MainScene.petInfoPanel.update();
 			}
 		}
 
-		public static updateAllInfo(): any {
+		public static updateAllInfo() {
 			iGlobal.Player.updateSkillInfo();
 			iGlobal.Player.updateEquipInfo();
 		}
 
-		public static updateSkillInfo(): any {
-			var _loc2_: iData.iSkill.SkillData = <any>null;
+		public static updateSkillInfo() {
+			var _loc2_: iData.iSkill.SkillData = null;
 			var _loc3_: number = 0;
 			var _loc5_: number = 0;
 			iGlobal.Player.skillStatus = new iData.BasicStatus(0, 0, 0, 0, 0, 0, 0);

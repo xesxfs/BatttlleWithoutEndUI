@@ -13,6 +13,7 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 		this.itemsGroup.removeChildren();
 		this.setForge();
 		// this.itemsGroup.addEventListener("touchTap", this.onItemChange, this);
+		this.forgeButton.addEventListener("touchTap",this.setForge,this);
 	}
 
 	public orderValue: eui.Label;
@@ -82,12 +83,12 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 			// this.item_mc.visible = false;
 			this.text.text = ("");
 			this.money.text = ("");
-			this.forgeButton.touchEnabled = false;
-			this.forgeButton.touchChildren = false;
+			this.forgeButton.enabled = false;
+			// this.forgeButton.touchChildren = false;
 			return;
 		}
-		this.forgeButton.touchEnabled = true;
-		this.forgeButton.touchChildren = true;
+		this.forgeButton.enabled = true;
+		// this.forgeButton.touchChildren = true;
 		var selectEquip: iData.iItem.Equipment = this.selectCell.equip;
 		if (selectEquip instanceof iData.iItem.Weapon) {
 			// _loc3_ = new (egret.getDefinitionByName("mc_" + selectEquip.type))();
@@ -265,22 +266,74 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 			}
 			if (_self__.autoBox.selected && _self__.selectCell.equip.level < _loc1_) {
 				while (_self__.selectCell.equip.level < _loc1_) {
-					if (<any>!_self__.selectCell) {
+					if (!_self__.selectCell) {
 						break;
 					}
 					if (iGlobal.Player.gold < _self__.getMoney()) {
 						break;
 					}
-					forging();
+					this.forging();
 				}
 			}
 			else {
-				forging();
+				this.forging();
 			}
 		// 	this["setBefore"]();
 		// 	// iGlobal.Player.save();
 		// };
-		var forging: Function = function () {
+	
+		// // var c: iPanel.iCell.BasicCell = new iPanel.iCell.BasicCell(200, 135);
+		// this.addChild(c);
+		// c.x = 0;
+		// c.y = 405;
+		// this.autoBox = new iPanel.iScene.iPanel.iWindow.iSystem.ToggleBox("自动+7", 16, false);
+		// c.addChild(this.autoBox);
+		// this.autoBox.x = 70;
+		// this.autoBox.y = 100;
+		// this.autoEnhance = false;
+		// this.setAutoInfo();
+		// this.autoBox.downFunction = autoDown;
+		// this.autoBox.upFunction = autoUp;
+		// var soundsBox: any = <any>new iPanel.iScene.iPanel.iWindow.iSystem.ToggleBox("音效", 16);
+		// c.addChild(soundsBox);
+		// soundsBox.x = 70;
+		// soundsBox.y = 80;
+		// soundsBox.downFunction = soundsDown;
+		// soundsBox.upFunction = soundsUp;
+		// this.forgeButton = new iPanel.iScene.iPanel.iWindow.iItem.ForgeButton();
+		// c.addChild(this.forgeButton);
+		// this.forgeButton.x = 140;
+		// this.forgeButton.y = 75;
+		// this.forgeButton.downFunction = onDown;
+		// var s_text: iPanel.iCell.StringCell = new iPanel.iCell.StringCell("成功率", 130, 24);
+		// c.addChild(s_text);
+		// s_text.x = 10;
+		// s_text.y = 35;
+		// this.text = new iPanel.iCell.StringCell("", 100, 24);
+		// c.addChild(this.text);
+		// this.text.x = 100;
+		// this.text.y = 35;
+		// var m_text: iPanel.iCell.StringCell = new iPanel.iCell.StringCell("费用", 130, 24);
+		// c.addChild(m_text);
+		// m_text.x = 10;
+		// m_text.y = 5;
+		// this.money = new iPanel.iCell.StringCell("", 100, 24);
+		// c.addChild(this.money);
+		// this.money.x = 60;
+		// this.money.y = 5;
+		// this.item_mc = new egret.Sprite();
+		// c.addChild(this.item_mc);
+		// this.item_mc.x = 10;
+		// this.item_mc.y = 75;
+	}
+
+	public addOneItem() {
+		this.addOneCell();
+		this.updateBagText();
+	}
+
+	public forging() {
+		var _self__=this
 			var _loc2_: number = (0);
 			var _loc3_: number = (0);
 			// var _loc4_: flash.Sound = <any>null;
@@ -364,56 +417,7 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 				_self__.onItemChange();
 				_self__.updateBagText();
 			}
-		};
-		// // var c: iPanel.iCell.BasicCell = new iPanel.iCell.BasicCell(200, 135);
-		// this.addChild(c);
-		// c.x = 0;
-		// c.y = 405;
-		// this.autoBox = new iPanel.iScene.iPanel.iWindow.iSystem.ToggleBox("自动+7", 16, false);
-		// c.addChild(this.autoBox);
-		// this.autoBox.x = 70;
-		// this.autoBox.y = 100;
-		// this.autoEnhance = false;
-		// this.setAutoInfo();
-		// this.autoBox.downFunction = autoDown;
-		// this.autoBox.upFunction = autoUp;
-		// var soundsBox: any = <any>new iPanel.iScene.iPanel.iWindow.iSystem.ToggleBox("音效", 16);
-		// c.addChild(soundsBox);
-		// soundsBox.x = 70;
-		// soundsBox.y = 80;
-		// soundsBox.downFunction = soundsDown;
-		// soundsBox.upFunction = soundsUp;
-		// this.forgeButton = new iPanel.iScene.iPanel.iWindow.iItem.ForgeButton();
-		// c.addChild(this.forgeButton);
-		// this.forgeButton.x = 140;
-		// this.forgeButton.y = 75;
-		// this.forgeButton.downFunction = onDown;
-		// var s_text: iPanel.iCell.StringCell = new iPanel.iCell.StringCell("成功率", 130, 24);
-		// c.addChild(s_text);
-		// s_text.x = 10;
-		// s_text.y = 35;
-		// this.text = new iPanel.iCell.StringCell("", 100, 24);
-		// c.addChild(this.text);
-		// this.text.x = 100;
-		// this.text.y = 35;
-		// var m_text: iPanel.iCell.StringCell = new iPanel.iCell.StringCell("费用", 130, 24);
-		// c.addChild(m_text);
-		// m_text.x = 10;
-		// m_text.y = 5;
-		// this.money = new iPanel.iCell.StringCell("", 100, 24);
-		// c.addChild(this.money);
-		// this.money.x = 60;
-		// this.money.y = 5;
-		// this.item_mc = new egret.Sprite();
-		// c.addChild(this.item_mc);
-		// this.item_mc.x = 10;
-		// this.item_mc.y = 75;
-	}
-
-	public addOneItem() {
-		this.addOneCell();
-		this.updateBagText();
-	}
+		}
 
 	private getSuccessRate(): number {
 		var level: number = (this.selectCell.equip.level + 1);

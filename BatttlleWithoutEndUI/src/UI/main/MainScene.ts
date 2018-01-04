@@ -30,6 +30,7 @@ class MainScene extends BaseScene {
 	public systemBtn: eui.Button;
 	public otherBtn: eui.Button;
 	public menuBtnsGroup: eui.Group;
+	public otherInfoGroup: eui.Group;
 	// private otherView: eui.ViewStack;
 
 	private c: number = 0;
@@ -70,6 +71,7 @@ class MainScene extends BaseScene {
 		if (e.target instanceof eui.Button) {
 			// this.otherView.selectedIndex = parseInt(e.target.name);
 			this.otherPanel.onSelect(parseInt(e.target.name));
+			this.otherInfoGroup.x = (this.width - this.menuBtnsGroup.width) >> 1;
 		}
 
 	}

@@ -31,10 +31,10 @@
 		<e:Button id="systemBtn" label="System" x="370" y="39" anchorOffsetX="0" width="86" name="4" />
 		<e:Button id="otherBtn" label="Other" y="39" anchorOffsetX="0" width="72" x="567" name="6" />
 	</e:Group>
-	<e:Group id="otherInfoGroup" width="400" height="800" x="116.33" y="242.67" anchorOffsetY="0">
+	<e:Group id="otherInfoGroup" width="400" height="800" x="637.33" y="72.67" anchorOffsetY="0">
 		<e:Rect width="100%" height="100%" fillAlpha="1" strokeWeight="1" scaleX="1" scaleY="1" fillColor="0xffffff"/>
 		<ns1:OtherPanel id="otherPanel"/>
 
 	</e:Group>
-	<e:Button id="testBtn" label="testBtn" x="245" y="407" />
+	<e:Button id="testBtn" label="testBtn" x="245" y="407"  visible="false"/>
 </e:Skin>

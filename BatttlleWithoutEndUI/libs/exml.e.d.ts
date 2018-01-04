@@ -12,6 +12,8 @@ declare module skins{
 	class CheckBoxSkin extends eui.Skin{
 	}
 }
+declare class CombatPanelSkin extends eui.Skin{
+}
 declare class EquipWindowSkin extends eui.Skin{
 }
 declare class EquipmentItemSkin extends eui.Skin{
@@ -32,6 +34,8 @@ declare class ItemWindowSkin extends eui.Skin{
 }
 declare class LootInfoPanelSkin extends eui.Skin{
 }
+declare class MagicPanelSkin extends eui.Skin{
+}
 declare class MainSceneSkin extends eui.Skin{
 }
 declare class MonsterInfoPanelSkin extends eui.Skin{
@@ -43,6 +47,8 @@ declare class OtherWindowSkin extends eui.Skin{
 declare module skins{
 	class PanelSkin extends eui.Skin{
 	}
+}
+declare class PassivePanelSkin extends eui.Skin{
 }
 declare class PetCellSkin extends eui.Skin{
 }

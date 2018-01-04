@@ -10,6 +10,7 @@ class PassivePanel extends eui.Component implements eui.UIComponent {
 
 	protected childrenCreated(): void {
 		super.childrenCreated();
+		this.init();
 	}
 	public listSprite: eui.Group;
 	private Gap: number = 50;

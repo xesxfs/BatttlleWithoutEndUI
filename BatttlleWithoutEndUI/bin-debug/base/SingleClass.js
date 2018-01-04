@@ -17,4 +17,3 @@ var SingleClass = (function () {
     return SingleClass;
 }());
 __reflect(SingleClass.prototype, "SingleClass");
-//# sourceMappingURL=SingleClass.js.map

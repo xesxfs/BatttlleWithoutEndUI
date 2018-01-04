@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="PassivePanelSkin" width="400" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="160c1950fcb" ></w:Config>
+	<e:Scroller id="passiveScroller" width="100%" height="100%">
+		<e:Group id="listSprite">
+		<ns1:SkillCell xmlns:ns1="*" y="20"/>
+		</e:Group>
+	</e:Scroller>
+</e:Skin>

@@ -84,7 +84,7 @@ class BattleSkillInfoPanel extends eui.Component implements eui.UIComponent {
 			this.defPanel.x = this.xStart2;
 			this.defPanel.y = this.def.y + 30;
 		}
-		// this.drawBg();
+		this.drawBg();
 	}
 
 	private remove() {

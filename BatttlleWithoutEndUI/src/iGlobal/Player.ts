@@ -796,7 +796,7 @@ module iGlobal {
 
 		public static updateBattleSkillWindow() {
 			if (MainScene.battleSkillPanel) {
-				// 	MainScene.battleSkillPanel.update();
+				MainScene.battleSkillPanel.update();
 			}
 		}
 

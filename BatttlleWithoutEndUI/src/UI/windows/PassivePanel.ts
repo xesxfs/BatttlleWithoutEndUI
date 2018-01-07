@@ -39,7 +39,7 @@ class PassivePanel extends eui.Component implements eui.UIComponent {
 		this.addCell();
 	}
 
-	public addCell(): any {
+	public addCell() {
 		var cell: SkillCell = null;
 		var pIdx: number = (0);
 		var sIdx: number = (0);

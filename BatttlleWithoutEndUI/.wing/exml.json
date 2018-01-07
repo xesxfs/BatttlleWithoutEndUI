@@ -108,5 +108,10 @@
         "path": "UI\\windows\\PassivePanel.ts",
         "class": "PassivePanel",
         "parentPath": ""
+    },
+    "160cbbece67": {
+        "path": "UI/windows/ActiveSkillCell.ts",
+        "class": "ActiveSkillCell",
+        "parentPath": ""
     }
 }

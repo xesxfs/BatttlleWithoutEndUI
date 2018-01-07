@@ -15,10 +15,10 @@ class BattleSkillInfoPanel extends eui.Component implements eui.UIComponent {
 
 	private att: eui.Label;
 	private def: eui.Label;
-	private GAP: number = 20;
-	private yStart: number = -5;
+	private GAP: number = 35;
+	private yStart: number = 5;
 	private xStart1: number = 5;
-	private xStart2: number = 10;
+	private xStart2: number = 15;
 	private attPanel: egret.Sprite;
 	private defPanel: egret.Sprite;
 	private panel: egret.Sprite;
@@ -26,7 +26,10 @@ class BattleSkillInfoPanel extends eui.Component implements eui.UIComponent {
 
 	private init() {
 		this.att = new eui.Label("攻击");
+		this.att.textColor = 0x000000;
+
 		this.def = new eui.Label("防御");
+		this.def.textColor = 0x000000;
 		this.bg = new egret.Sprite();
 		this.addChild(this.bg);
 		this.panel = new egret.Sprite();
@@ -55,6 +58,7 @@ class BattleSkillInfoPanel extends eui.Component implements eui.UIComponent {
 			skillIndex = 0;
 			while (skillIndex < skillLength) {
 				skillLab = new eui.Label(skillList[skillIndex].skillData.realName + "  " + (curSpellChance / skillLength * 100 >> 0) / 100 + "%");
+				skillLab.textColor = 0x000000;
 				this.attPanel.addChild(skillLab);
 				skillLab.y = this.GAP * skillIndex;
 				skillIndex++;
@@ -76,6 +80,7 @@ class BattleSkillInfoPanel extends eui.Component implements eui.UIComponent {
 			skillIndex = 0;
 			while (skillIndex < skillLength) {
 				skillLab = new eui.Label(skillList[skillIndex].skillData.realName + "  " + (curSpellChance / skillLength * 100 >> 0) / 100 + "%");
+				skillLab.textColor = 0x000000;
 				this.defPanel.addChild(skillLab);
 				skillLab.y = this.GAP * skillIndex;
 				skillIndex++;

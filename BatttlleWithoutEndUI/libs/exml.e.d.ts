@@ -1,3 +1,5 @@
+declare class ActiveSkillCellSkin extends eui.Skin{
+}
 declare class AllInfoPanelSkin extends eui.Skin{
 }
 declare class BattleSkillInfoPanelSkin extends eui.Skin{

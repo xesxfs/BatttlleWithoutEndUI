@@ -1,34 +1,25 @@
-class SkillCell extends eui.Component implements eui.UIComponent {
+class ActiveSkillCell extends eui.Component implements eui.UIComponent {
 	public constructor(skill: iData.iSkill.Skill) {
 		super();
 		this.skill = skill;
 	}
-	private skill: iData.iSkill.Skill;
-	public text: eui.Label;
-	public lvupButton: eui.Button;
-
 
 	protected partAdded(partName: string, instance: any): void {
 		super.partAdded(partName, instance);
 	}
 
+	private skill: iData.iSkill.Skill;
+	public text: eui.Label;
+
 
 	protected childrenCreated(): void {
 		super.childrenCreated();
 		this.setInfo();
-		this.lvupButton.addEventListener("touchTap", this.onlevelUpDown, this);
-		this.update();
-
+		this.addEventListener("touchTap", this.onMouseDown, this);
 	}
 
 	public update() {
-		this.text.text = this.skill.skillData.realName + " " + (15 - this.skill.level).toString(16).toUpperCase();
-		if (this.skill.canLevelup()) {
-			this.lvupButton.visible = true;
-		}
-		else {
-			this.lvupButton.visible = false;
-		}
+
 	}
 
 	public setInfo() {
@@ -36,13 +27,17 @@ class SkillCell extends eui.Component implements eui.UIComponent {
 	}
 
 
-	private onlevelUpDown() {
+	private onMouseDown() {
 		// if (flash.As3is(param1.target, doubleCircle) || flash.As3is(param1.target, mc_lvup)) {
 		// 	return;
 		// }
-		// this["setBefore"]();
-		this.skill.levelup();
-		MainScene.otherPanel.skillWindow.passivePanel.update();
+		if (iGlobal.Player.isSkillEquiped(this.skill)) {
+			iGlobal.Player.unequipSkill(this.skill);
+		}
+		else {
+			iGlobal.Player.equipSkill(this.skill);
+		}
+		this.updateEquip();
 	}
 
 	public updateEquip() {
@@ -57,7 +52,5 @@ class SkillCell extends eui.Component implements eui.UIComponent {
 		// 	this.text["transform"].colorTransform = new flash.ColorTransform();
 		// }
 	}
-
-
 
 }

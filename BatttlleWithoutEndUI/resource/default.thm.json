@@ -37,10 +37,12 @@
     "OtherPanel": "resource/eui_skins/OtherPanel.exml",
     "CombatPanel": "resource/eui_skins/CombatPanel.exml",
     "MagicPanel": "resource/eui_skins/MagicPanel.exml",
-    "PassivePanel": "resource/eui_skins/PassivePanel.exml"
+    "PassivePanel": "resource/eui_skins/PassivePanel.exml",
+    "ActiveSkillCell": "resource/eui_skins/ActiveSkillCell.exml"
   },
   "autoGenerateExmlsList": true,
   "exmls": [
+    "resource/eui_skins/ActiveSkillCell.exml",
     "resource/eui_skins/AllInfoPanel.exml",
     "resource/eui_skins/BattleSkillInfoPanel.exml",
     "resource/eui_skins/BeginScene.exml",

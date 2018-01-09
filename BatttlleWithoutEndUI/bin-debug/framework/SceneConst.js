@@ -9,3 +9,4 @@ var SceneConst;
     /**游戏主界面*/
     SceneConst[SceneConst["MainScene"] = 3] = "MainScene";
 })(SceneConst || (SceneConst = {}));
+//# sourceMappingURL=SceneConst.js.map

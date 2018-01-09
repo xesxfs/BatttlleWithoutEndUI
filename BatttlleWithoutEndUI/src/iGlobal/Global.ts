@@ -1,21 +1,23 @@
 module iGlobal {
 	export class Global {
-	
+
 		public static stage: egret.Stage;
-		// public static stringInfoWindow: iPanel.iCell.StringInfoWindow;
-		// public static itemInfoWindow: iPanel.iCell.ItemInfoWindow;
+		public static stringInfoWindow: StringInfoWindow;
+		public static itemInfoWindow: ItemInfoWindow;
 		public static map: iData.iMap.Map;
 		public static mainScene: MainScene;
-		// public static shopPanel: iPanel.iScene.iPanel.ShopPanel;
-		// public static helpPanel: iPanel.iScene.iPanel.HelpPanel;
-		// public static specialShopPanel: iPanel.iScene.iPanel.SpecialShopPanel;
+		public static shopPanel: ShopPanel;
+		public static helpPanel: HelpPanel;
+		public static specialShopPanel: SpecialShopPanel;
 		public static RED: number;
 		public static BLUE: number;
 		public static YELLOW: number;
 		public static GREEN: number;
 		public static battle: string;
+		/***战况 */
 		public static battle_toggle: boolean;
 		public static battleIntro: string;
+		/***战果 */
 		public static battleIntro_toggle: boolean;
 		public static money: string;
 		public static money_toggle: boolean;
@@ -87,29 +89,31 @@ module iGlobal {
 
 		}
 
-		public static init(param1: egret.Stage): any {
-			iGlobal.Global.stage = param1;
-			// iGlobal.Global.stringInfoWindow = new iPanel.iCell.StringInfoWindow();
-			// iGlobal.Global.stage.addChild(iGlobal.Global.stringInfoWindow);
-			// iGlobal.Global.itemInfoWindow = new iPanel.iCell.ItemInfoWindow("As");
-			// iGlobal.Global.stage.addChild(iGlobal.Global.itemInfoWindow);
-			// iGlobal.Global.itemInfoWindow.visible = false;
+		public static init(stage: egret.Stage) {
+			iGlobal.Global.stage = stage;
+			iGlobal.Global.stringInfoWindow = new StringInfoWindow();
+			App.LayerManager.msgLayer.addChild(iGlobal.Global.stringInfoWindow);
+			iGlobal.Global.itemInfoWindow = new ItemInfoWindow("");
+			App.LayerManager.msgLayer.addChild(iGlobal.Global.itemInfoWindow);
+			iGlobal.Global.itemInfoWindow.visible = false;
 			//flash.Font["registerFont"](font_nesb);
 		}
 
-		public static getTextField(param1: number = 16, param2: number = 7631988): egret.TextField {
+		public static getTextField(size: number = 16, color: number = 7631988): egret.TextField {
 			// var _loc3_:flash.TextFormat = new flash.TextFormat("RTWS YueGothic Trial Regular",param1,param2);
-			var _loc4_: egret.TextField = new egret.TextField();
+			var textField: egret.TextField = new egret.TextField();
+			textField.textAlign = egret.HorizontalAlign.CENTER;
+			textField.size = size;
+			textField.textColor = color;
 			// _loc4_.embedFonts = true;
 			// _loc4_.defaultTextFormat = _loc3_;
 			// _loc4_["selectable"] = false;
-			// _loc4_.textAlign = flash.TextFieldAutoSize.CENTER;
-			// _loc4_.multiline = false;
-			// _loc4_["wordWrap"] = true;
-			return _loc4_;
+			textField.multiline = false;
+			textField.wordWrap = true;
+			return textField;
 		}
 
-		public static setStringInfoWindow(param1: string): any {
+		public static setStringInfoWindow(param1: string) {
 			// iGlobal.Global.stringInfoWindow.setText(param1);
 			// iGlobal.Global.stringInfoWindow.visible = true;
 			// if (iGlobal.Global.stringInfoWindow.parent) {
@@ -117,11 +121,11 @@ module iGlobal {
 			// }
 		}
 
-		public static hideInfoWindow(): any {
+		public static hideInfoWindow() {
 			// iGlobal.Global.stringInfoWindow.visible = false;
 		}
 
-		public static setItemInfoWindow(param1: string): any {
+		public static setItemInfoWindow(param1: string) {
 			// iGlobal.Global.itemInfoWindow.TEXT = param1;
 			// iGlobal.Global.itemInfoWindow.visible = true;
 			// if (iGlobal.Global.itemInfoWindow.parent) {

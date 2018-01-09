@@ -29,4 +29,8 @@ class TitleWindow extends eui.Component implements eui.UIComponent {
 		}
 	}
 
+	public update() {
+
+	}
+
 }

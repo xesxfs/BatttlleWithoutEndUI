@@ -16,8 +16,8 @@ class App extends SingleClass {
 		secen.register(SceneConst.MainScene, MainScene);
 	}
 
-	public static runScene(sceneId: number) {
-		App.SceneManager.runScene(sceneId);
+	public static runScene(sceneId: number): BaseScene {
+		return App.SceneManager.runScene(sceneId);
 	}
 
 	public static get LayerManager(): LayerManager {

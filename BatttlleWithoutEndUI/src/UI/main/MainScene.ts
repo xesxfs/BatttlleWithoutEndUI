@@ -33,8 +33,6 @@ class MainScene extends BaseScene {
 	public otherInfoGroup: eui.Group;
 	// private otherView: eui.ViewStack;
 
-	private c: number = 0;
-	private htlmStr = `<font color=0x336699 strokecolor=0x6699cc stroke=2>{%s}</font>`;
 
 	protected childrenCreated(): void {
 		this.init();
@@ -42,10 +40,6 @@ class MainScene extends BaseScene {
 
 	private init() {
 		this.menuBtnsGroup.addEventListener("touchTap", this.onMenusBtn, this);
-		this.testBtn.addEventListener("touchTap", () => {
-			MainScene.allInfoPanel.addText(this.htlmStr.replace("{%s}", "你好旅行者！！" + this.c++));
-		}, this)
-
 		MainScene.allInfoPanel = this.allInfoPanel;
 		MainScene.playerInfoPanel = this.playerInfoPanel;
 		MainScene.lootPanel = this.lootPanel;
@@ -54,6 +48,9 @@ class MainScene extends BaseScene {
 		MainScene.battleSkillPanel = this.battleSkillPanel;
 		MainScene.otherPanel = this.otherPanel;
 		this.setBattle();
+		iGlobal.Global.shopPanel = new ShopPanel();
+		iGlobal.Global.helpPanel = new HelpPanel();
+		iGlobal.Global.specialShopPanel = new SpecialShopPanel();
 	}
 
 	private setBattle() {

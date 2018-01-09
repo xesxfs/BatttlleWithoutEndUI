@@ -23,8 +23,8 @@ module iData {
 				this.behaveFunction = behaveFunction;
 			}
 
-			public setGot(): any {
-				if (<any>!this.isGot) {
+			public setGot() {
+				if (!this.isGot) {
 					this.isGot = true;
 					if (MainScene.allInfoPanel) {
 						MainScene.allInfoPanel.addText("<font color=\'" + iData.iItem.Equipment.ORANGE + "\'>You get Title &lt;" + this.name + "&gt; </font>");
@@ -32,11 +32,11 @@ module iData {
 					if (this.behaveFunction) {
 						this.behaveFunction();
 					}
-					// if (MainScene.otherPanel) {
-					// 	if (MainScene.otherPanel.titleWindow) {
-					// 		MainScene.otherPanel.titleWindow.update();
-					// 	}
-					// }
+					if (MainScene.otherPanel) {
+						if (MainScene.otherPanel.titleWindow) {
+							MainScene.otherPanel.titleWindow.update();
+						}
+					}
 				}
 			}
 

@@ -143,7 +143,6 @@ class Main extends eui.UILayer {
      */
     protected startCreateScene(): void {
         App.getInstance().startUp();
-
     }
 
 

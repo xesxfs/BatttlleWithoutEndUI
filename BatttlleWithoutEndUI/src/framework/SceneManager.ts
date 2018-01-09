@@ -21,7 +21,7 @@ class SceneManager extends SingleClass {
      * @sceneID 场景ID
      * @return 返回当前场景
      */
-    public runScene(sceneID: number) {
+    public runScene(sceneID: number):BaseScene {
         if (this.curScene) {
             App.LayerManager.sceneLayer.removeChild(this.curScene);
         }

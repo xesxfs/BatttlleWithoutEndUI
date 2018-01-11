@@ -28,7 +28,7 @@ var App = (function (_super) {
         secen.register(SceneConst.MainScene, MainScene);
     };
     App.runScene = function (sceneId) {
-        App.SceneManager.runScene(sceneId);
+        return App.SceneManager.runScene(sceneId);
     };
     Object.defineProperty(App, "LayerManager", {
         get: function () {

@@ -4,10 +4,10 @@ class RaceButton extends ButtonCell {
 	private count: number = 0;
 	public race: iData.Race;
 	private text: egret.TextField;
-	public constructor(param1: string, param2: string, param3: iData.Race) {
-		super(param1, param2);
+	public constructor(b: string, a: string, race: iData.Race) {
+		super(b, a);
 		this.bg = new egret.Sprite();
-		this.race = param3;
+		this.race = race;
 		this.addChild(this.bg);
 		this.before.width = this.PX;
 		this.before.height = this.PX;

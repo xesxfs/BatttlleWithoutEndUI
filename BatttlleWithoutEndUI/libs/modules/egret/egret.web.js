@@ -2610,12 +2610,8 @@ var egret;
                 if (!this.canvas) {
                     return;
                 }
-                var stageW = this.canvas.width;
-                var stageH = this.canvas.height;
-                var screenW = this.canvas.style.width.split("px")[0];
-                var screenH = this.canvas.style.height.split("px")[0];
-                this.$scaleX = screenW / stageW;
-                this.$scaleY = screenH / stageH;
+                this.$scaleX = egret.sys.DisplayList.$canvasScaleX;
+                this.$scaleY = egret.sys.DisplayList.$canvasScaleY;
                 this.StageDelegateDiv.style.left = this.canvas.style.left;
                 this.StageDelegateDiv.style.top = this.canvas.style.top;
                 var transformKey = egret.web.getPrefixStyleName("transform");
@@ -3074,12 +3070,12 @@ var egret;
                 var context = this.context;
                 context.save();
                 context.beginPath();
-                context.setTransform(1, 0, 0, 1, offsetX, offsetY);
+                context.setTransform(canvasScaleX, 0, 0, canvasScaleY, offsetX * canvasScaleX, offsetY * canvasScaleY);
                 var length = regions.length;
                 for (var i = 0; i < length; i++) {
                     var region = regions[i];
-                    context.clearRect(region.minX * canvasScaleX, region.minY * canvasScaleY, region.width * canvasScaleX, region.height * canvasScaleY);
-                    context.rect(region.minX * canvasScaleX, region.minY * canvasScaleY, region.width * canvasScaleX, region.height * canvasScaleY);
+                    context.clearRect(region.minX, region.minY, region.width, region.height);
+                    context.rect(region.minX, region.minY, region.width, region.height);
                 }
                 context.clip();
             };
@@ -4115,6 +4111,41 @@ var egret;
         }
     })(web = egret.web || (egret.web = {}));
 })(egret || (egret = {}));
+(function (egret) {
+    var web;
+    (function (web) {
+        var callBackDic = {};
+        /**
+         * @private
+         */
+        var WebViewExternalInterface = (function () {
+            function WebViewExternalInterface() {
+            }
+            WebViewExternalInterface.call = function (functionName, value) {
+                __global.ExternalInterface.call(functionName, value);
+            };
+            WebViewExternalInterface.addCallback = function (functionName, listener) {
+                callBackDic[functionName] = listener;
+            };
+            WebViewExternalInterface.invokeCallback = function (functionName, value) {
+                var listener = callBackDic[functionName];
+                if (listener) {
+                    listener.call(null, value);
+                }
+                else {
+                    egret.$warn(1050, functionName);
+                }
+            };
+            return WebViewExternalInterface;
+        }());
+        web.WebViewExternalInterface = WebViewExternalInterface;
+        __reflect(WebViewExternalInterface.prototype, "egret.web.WebViewExternalInterface", ["egret.ExternalInterface"]);
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.indexOf("egretwebview") >= 0) {
+            egret.ExternalInterface = WebViewExternalInterface;
+        }
+    })(web = egret.web || (egret.web = {}));
+})(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
 //  Copyright (c) 2014-present, Egret Technology.
@@ -4339,8 +4370,6 @@ var egret;
                 var displayWidth = stageSize.displayWidth;
                 var displayHeight = stageSize.displayHeight;
                 canvas.style[egret.web.getPrefixStyleName("transformOrigin")] = "0% 0% 0px";
-                canvas.style.width = displayWidth + "px";
-                canvas.style.height = displayHeight + "px";
                 if (canvas.width != stageWidth) {
                     canvas.width = stageWidth;
                 }
@@ -4364,10 +4393,19 @@ var egret;
                     canvas.style.top = top + (boundingClientHeight - displayHeight) / 2 + "px";
                     canvas.style.left = (boundingClientWidth - displayWidth) / 2 + "px";
                 }
-                var transform = "rotate(" + rotation + "deg)";
-                canvas.style[egret.web.getPrefixStyleName("transform")] = transform;
                 var scalex = displayWidth / stageWidth, scaley = displayHeight / stageHeight;
-                egret.sys.DisplayList.$setCanvasScale(scalex * egret.sys.DisplayList.$canvasScaleFactor, scaley * egret.sys.DisplayList.$canvasScaleFactor);
+                var canvasScaleX = scalex * egret.sys.DisplayList.$canvasScaleFactor;
+                var canvasScaleY = scaley * egret.sys.DisplayList.$canvasScaleFactor;
+                if (egret.Capabilities.$renderMode == "canvas") {
+                    canvasScaleX = Math.ceil(canvasScaleX);
+                    canvasScaleY = Math.ceil(canvasScaleY);
+                }
+                var m = new egret.Matrix();
+                m.scale(scalex / canvasScaleX, scaley / canvasScaleY);
+                m.rotate(rotation * Math.PI / 180);
+                var transform = "matrix(" + m.a + "," + m.b + "," + m.c + "," + m.d + "," + m.tx + "," + m.ty + ")";
+                canvas.style[egret.web.getPrefixStyleName("transform")] = transform;
+                egret.sys.DisplayList.$setCanvasScale(canvasScaleX, canvasScaleY);
                 this.webTouchHandler.updateScaleMode(scalex, scaley, rotation);
                 this.webInput.$updateSize();
                 this.player.updateStageSize(stageWidth, stageHeight); //不要在这个方法后面修改属性
@@ -5615,6 +5653,7 @@ var egret;
             WebGLRenderTarget.prototype.createTexture = function () {
                 var gl = this.gl;
                 var texture = gl.createTexture();
+                texture["glContext"] = gl;
                 gl.bindTexture(gl.TEXTURE_2D, texture);
                 gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, this.width, this.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
                 gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
@@ -5649,6 +5688,9 @@ var egret;
                 gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, this.stencilBuffer);
                 // 此处不解绑是否会造成bug？
                 // gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+            };
+            WebGLRenderTarget.prototype.dispose = function () {
+                egret.WebGLUtils.deleteWebGLTexture(this.texture);
             };
             return WebGLRenderTarget;
         }(egret.HashObject));
@@ -7154,7 +7196,26 @@ var egret;
                             renderAlpha = node.renderAlpha;
                             m = egret.Matrix.create().copyFrom(node.renderMatrix);
                         }
-                        matrix.$preMultiplyInto(m, m);
+                        var a = m.a * matrix.a;
+                        var b = 0.0;
+                        var c = 0.0;
+                        var d = m.d * matrix.d;
+                        var tx = m.tx * matrix.a + matrix.tx * matrix.a;
+                        var ty = m.ty * matrix.d + matrix.ty * matrix.d;
+                        if (m.b !== 0.0 || m.c !== 0.0 || matrix.b !== 0.0 || matrix.c !== 0.0) {
+                            a += m.b * matrix.c;
+                            d += m.c * matrix.b;
+                            b += m.a * matrix.b + m.b * matrix.d;
+                            c += m.c * matrix.a + m.d * matrix.c;
+                            tx += m.ty * matrix.c;
+                            ty += m.tx * matrix.b;
+                        }
+                        m.a = a;
+                        m.b = b;
+                        m.c = c;
+                        m.d = d;
+                        m.tx = tx;
+                        m.ty = ty;
                         buffer.setTransform(m.a, m.b, m.c, m.d, m.tx, m.ty);
                         egret.Matrix.release(m);
                         buffer.globalAlpha = renderAlpha;
@@ -7252,11 +7313,10 @@ var egret;
                 region = egret.sys.Region.create();
                 region.updateRegion(bounds, displayMatrix);
                 // 为显示对象创建一个新的buffer
-                // todo 这里应该计算 region.x region.y
                 var displayBuffer = this.createRenderBuffer(region.width * matrix.a, region.height * matrix.d);
                 displayBuffer.context.pushBuffer(displayBuffer);
-                displayBuffer.setTransform(matrix.a, 0, 0, matrix.d, -region.minX * matrix.a, -region.minY * matrix.d);
-                var offsetM = egret.Matrix.create().setTo(matrix.a, 0, 0, matrix.d, -region.minX * matrix.a, -region.minY * matrix.d);
+                displayBuffer.setTransform(matrix.a, 0, 0, matrix.d, -region.minX, -region.minY);
+                var offsetM = egret.Matrix.create().setTo(matrix.a, 0, 0, matrix.d, -region.minX, -region.minY);
                 //todo 可以优化减少draw次数
                 if ((displayObject.$mask && (displayObject.$mask.$parentDisplayList || root))) {
                     drawCalls += this.drawWithClip(displayObject, displayBuffer, dirtyList, offsetM, region, root);
@@ -7382,6 +7442,8 @@ var egret;
                     region.updateRegion(bounds, displayMatrix);
                 }
                 if (region.width <= 0 || region.height <= 0) {
+                    egret.sys.Region.release(region);
+                    egret.Matrix.release(displayMatrix);
                     return drawCalls;
                 }
                 var found = false;
@@ -7429,8 +7491,8 @@ var egret;
                     var displayBuffer = this.createRenderBuffer(region.width * matrix.a, region.height * matrix.d);
                     // let displayContext = displayBuffer.context;
                     displayBuffer.context.pushBuffer(displayBuffer);
-                    displayBuffer.setTransform(matrix.a, 0, 0, matrix.d, -region.minX * matrix.a, -region.minY * matrix.d);
-                    var offsetM = egret.Matrix.create().setTo(matrix.a, 0, 0, matrix.d, -region.minX * matrix.a, -region.minY * matrix.d);
+                    displayBuffer.setTransform(matrix.a, 0, 0, matrix.d, -region.minX, -region.minY);
+                    var offsetM = egret.Matrix.create().setTo(matrix.a, 0, 0, matrix.d, -region.minX, -region.minY);
                     drawCalls += this.drawDisplayObject(displayObject, displayBuffer, dirtyList, offsetM, displayObject.$displayList, region, root);
                     //绘制遮罩
                     if (mask) {
@@ -7445,9 +7507,10 @@ var egret;
                         //else {
                         var maskBuffer = this.createRenderBuffer(region.width * matrix.a, region.height * matrix.d);
                         maskBuffer.context.pushBuffer(maskBuffer);
-                        maskBuffer.setTransform(matrix.a, 0, 0, matrix.d, -region.minX * matrix.a, -region.minY * matrix.d);
-                        offsetM = egret.Matrix.create().setTo(matrix.a, 0, 0, matrix.d, -region.minX * matrix.a, -region.minY * matrix.d);
-                        drawCalls += this.drawDisplayObject(mask, maskBuffer, dirtyList, offsetM, mask.$displayList, region, root);
+                        maskBuffer.setTransform(matrix.a, 0, 0, matrix.d, -region.minX, -region.minY);
+                        var offsetM_1 = egret.Matrix.create().setTo(matrix.a, 0, 0, matrix.d, -region.minX, -region.minY);
+                        drawCalls += this.drawDisplayObject(mask, maskBuffer, dirtyList, offsetM_1, mask.$displayList, region, root);
+                        egret.Matrix.release(offsetM_1);
                         maskBuffer.context.popBuffer();
                         displayBuffer.context.setGlobalCompositeOperation("destination-in");
                         displayBuffer.setTransform(1, 0, 0, -1, 0, maskBuffer.height);
@@ -7782,9 +7845,6 @@ var egret;
                 if (!this.canvasRenderBuffer || !this.canvasRenderBuffer.context) {
                     this.canvasRenderer = new egret.CanvasRenderer();
                     this.canvasRenderBuffer = new web.CanvasRenderBuffer(width, height);
-                    if (canvasScaleX != 1 || canvasScaleY != 1) {
-                        this.canvasRenderBuffer.context.setTransform(canvasScaleX, 0, 0, canvasScaleY, 0, 0);
-                    }
                 }
                 else if (node.dirtyRender) {
                     this.canvasRenderBuffer.resize(width, height);
@@ -7797,6 +7857,9 @@ var egret;
                         this.canvasRenderBuffer.context.setTransform(canvasScaleX, 0, 0, canvasScaleY, -x, -y);
                     }
                     buffer.transform(1, 0, 0, 1, x / canvasScaleX, y / canvasScaleY);
+                }
+                else if (canvasScaleX != 1 || canvasScaleY != 1) {
+                    this.canvasRenderBuffer.context.setTransform(canvasScaleX, 0, 0, canvasScaleY, 0, 0);
                 }
                 if (node.dirtyRender) {
                     var surface = this.canvasRenderBuffer.surface;
@@ -7835,6 +7898,25 @@ var egret;
                 if (width <= 0 || height <= 0 || !width || !height || node.drawData.length == 0) {
                     return;
                 }
+                var canvasScaleX = egret.sys.DisplayList.$canvasScaleX;
+                var canvasScaleY = egret.sys.DisplayList.$canvasScaleY;
+                if (width * canvasScaleX < 1 || height * canvasScaleY < 1) {
+                    canvasScaleX = canvasScaleY = 1;
+                }
+                if (node.$canvasScaleX != canvasScaleX || node.$canvasScaleY != canvasScaleY) {
+                    node.$canvasScaleX = canvasScaleX;
+                    node.$canvasScaleY = canvasScaleY;
+                    node.dirtyRender = true;
+                }
+                //缩放叠加 width2 / width 填满整个区域
+                width = width * canvasScaleX;
+                height = height * canvasScaleY;
+                var width2 = Math.ceil(width);
+                var height2 = Math.ceil(height);
+                canvasScaleX *= width2 / width;
+                canvasScaleY *= height2 / height;
+                width = width2;
+                height = height2;
                 if (!this.canvasRenderBuffer || !this.canvasRenderBuffer.context) {
                     this.canvasRenderer = new egret.CanvasRenderer();
                     this.canvasRenderBuffer = new web.CanvasRenderBuffer(width, height);
@@ -7844,6 +7926,9 @@ var egret;
                 }
                 if (!this.canvasRenderBuffer.context) {
                     return;
+                }
+                if (canvasScaleX != 1 || canvasScaleY != 1) {
+                    this.canvasRenderBuffer.context.setTransform(canvasScaleX, 0, 0, canvasScaleY, 0, 0);
                 }
                 if (node.x || node.y) {
                     if (node.dirtyRender || forHitTest) {
@@ -7877,7 +7962,7 @@ var egret;
                     }
                     var textureWidth = node.$textureWidth;
                     var textureHeight = node.$textureHeight;
-                    buffer.context.drawTexture(node.$texture, 0, 0, textureWidth, textureHeight, 0, 0, textureWidth, textureHeight, textureWidth, textureHeight);
+                    buffer.context.drawTexture(node.$texture, 0, 0, textureWidth, textureHeight, 0, 0, textureWidth / canvasScaleX, textureHeight / canvasScaleY, textureWidth, textureHeight);
                 }
                 if (node.x || node.y) {
                     if (node.dirtyRender || forHitTest) {

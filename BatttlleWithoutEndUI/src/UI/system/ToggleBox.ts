@@ -12,6 +12,7 @@ class ToggleBox extends egret.Sprite {
 		this.addChild(this.text);
 		this.setText(text);
 		this.box = new egret.Sprite();
+		this.box.touchEnabled = true;
 		this.addChild(this.box);
 		if (bDown) {
 			this.setDown();

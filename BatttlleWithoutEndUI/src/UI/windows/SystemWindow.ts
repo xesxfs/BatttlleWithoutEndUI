@@ -1,17 +1,4 @@
 class SystemWindow extends eui.Component implements eui.UIComponent {
-	public constructor() {
-		super();
-	}
-
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
-	}
-
-
-	protected childrenCreated(): void {
-		super.childrenCreated();
-	}
-
 	private startX: number = 10;
 	private startY: number = 10;
 	private gapY: number = 30;
@@ -27,6 +14,32 @@ class SystemWindow extends eui.Component implements eui.UIComponent {
 	private lootGapMidY: number = 45;
 	private lootGapBitY: number = 65;
 	private lootGapX: number = 65;
+	public constructor() {
+		super();
+	}
+
+	protected partAdded(partName: string, instance: any): void {
+		super.partAdded(partName, instance);
+	}
+
+
+	protected childrenCreated(): void {
+		super.childrenCreated();
+		this.init();
+	}
+
+	private init() {
+		this.setToggle();
+		// this.setBody();
+		// this.setFeet();
+		// this.setHead();
+		this.setItemToggle();
+		this.autoSell();
+		// this.setWeaponToggle();
+		// this.setOffhand();
+	}
+
+
 
 
 	private setToggle() {

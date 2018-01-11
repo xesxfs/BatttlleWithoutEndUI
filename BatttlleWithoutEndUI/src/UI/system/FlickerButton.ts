@@ -6,6 +6,7 @@ class FlickerButton extends ButtonCell {
 
 	public constructor(text: string, width: number, height: number, fontSize: number = 32) {
 		super("egret.Sprite", "egret.Sprite");
+		this.touchEnabled = true;
 		this.bg = new BasicCell(width, height);
 		this.addChild(this.bg);
 		var beforeText = iGlobal.Global.getTextField(fontSize);

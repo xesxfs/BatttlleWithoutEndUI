@@ -90,7 +90,7 @@ module iGlobal {
 		}
 
 		public static init(stage: egret.Stage) {
-			iGlobal.Global.stage = stage;
+			iGlobal.Global.stage =stage;
 			iGlobal.Global.stringInfoWindow = new StringInfoWindow();
 			App.LayerManager.msgLayer.addChild(iGlobal.Global.stringInfoWindow);
 			iGlobal.Global.itemInfoWindow = new ItemInfoWindow("");
@@ -114,27 +114,27 @@ module iGlobal {
 		}
 
 		public static setStringInfoWindow(param1: string) {
-			// iGlobal.Global.stringInfoWindow.setText(param1);
-			// iGlobal.Global.stringInfoWindow.visible = true;
-			// if (iGlobal.Global.stringInfoWindow.parent) {
-			// 	iGlobal.Global.stringInfoWindow.parent.addChildAt(iGlobal.Global.stringInfoWindow, iGlobal.Global.stringInfoWindow.parent.numChildren - 1);
-			// }
+			iGlobal.Global.stringInfoWindow.setText(param1);
+			iGlobal.Global.stringInfoWindow.visible = true;
+			if (iGlobal.Global.stringInfoWindow.parent) {
+				iGlobal.Global.stringInfoWindow.parent.addChildAt(iGlobal.Global.stringInfoWindow, iGlobal.Global.stringInfoWindow.parent.numChildren - 1);
+			}
 		}
 
 		public static hideInfoWindow() {
-			// iGlobal.Global.stringInfoWindow.visible = false;
+			iGlobal.Global.stringInfoWindow.visible = false;
 		}
 
 		public static setItemInfoWindow(param1: string) {
-			// iGlobal.Global.itemInfoWindow.TEXT = param1;
-			// iGlobal.Global.itemInfoWindow.visible = true;
-			// if (iGlobal.Global.itemInfoWindow.parent) {
-			// 	iGlobal.Global.itemInfoWindow.parent.addChildAt(iGlobal.Global.itemInfoWindow, iGlobal.Global.itemInfoWindow.parent.numChildren - 1);
-			// }
+			iGlobal.Global.itemInfoWindow.TEXT = param1;
+			iGlobal.Global.itemInfoWindow.visible = true;
+			if (iGlobal.Global.itemInfoWindow.parent) {
+				iGlobal.Global.itemInfoWindow.parent.addChildAt(iGlobal.Global.itemInfoWindow, iGlobal.Global.itemInfoWindow.parent.numChildren - 1);
+			}
 		}
 
 		public static hideItemInfoWindow(): any {
-			// iGlobal.Global.itemInfoWindow.visible = false;
+			iGlobal.Global.itemInfoWindow.visible = false;
 		}
 
 		public static playSound(): any {

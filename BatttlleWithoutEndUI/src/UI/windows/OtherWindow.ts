@@ -12,6 +12,16 @@ class OtherWindow extends eui.Component implements eui.UIComponent {
 
 	protected childrenCreated(): void {
 		super.childrenCreated();
+		this.init();
+	}
+
+	private init(){
+		this.setHelp();
+		this.setMap();
+		this.setShop();
+		this.setSpecialShop();
+		this.setRebirth();
+		this.setSave();
 	}
 
 	private setHelp() {

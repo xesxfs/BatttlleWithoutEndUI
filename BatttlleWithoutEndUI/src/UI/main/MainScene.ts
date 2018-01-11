@@ -39,6 +39,7 @@ class MainScene extends BaseScene {
 	}
 
 	private init() {
+		iGlobal.Global.init(this.stage);
 		this.menuBtnsGroup.addEventListener("touchTap", this.onMenusBtn, this);
 		MainScene.allInfoPanel = this.allInfoPanel;
 		MainScene.playerInfoPanel = this.playerInfoPanel;

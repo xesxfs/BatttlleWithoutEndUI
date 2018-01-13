@@ -18,6 +18,7 @@ class SaveScene extends BaseScene {
 			App.runScene(SceneConst.RaceScene);
 		}, this);
 		this.mainBtn.addEventListener("touchTap", () => {
+			iGlobal.Player.load();
 			App.runScene(SceneConst.MainScene);
 		}, this);
 	}

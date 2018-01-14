@@ -99,7 +99,7 @@ module iGlobal {
 			//flash.Font["registerFont"](font_nesb);
 		}
 
-		public static getTextField(size: number = 16, color: number = 7631988): egret.TextField {
+		public static getTextField(size: number = 16, color: number = 0x000000): egret.TextField {
 			// var _loc3_:flash.TextFormat = new flash.TextFormat("RTWS YueGothic Trial Regular",param1,param2);
 			var textField: egret.TextField = new egret.TextField();
 			textField.textAlign = egret.HorizontalAlign.CENTER;

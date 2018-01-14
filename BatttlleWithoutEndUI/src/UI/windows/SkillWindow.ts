@@ -27,6 +27,9 @@ class SkillWindow extends eui.Component implements eui.UIComponent {
 		super.childrenCreated();
 		this.init();
 	}
+	public onUpdate(){
+		
+	}
 
 	private init() {
 		this.combatPanel = new CombatPanel();

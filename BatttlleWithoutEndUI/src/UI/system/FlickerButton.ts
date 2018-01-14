@@ -7,15 +7,15 @@ class FlickerButton extends ButtonCell {
 	public constructor(text: string, width: number, height: number, fontSize: number = 32) {
 		super("egret.Sprite", "egret.Sprite");
 		this.touchEnabled = true;
-		this.bg = new BasicCell(width, height);
-		this.addChild(this.bg);
+		// this.bg = new BasicCell(width, height);
+		// this.addChild(this.bg);
 		var beforeText = iGlobal.Global.getTextField(fontSize);
 		beforeText.text = text;
 		this.before.addChild(beforeText);
 		this.before.x = width / 2 - beforeText.textWidth / 2;
 		this.before.y = height / 2 - beforeText.textHeight / 2;
 
-		var afterText = iGlobal.Global.getTextField(fontSize, 16777215);
+		var afterText = iGlobal.Global.getTextField(fontSize, 0x000000);
 		afterText.width = width;
 		afterText.text = text;
 		this.after.addChild(afterText);
@@ -49,9 +49,9 @@ class FlickerButton extends ButtonCell {
 		this.count = (0);
 		// this.bg["transform"].colorTransform = new flash.ColorTransform();
 		this.filters = [];
-		if (this.parent) {
-			this.parent.addChildAt(this, this.parent.numChildren - 1);
-		}
+		// if (this.parent) {
+		// 	this.parent.addChildAt(this, this.parent.numChildren - 1);
+		// }
 	}
 
 	public setDown() {

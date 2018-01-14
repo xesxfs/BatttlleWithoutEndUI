@@ -5,7 +5,7 @@ class ButtonCell extends egret.Sprite {
 	protected buttonDown: boolean = false;
 	public downFunction: Function;
 	public constructor(before: string, after: string) {
-		super();		
+		super();
 		this.before = new (egret.getDefinitionByName(before))();
 		this.after = new (egret.getDefinitionByName(after))();
 		this.addChild(this.before);
@@ -13,7 +13,7 @@ class ButtonCell extends egret.Sprite {
 		this.after.visible = false;
 		this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onMouseOver, this);
 		this.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.onMouseOut, this);
-		this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onMouseDown, this);
+		this.addEventListener(egret.TouchEvent.TOUCH_END, this.onMouseDown, this);
 	}
 
 
@@ -41,6 +41,7 @@ class ButtonCell extends egret.Sprite {
 
 	public setAfter() {
 		this.after.visible = true;
+		this.before.visible = false;
 	}
 
 	public setBefore() {

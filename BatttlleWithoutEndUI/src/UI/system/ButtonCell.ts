@@ -46,6 +46,7 @@ class ButtonCell extends egret.Sprite {
 
 	public setBefore() {
 		this.after.visible = false;
+		this.before.visible = true;
 		this.buttonDown = false;
 	}
 

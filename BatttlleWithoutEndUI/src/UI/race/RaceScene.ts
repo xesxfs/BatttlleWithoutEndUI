@@ -33,7 +33,7 @@ class RaceScene extends BaseScene {
 	private chosenAge: number = 10;
 	private px: number = 100;
 	private py: number = 150;
-	private pg: number = 80;
+	private pg: number = 100;
 
 	public constructor() {
 		super();

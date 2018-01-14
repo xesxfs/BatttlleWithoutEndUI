@@ -64,11 +64,11 @@ class RaceButton extends ButtonCell {
 
 	public setBefore() {
 		super.setBefore();
-		this.bg.graphics.clear();
-		this.removeEventListener(egret.Event.ENTER_FRAME, this.overAnimation, this);
-		this.count = (0);
-		this.filters = [];
-		this.text.visible = false;
+		// this.bg.graphics.clear();
+		// this.removeEventListener(egret.Event.ENTER_FRAME, this.overAnimation, this);
+		// this.count = (0);
+		// this.filters = [];
+		// this.text.visible = false;
 	}
 
 	public setDown() {

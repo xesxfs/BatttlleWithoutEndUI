@@ -110,6 +110,7 @@
 		"bin-debug/iData/RaceList.js",
 		"bin-debug/UI/system/ButtonGroup.js",
 		"bin-debug/UI/system/ClickButton.js",
+		"bin-debug/UI/system/ColorTransform.js",
 		"bin-debug/UI/system/ComfirmScene.js",
 		"bin-debug/UI/system/EquipButton.js",
 		"bin-debug/App.js",

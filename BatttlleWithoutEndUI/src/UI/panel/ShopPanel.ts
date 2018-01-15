@@ -55,73 +55,73 @@ class ShopPanel extends BasicCell {
 	}
 
 	public updateTime() {
-		var _loc1_: number = (iGlobal.Player.caculate % 600);
-		_loc1_ = (600 - _loc1_);
-		var _loc2_: number = (_loc1_ / 120);
-		var _loc3_: number = ((_loc1_ - _loc2_ * 120) / 2);
-		this.time.setText(_loc2_ + ":" + _loc3_);
+		var t1: number = (iGlobal.Player.caculate % 600);
+		t1 = (600 - t1);
+		var t2: number = (t1 / 120);
+		var t3: number = ((t1 - t2 * 120) / 2);
+		this.time.setText(t2 + ":" + t3);
 		this.gold.setText("金钱: " + iGlobal.Player.gold);
 	}
 
 	public updateMoneyButton() {
-		var _loc2_: any = undefined;
-		var _loc1_: number = (0);
-		while (_loc1_ < this.itemPanel.numChildren) {
-			_loc2_ = this.itemPanel.getChildAt(_loc1_);
-			// if ((_loc2_ instanceof GambleCell)) {
-			// 	((_loc2_ instanceof GambleCell)).updateMoneyButton();
-			// }
-			// else {
-			// 	((_loc2_ instanceof ShopCell)).updateMoneyButton();
-			// }
-			_loc1_++;
+		var cell;
+		var i: number = (0);
+		while (i < this.itemPanel.numChildren) {
+			cell = this.itemPanel.getChildAt(i);
+			if ((cell instanceof GambleCell)) {
+				((cell as GambleCell)).updateMoneyButton();
+			}
+			else {
+				((cell as ShopCell)).updateMoneyButton();
+			}
+			i++;
 		}
 	}
 
 	public updateShop() {
-		// var _loc1_: number = (0);
-		// var _loc2_: number = <any>NaN;
-		// var _loc3_: iData.iItem.EquipmentData = <any>null;
-		// var _loc4_: iData.iItem.Equipment = <any>null;
-		// var _loc5_: ShopCell = <any>null;
-		// var _loc6_: GambleCell = <any>null;
-		// _loc1_ = (this.itemPanel.numChildren - 1);
-		// while (_loc1_ >= 0) {
-		// 	this.itemPanel.removeChildAt(_loc1_);
-		// 	_loc1_--;
-		// }
-		// _loc1_ = (0);
-		// while (_loc1_ < 7) {
-		// 	_loc2_ = Math.random() * 3 * (1 + iGlobal.Player.luck / 400) * (1 + iGlobal.Player.combatPower / 1000);
-		// 	_loc3_ = iData.iItem.EquipmentList.list[iData.iItem.EquipmentList.list.length * Math.random() >> 0];
-		// 	if ((_loc3_ instanceof iData.iItem.WeaponData)) {
-		// 		_loc4_ = new iData.iItem.Weapon(_loc3_ , _loc2_);
-		// 	}
-		// 	else {
-		// 		_loc4_ = new iData.iItem.Equipment(_loc3_, _loc2_);
-		// 	}
-		// 	_loc5_ = new ShopCell(_loc4_);
-		// 	this.itemPanel.addChild(_loc5_);
-		// 	_loc5_.x = 0;
-		// 	_loc5_.y = _loc1_ * this.gap;
-		// 	_loc1_++;
-		// }
-		// _loc1_ = (0);
-		// while (_loc1_ < 7) {
-		// 	_loc2_ = Math.random() * 6 * (1 + iGlobal.Player.luck / 200) * (1 + iGlobal.Player.combatPower / 700);
-		// 	_loc3_ = iData.iItem.EquipmentList.list[iData.iItem.EquipmentList.list.length * Math.random() >> 0];
-		// 	if ((_loc3_ instanceof iData.iItem.WeaponData)) {
-		// 		_loc4_ = new iData.iItem.Weapon(_loc3_, _loc2_);
-		// 	}
-		// 	else {
-		// 		_loc4_ = new iData.iItem.Equipment(_loc3_, _loc2_);
-		// 	}
-		// 	_loc6_ = new GambleCell(_loc4_);
-		// 	this.itemPanel.addChild(_loc6_);
-		// 	_loc6_.x = this.startX2;
-		// 	_loc6_.y = _loc1_ * this.gap;
-		// 	_loc1_++;
-		// }
+		var length: number = (0);
+		var randData: number = 0;
+		var eData: iData.iItem.EquipmentData = null;
+		var equiment: iData.iItem.Equipment = null;
+		var shopCell: ShopCell = null;
+		var gCell: GambleCell = null;
+		length = (this.itemPanel.numChildren - 1);
+		while (length >= 0) {
+			this.itemPanel.removeChildAt(length);
+			length--;
+		}
+		length = (0);
+		while (length < 7) {
+			randData = Math.random() * 3 * (1 + iGlobal.Player.luck / 400) * (1 + iGlobal.Player.combatPower / 1000);
+			eData = iData.iItem.EquipmentList.list[iData.iItem.EquipmentList.list.length * Math.random() >> 0];
+			if ((eData instanceof iData.iItem.WeaponData)) {
+				equiment = new iData.iItem.Weapon(eData, randData);
+			}
+			else {
+				equiment = new iData.iItem.Equipment(eData, randData);
+			}
+			shopCell = new ShopCell(equiment);
+			this.itemPanel.addChild(shopCell);
+			shopCell.x = 0;
+			shopCell.y = length * this.gap;
+			length++;
+		}
+		length = (0);
+		while (length < 7) {
+			randData = Math.random() * 6 * (1 + iGlobal.Player.luck / 200) * (1 + iGlobal.Player.combatPower / 700);
+			eData = iData.iItem.EquipmentList.list[iData.iItem.EquipmentList.list.length * Math.random() >> 0];
+			if ((eData instanceof iData.iItem.WeaponData)) {
+				equiment = new iData.iItem.Weapon(eData, randData);
+			}
+			else {
+				equiment = new iData.iItem.Equipment(eData, randData);
+			}
+			gCell = new GambleCell(equiment);
+			this.itemPanel.addChild(gCell);
+			gCell.x = this.startX2;
+			gCell.y = length * this.gap;
+			length++;
+		}
 	}
 
 

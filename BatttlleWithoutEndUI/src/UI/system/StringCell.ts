@@ -14,7 +14,7 @@ class StringCell extends BasicCell {
 	}
 
 	public setText(text: string) {
-		var _loc2_: number = 0;
+		var size: number = 0;
 		this.graphics.clear();
 		if (this.contains(this.textField)) {
 			this.removeChild(this.textField);
@@ -22,20 +22,20 @@ class StringCell extends BasicCell {
 		this.textField = iGlobal.Global.getTextField(this.size);
 		this.addChild(this.textField);
 		this.textField.width = this.w + 100;
-		this.textField.text = text;
+		this.textField.textFlow = iGlobal.Global.htmlParse.parser(text);
 		this.textField.width = this.textField.textWidth + 6;
 		if (this.textField.width > this.w) {
 			this.removeChild(this.textField);
-			_loc2_ = 1;
-			while (_loc2_ < this.size) {
-				this.textField = iGlobal.Global.getTextField(this.size - _loc2_);
+			size = 1;
+			while (size < this.size) {
+				this.textField = iGlobal.Global.getTextField(this.size - size);
 				this.textField.width = this.w + 100;
-				this.textField.text = text;
+				this.textField.textFlow = iGlobal.Global.htmlParse.parser(text);
 				this.textField.width = this.textField.textWidth + 6;
 				if (this.textField.width < this.w) {
 					break;
 				}
-				_loc2_++;
+				size++;
 			}
 			this.addChild(this.textField);
 		}

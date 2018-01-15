@@ -1,19 +1,20 @@
-class PetSkillCell extends egret.Sprite {
+class PetSkillCell extends ButtonCell {
 	public petSkill: iData.iPet.iPetSkill.PetSkill;
 	private SIZE: number = 30;
 	public constructor(petSkill: iData.iPet.iPetSkill.PetSkill) {
-		super();
+		super("egret.Sprite", "egret.Sprite");
+		this.touchEnabled = true;
 
 		this.petSkill = petSkill;
-		var _loc2_: egret.Sprite = new egret.Sprite();
-		_loc2_.graphics.beginFill(0, 0);
-		_loc2_.graphics.drawCircle(15, 15, 30);
-		_loc2_.graphics.endFill();
-		this.addChild(_loc2_);
+		var bgsp: egret.Sprite = new egret.Sprite();
+		bgsp.graphics.beginFill(0, 0);
+		bgsp.graphics.drawCircle(15, 15, 30);
+		bgsp.graphics.endFill();
+		this.addChild(bgsp);
 		// var _loc3_: egret.Sprite = <any>new (<any>flash.getDefinitionByName("pSkill_" + tool.MyMath.StringFormChange(this.petSkill.skillData.name.toLowerCase(), " ", "_")))();
-		// if (this.petSkill.level) {
-		// 	_loc3_.filters = [new flash.GlowFilter(16711680, 0.66, 5, 5)];
-		// }
+		if (this.petSkill.level) {
+			// _loc3_.filters = [new egret.GlowFilter(16711680, 0.66, 5, 5)];
+		}
 		// this.before.addChild(_loc3_);
 		// _loc3_.width = this.SIZE;
 		// _loc3_.height = this.SIZE;

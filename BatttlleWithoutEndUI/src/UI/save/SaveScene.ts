@@ -12,10 +12,19 @@ class SaveScene extends BaseScene {
 		// 		iGlobal.Player.load();
 		// 		App.runScene(SceneConst.MainScene);
 		// 	}, this);
+
 	}
 
 	/**从场景中移除*/
 	protected onRemove() {
+		// var colorMatrix = [
+		// 	0.3, 0.6, 0, 0, 0,
+		// 	0.3, 0.6, 0, 0, 0,
+		// 	0.3, 0.6, 0, 0, 0,
+		// 	0, 0, 0, 1, 0
+		// ];
+		// let colorFliter = new egret.ColorMatrixFilter(colorMatrix);
+		// colorFliter.matrix
 
 	}
 
@@ -73,13 +82,13 @@ class SaveScene extends BaseScene {
 		param1 = (param1);
 		let solt = egret.localStorage.getItem("slot" + param1);
 		let soltObj = JSON.parse(solt);
-		this.sharedObject = soltObj;
 		if (soltObj && soltObj["userName"]) {
+			this.sharedObject = soltObj;
 			this.drawOld(param1);
 		}
 		else {
 			this.drawNew(param1);
-			// soltObj.clear();
+			egret.localStorage.removeItem("slot" + param1);
 		}
 	}
 
@@ -143,7 +152,7 @@ class SaveScene extends BaseScene {
 		_this_ = this;
 	}
 
-	private drawOld(param1: number): any {
+	private drawOld(param1: number) {
 		param1 = (param1);
 		var _self__: any = this;
 		var sp: egret.Sprite = null;
@@ -175,8 +184,6 @@ class SaveScene extends BaseScene {
 			this["setBefore"]();
 		};
 		deleDown = function () {
-			// _self__.sharedObject = flash.SharedObject.getLocal("slot" + num);
-			// _self__.sharedObject.clear();
 			egret.localStorage.removeItem("slot" + num);
 			_this_.removeChild(sp);
 			_this_.drawSave(num);
@@ -193,6 +200,8 @@ class SaveScene extends BaseScene {
 		sp.addChild(name);
 		name.x = 20;
 		name.y = 10;
+
+
 		var text = new StringCell(this.sharedObject["userName"], 300, 32);
 		sp.addChild(text);
 		text.x = 100;

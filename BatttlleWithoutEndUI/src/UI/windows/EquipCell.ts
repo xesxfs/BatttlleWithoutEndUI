@@ -1,58 +1,75 @@
-class EquipCell extends egret.Sprite {
-	public constructor(equip: iData.iItem.Equipment = null, position: string = "") {
-		super();
-		this.equip = equip;
-		this.position = position;
-		this.init();
-	}
-
+class EquipCell extends ButtonCell {
+	private infoWindow: ItemInfoWindow;
 	public equip: iData.iItem.Equipment;
 	public position: string;
 	private SIZE: number = 80;
 
-
-	private init() {
-		var _loc4_: egret.Bitmap = null;
-		var _loc3_: egret.Sprite = new egret.Sprite();
-		_loc3_.graphics.beginFill(16777215);
-		_loc3_.graphics.drawCircle(40, 40, 39);
-		_loc3_.graphics.endFill();
-		// this.before.addChild(_loc3_);
-		_loc4_ = new egret.Bitmap(RES.getRes("mc_mode_png"));
-		if (this.equip == null) {
-			_loc4_ = new egret.Bitmap(RES.getRes("mc_mode_png"));
+	public constructor(data: iData.iItem.Equipment = null, pos: string = "") {
+		super("egret.Sprite", "egret.Sprite");
+		var icon: egret.Bitmap = null;
+		this.infoWindow = iGlobal.Global.itemInfoWindow;
+		this.position = pos;
+		this.equip = data;
+		var bsp: egret.Sprite = new egret.Sprite();
+		bsp.graphics.beginFill(16777215);
+		bsp.graphics.drawCircle(40, 40, 39);
+		bsp.graphics.endFill();
+		this.before.addChild(bsp);
+		if (data == null) {
+			icon = new egret.Bitmap(RES.getRes("mc_mode"));
 		}
 		else {
 			if ((this.equip instanceof iData.iItem.Weapon)) {
-				// _loc4_ = new (<any>flash.getDefinitionByName("mc_" + this.equip.type))();
+				icon = new egret.Bitmap(RES.getRes("mc_" + this.equip.type));
 			}
 			else {
-				// _loc4_ = new (<any>flash.getDefinitionByName("mc_" + this.equip.position + "_" + this.equip.type))();
+				icon = new egret.Bitmap(RES.getRes("mc_" + this.equip.position + "_" + this.equip.type));
 			}
-			// _loc4_["transform"].colorTransform = new flash.ColorTransform(0, 0, 0, 1, this.equip.getColorInHex() >> 16, this.equip.getColorInHex() >> 8 & 255, this.equip.getColorInHex() & 255);
+			// _loc4_["transform"].colorTransform = new egret.ColorTransform(0, 0, 0, 1, this.equip.getColorInHex() >> 16, this.equip.getColorInHex() >> 8 & 255, this.equip.getColorInHex() & 255);
 			if (this.equip.level >= 7) {
-				// _loc3_.filters = [new flash.GlowFilter(16711680, 0.66, this.equip.level + 3, this.equip.level + 3)];
+				bsp.filters = [new egret.GlowFilter(16711680, 0.66, this.equip.level + 3, this.equip.level + 3)];
 			}
 		}
-		this.addChild(_loc4_);
-		_loc4_.width = this.SIZE;
-		_loc4_.height = this.SIZE;
-		if (this.equip == null) {
-			// _loc4_ = new mc_mode();
+		this.before.addChild(icon);
+		icon.width = this.SIZE;
+		icon.height = this.SIZE;
+		if (data == null) {
+			icon = new egret.Bitmap(RES.getRes("mc_mode"));
 		}
 		else {
 			if ((this.equip instanceof iData.iItem.Weapon)) {
-				// _loc4_ = new (<any>flash.getDefinitionByName("mc_" + this.equip.type))();
+				icon = new egret.Bitmap(RES.getRes("mc_" + this.equip.type));
 			}
 			else {
-				// _loc4_ = new (<any>flash.getDefinitionByName("mc_" + this.equip.position + "_" + this.equip.type))();
+				icon = new egret.Bitmap(RES.getRes("mc_" + this.equip.position + "_" + this.equip.type));
 			}
 			// this.after["transform"].colorTransform = new flash.ColorTransform(0, 0, 0, 1, 227, 178, 10, 5);
 		}
-		// this.after.addChild(_loc4_);
-		_loc4_.width = this.SIZE;
-		_loc4_.height = this.SIZE;
+		this.after.addChild(icon);
+		icon.width = this.SIZE;
+		icon.height = this.SIZE;
 		// this.downFunction = flash.bind(this.setBefore, this);
 		// this.addEventListener(egret.TouchEvent.TOUCH_MOVE, flash.bind(this.onMouseMove, this), null);
+	}
+
+	// public onMouseMove(param1: flash.MouseEvent) {
+	// 	var _loc2_: egret.Point = flash.localToGlobal(this, new egret.Point(this["mouseX"] + 15, this["mouseY"] + 15));
+	// 	this.infoWindow.x = _loc2_.x;
+	// 	this.infoWindow.y = _loc2_.y;
+	// 	if (_loc2_.x + 135 > iGlobal.Global.stage.stageWidth) {
+	// 		this.infoWindow.x = this.infoWindow.x - 135;
+	// 	}
+	// }
+
+	public setBefore() {
+		super.setBefore();
+		iGlobal.Global.hideItemInfoWindow();
+	}
+
+	public setAfter() {
+		super.setAfter();
+		if (this.equip) {
+			iGlobal.Global.setItemInfoWindow(this.equip.getDescription());
+		}
 	}
 }

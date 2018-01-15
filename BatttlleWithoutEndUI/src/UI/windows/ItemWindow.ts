@@ -24,9 +24,9 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 	public soundsBox: eui.CheckBox;
 	public autoBox: eui.CheckBox;
 	public forgeButton: eui.Button;
-	private selectCell: EquipmentItem;
+	private selectCell: EquipmentCell;
 	public itemsGroup: eui.Group;
-	private equipmentItems: Array<EquipmentItem> = [];
+	private equipmentItems: Array<EquipmentCell> = [];
 	private Gap: number = 100;
 
 
@@ -181,7 +181,7 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 			_self__.setSelectedCell(this);
 			console.log(this);
 		};
-		var cell: EquipmentItem = new EquipmentItem(iGlobal.Player.itemList[iGlobal.Player.itemList.length - 1]);
+		var cell: EquipmentCell = new EquipmentCell(iGlobal.Player.itemList[iGlobal.Player.itemList.length - 1]);
 		this.itemsGroup.addChild(cell);
 		cell.y = (iGlobal.Player.itemList.length - 1) * this.Gap;
 		// this.buttonGroup.addButton(cell);
@@ -191,7 +191,7 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 
 	public updateList() {
 		for (let i = 0; i < this.itemsGroup.numChildren; i++) {
-			let equipmentItem = this.itemsGroup.getChildAt(i) as EquipmentItem;
+			let equipmentItem = this.itemsGroup.getChildAt(i) as EquipmentCell;
 			equipmentItem.y = i * this.Gap;
 		}
 		// this.removeList();
@@ -213,14 +213,14 @@ class ItemWindow extends eui.Component implements eui.UIComponent {
 
 	public removeList() {
 		for (let i = this.itemsGroup.numChildren - 1; i >= 0; i--) {
-			let equipmentItem = this.itemsGroup.getChildAt(i) as EquipmentItem;
-			equipmentItem.remove();
+			let equipmentItem = this.itemsGroup.getChildAt(i) as EquipmentCell;
+			// equipmentItem.remove();
 		}
 
 	}
 
 
-	private setSelectedCell(select: EquipmentItem) {
+	private setSelectedCell(select: EquipmentCell) {
 		var _self__ = this;
 		this.selectCell = select;
 		this.onItemChange();

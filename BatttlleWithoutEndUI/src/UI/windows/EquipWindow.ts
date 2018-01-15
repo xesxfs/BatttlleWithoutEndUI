@@ -18,16 +18,16 @@ class EquipWindow extends eui.Component implements eui.UIComponent {
 	private petSp: egret.Sprite;
 	private petSkillSp: egret.Sprite;
 
-	// private _name: iPanel.iCell.StringCell;
-	// private attack: iPanel.iCell.StringCell;
-	// private hp: iPanel.iCell.StringCell;
-	// private mp: iPanel.iCell.StringCell;
-	// private balance: iPanel.iCell.StringCell;
-	// private cri: iPanel.iCell.StringCell;
-	// private cri_mul: iPanel.iCell.StringCell;
-	// private magatt: iPanel.iCell.StringCell;
-	// private def: iPanel.iCell.StringCell;
-	// private pro: iPanel.iCell.StringCell;
+	private _name: StringCell;
+	private attack: StringCell;
+	private hp: StringCell;
+	private mp: StringCell;
+	private balance: StringCell;
+	private cri: StringCell;
+	private cri_mul: StringCell;
+	private magatt: StringCell;
+	private def: StringCell;
+	private pro: StringCell;
 
 	protected partAdded(partName: string, instance: any): void {
 		super.partAdded(partName, instance);
@@ -36,16 +36,16 @@ class EquipWindow extends eui.Component implements eui.UIComponent {
 
 	protected childrenCreated(): void {
 		super.childrenCreated();
-		// var _loc1_: egret.Sprite = <any>new iPanel.iCell.BasicCell(200, 540);
-		// this.addChild(_loc1_);
-		// var _loc2_: egret.Sprite = <any>new people_use1();
-		// this.addChild(_loc2_);
-		// _loc2_.scaleX = this.SC;
-		// _loc2_.scaleY = this.SC;
-		// _loc2_.y = this.SY;
-		// people_use2_png
+		var _loc1_: egret.Sprite = <any>new BasicCell(200, 540);
+		this.addChild(_loc1_);
+		var _loc2_: egret.Bitmap = new egret.Bitmap(RES.getRes("people_use1"));
+		this.addChild(_loc2_);
+		_loc2_.scaleX = this.SC;
+		_loc2_.scaleY = this.SC;
+		_loc2_.y = this.SY;
 		this.bg2 = new egret.Sprite();
 		this.addChild(this.bg2);
+		this.bg2.addChild(new egret.Bitmap(RES.getRes("people_use2")));
 		this.bg2.scaleX = this.SC;
 		this.bg2.scaleY = this.SC;
 		this.bg2.y = this.SY;
@@ -64,21 +64,21 @@ class EquipWindow extends eui.Component implements eui.UIComponent {
 		var list: Array<any> = ["head", "feet", "body", "necklace", "ring", "leftHand", "rightHand"];
 		i = (0);
 		while (i < list.length) {
-			// var equipDown: Function = function () {
-			// 	this["setBefore"]();
-			// 	if (this["equip"]) {
-			// 		if (iGlobal.Player.addItem(this["equip"])) {
-			// 			iGlobal.Player[this["position"]] = null;
-			// 			_self__.update();
-			// 			iGlobal.Player.updateAllInfo();
-			// 			iGlobal.Player.updateBattleSkillWindow();
-			// 		}
-			// 	}
-			// };
+			var equipDown: Function = function () {
+				this["setBefore"]();
+				if (this["equip"]) {
+					if (iGlobal.Player.addItem(this["equip"])) {
+						iGlobal.Player[this["position"]] = null;
+						_self__.update();
+						iGlobal.Player.updateAllInfo();
+						iGlobal.Player.updateBattleSkillWindow();
+					}
+				}
+			};
 			this[list[i]] = new EquipCell(iGlobal.Player[list[i]], list[i]);
 			this.bg2.addChild(this[list[i]]);
 			this.spList.push(this[list[i]]);
-			// (flash.As3As(this[list[i]], iPanel.iScene.iPanel.iWindow.iEquip.EquipCell)).downFunction = equipDown;
+			((this[list[i]] as EquipCell)).downFunction = equipDown;
 			i++;
 		}
 		this.pet = new PetIconCell(iGlobal.Player.pet);
@@ -125,35 +125,35 @@ class EquipWindow extends eui.Component implements eui.UIComponent {
 		this.petSp.y = _loc2_;
 		this.addChild(this.petSp);
 		var _loc6_: Array<any> = new Array();
-		// var _loc7_: iPanel.iCell.StringCell = new iPanel.iCell.StringCell("宠物", 100, 16);
-		// _loc6_.push(_loc7_);
-		// this._name = new iPanel.iCell.StringCell("Fox", 150);
-		// _loc6_.push(this._name);
-		// _loc6_.push(new iPanel.iCell.StringCell("Hp"));
-		// _loc6_.push(this.hp = new iPanel.iCell.StringCell("100"));
-		// _loc6_.push(new iPanel.iCell.StringCell("Mp"));
-		// _loc6_.push(this.mp = new iPanel.iCell.StringCell("100"));
-		// _loc6_.push(new iPanel.iCell.StringCell("攻击"));
-		// _loc6_.push(this.attack = new iPanel.iCell.StringCell("20~30", 65));
-		// _loc6_.push(new iPanel.iCell.StringCell("平衡"));
-		// _loc6_.push(this.balance = new iPanel.iCell.StringCell("50"));
-		// _loc6_.push(new iPanel.iCell.StringCell("暴击"));
-		// _loc6_.push(this.cri = new iPanel.iCell.StringCell("50"));
-		// _loc6_.push(new iPanel.iCell.StringCell("暴倍"));
-		// _loc6_.push(this.cri_mul = new iPanel.iCell.StringCell("200%"));
-		// _loc6_.push(new iPanel.iCell.StringCell("防御"));
-		// _loc6_.push(this.def = new iPanel.iCell.StringCell("10"));
-		// _loc6_.push(new iPanel.iCell.StringCell("护甲"));
-		// _loc6_.push(this.pro = new iPanel.iCell.StringCell("10"));
-		// _loc6_.push(new iPanel.iCell.StringCell("魔攻"));
-		// _loc6_.push(this.magatt = new iPanel.iCell.StringCell("100%"));
-		var _loc8_: number = (_loc6_.length);
-		var _loc9_: number = (0);
-		while (_loc9_ < _loc8_) {
-			this.petSp.addChild(_loc6_[_loc9_]);
-			_loc6_[_loc9_].x = _loc3_ * (_loc9_ % 2) + _loc4_ * (_loc9_ / 10 >> 0);
-			_loc6_[_loc9_].y = _loc5_ + _loc5_ * (_loc9_ % 10 / 2 >> 0);
-			_loc9_++;
+		var _loc7_: StringCell = new StringCell("宠物", 100, 16);
+		_loc6_.push(_loc7_);
+		this._name = new StringCell("Fox", 150);
+		_loc6_.push(this._name);
+		_loc6_.push(new StringCell("Hp"));
+		_loc6_.push(this.hp = new StringCell("100"));
+		_loc6_.push(new StringCell("Mp"));
+		_loc6_.push(this.mp = new StringCell("100"));
+		_loc6_.push(new StringCell("攻击"));
+		_loc6_.push(this.attack = new StringCell("20~30", 65));
+		_loc6_.push(new StringCell("平衡"));
+		_loc6_.push(this.balance = new StringCell("50"));
+		_loc6_.push(new StringCell("暴击"));
+		_loc6_.push(this.cri = new StringCell("50"));
+		_loc6_.push(new StringCell("暴倍"));
+		_loc6_.push(this.cri_mul = new StringCell("200%"));
+		_loc6_.push(new StringCell("防御"));
+		_loc6_.push(this.def = new StringCell("10"));
+		_loc6_.push(new StringCell("护甲"));
+		_loc6_.push(this.pro = new StringCell("10"));
+		_loc6_.push(new StringCell("魔攻"));
+		_loc6_.push(this.magatt = new StringCell("100%"));
+		var length: number = (_loc6_.length);
+		var i: number = (0);
+		while (i < length) {
+			this.petSp.addChild(_loc6_[i]);
+			_loc6_[i].x = _loc3_ * (i % 2) + _loc4_ * (i / 10 >> 0);
+			_loc6_[i].y = _loc5_ + _loc5_ * (i % 10 / 2 >> 0);
+			i++;
 		}
 		this.petSkillSp = new egret.Sprite();
 		this.petSkillSp.x = 10;
@@ -163,9 +163,9 @@ class EquipWindow extends eui.Component implements eui.UIComponent {
 	}
 
 
-	public updatePetInfo(): any {
-		var _loc1_: number = (0);
-		var _loc2_: PetSkillCell = <any>null;
+	public updatePetInfo() {
+		var i: number = (0);
+		var pCell: PetSkillCell = null;
 		if (!iGlobal.Player.pet) {
 			this.petSp.visible = false;
 			this.petSkillSp.visible = false;
@@ -173,27 +173,27 @@ class EquipWindow extends eui.Component implements eui.UIComponent {
 		}
 		this.petSp.visible = true;
 		this.petSkillSp.visible = true;
-		// this._name.setText(iGlobal.Player.pet.realName);
-		// this.hp.setText(iGlobal.Player.pet.hp + "");
-		// this.mp.setText(iGlobal.Player.pet.mp + "");
-		// this.attack.setText(iGlobal.Player.pet.attmin + "~" + iGlobal.Player.pet.attmax + "");
-		// this.balance.setText(iGlobal.Player.pet.balance + "");
-		// this.cri.setText(iGlobal.Player.pet.cri + "");
-		// this.def.setText(iGlobal.Player.pet.defence + "");
-		// this.pro.setText(iGlobal.Player.pet.pro + "");
-		// this.magatt.setText(iGlobal.Player.pet.magicatt + "%");
-		// this.cri_mul.setText(iGlobal.Player.pet.crimul + "%");
-		_loc1_ = (this.petSkillSp.numChildren - 1);
-		while (_loc1_ >= 0) {
-			this.petSkillSp.removeChildAt(_loc1_);
-			_loc1_--;
+		this._name.setText(iGlobal.Player.pet.realName);
+		this.hp.setText(iGlobal.Player.pet.hp + "");
+		this.mp.setText(iGlobal.Player.pet.mp + "");
+		this.attack.setText(iGlobal.Player.pet.attmin + "~" + iGlobal.Player.pet.attmax + "");
+		this.balance.setText(iGlobal.Player.pet.balance + "");
+		this.cri.setText(iGlobal.Player.pet.cri + "");
+		this.def.setText(iGlobal.Player.pet.defence + "");
+		this.pro.setText(iGlobal.Player.pet.pro + "");
+		this.magatt.setText(iGlobal.Player.pet.magicatt + "%");
+		this.cri_mul.setText(iGlobal.Player.pet.crimul + "%");
+		i = (this.petSkillSp.numChildren - 1);
+		while (i >= 0) {
+			this.petSkillSp.removeChildAt(i);
+			i--;
 		}
-		_loc1_ = (0);
-		while (_loc1_ < iGlobal.Player.pet.skillList.length) {
-			_loc2_ = new PetSkillCell(iGlobal.Player.pet.skillList[_loc1_]);
-			this.petSkillSp.addChild(_loc2_);
-			_loc2_.x = _loc1_ * 30 + 2 + _loc1_ * 10;
-			_loc1_++;
+		i = (0);
+		while (i < iGlobal.Player.pet.skillList.length) {
+			pCell = new PetSkillCell(iGlobal.Player.pet.skillList[i]);
+			this.petSkillSp.addChild(pCell);
+			pCell.x = i * 30 + 2 + i * 10;
+			i++;
 		}
 	}
 

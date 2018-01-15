@@ -6,7 +6,7 @@ class ItemInfoWindow extends InfoWindow {
 		this.text.multiline = true;
 		this.text.width = 130;
 		this.addChild(this.text);
-		this.text.text = text;
+		this.text.textFlow = iGlobal.Global.htmlParse.parser(text);
 
 	}
 

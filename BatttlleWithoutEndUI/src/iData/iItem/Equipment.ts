@@ -54,50 +54,49 @@ module iData {
 				this.generateQuality(this.ratio);
 			}
 			/**加载装备信息 */
-			public static load(param1: string): iData.iItem.Equipment {
-				var _loc3_: iData.iItem.Equipment = <any>null;
-				var _loc4_: number = 0;
-				var _loc6_: Array<any> = <any>null;
-				var _loc2_: Array<any> = param1.split("#");
-				_loc4_ = 0;
-				while (_loc4_ < iData.iItem.EquipmentList.list.length) {
-					if (iData.iItem.EquipmentList.list[_loc4_].name == _loc2_[0]) {
+			public static load(equiStr: string): iData.iItem.Equipment {
+				var equi: iData.iItem.Equipment = null;
+				var i: number = 0;
+				var qualityStatStr: Array<string> = null;
+				var equiStrs: Array<string> = equiStr.split("#");
+				while (i < iData.iItem.EquipmentList.list.length) {
+					if (iData.iItem.EquipmentList.list[i].name == equiStrs[0]) {
 						//这里
-						if (iData.iItem.EquipmentList.list[_loc4_] instanceof iData.iItem.WeaponData) {
+						if (iData.iItem.EquipmentList.list[i] instanceof iData.iItem.WeaponData) {
 							//这里
-							var loc4 = iData.iItem.EquipmentList.list[_loc4_] as iData.iItem.WeaponData
-							_loc3_ = new iData.iItem.Weapon(loc4, _loc2_[2]);
+							var weaponData = iData.iItem.EquipmentList.list[i] as iData.iItem.WeaponData
+							equi = new iData.iItem.Weapon(weaponData, parseInt(equiStrs[2]));
 						}
 						else {
-							_loc3_ = new iData.iItem.Equipment(iData.iItem.EquipmentList.list[_loc4_], _loc2_[2]);
+							equi = new iData.iItem.Equipment(iData.iItem.EquipmentList.list[i], parseInt(equiStrs[2]));
 						}
 						break;
 					}
-					_loc4_++;
+					i++;
 				}
-				_loc3_.quality = _loc2_[3];
-				_loc3_.basicStat = new Array<iData.iItem.Stat>();
-				var _loc5_: Array<any> = (<string>_loc2_[4]).split("%");
-				_loc4_ = 0;
-				while (_loc4_ < _loc5_.length) {
-					if (_loc5_[_loc4_] != "") {
-						_loc3_.basicStat.push(iData.iItem.Stat.load(_loc5_[_loc4_]));
+				equi.quality = parseInt(equiStrs[3]);
+				equi.basicStat = new Array<iData.iItem.Stat>();
+				var stats: Array<string> = (equiStrs[4]).split("%");
+				i = 0;
+				while (i < stats.length) {
+					if (stats[i] != "") {
+						equi.basicStat.push(iData.iItem.Stat.load(stats[i]));
 					}
-					_loc4_++;
+					i++;
 				}
-				_loc3_.qualityStat = new Array<iData.iItem.Stat>();
-				if (_loc3_.quality > 0) {
-					_loc6_ = (<string>_loc2_[5]).split("%");
-					_loc4_ = 0;
-					while (_loc4_ < _loc6_.length) {
-						if (_loc6_[_loc4_] != "") {
-							_loc3_.qualityStat.push(iData.iItem.Stat.load(_loc6_[_loc4_]));
+				equi.qualityStat = new Array<iData.iItem.Stat>();
+				if (equi.quality > 0) {
+					qualityStatStr = (equiStrs[5]).split("%");
+					i = 0;
+					while (i < qualityStatStr.length) {
+						if (qualityStatStr[i] != "") {
+							equi.qualityStat.push(iData.iItem.Stat.load(qualityStatStr[i]));
 						}
-						_loc4_++;
+						i++;
 					}
 				}
-				_loc3_.setLevel(_loc2_[1]);
-				return _loc3_;
+				equi.setLevel(parseInt(equiStrs[1]));
+				return equi;
 			}
 
 			protected setData(equipmentData: iData.iItem.EquipmentData): any {
@@ -126,17 +125,17 @@ module iData {
 			}
 			/**生成品质 */
 			private generateQuality(ratio: number): any {
-				var _loc2_: number = 10 + ratio * 10;
+				var qRate: number = 10 + ratio * 10;
 				if (iGlobal.Player.basicStatus) {
-					_loc2_ = _loc2_ - iGlobal.Player.combatPower / 30;
+					qRate = qRate - iGlobal.Player.combatPower / 30;
 				}
-				if (_loc2_ > 70) {
-					_loc2_ = 70;
+				if (qRate > 70) {
+					qRate = 70;
 				}
-				if (_loc2_ < 20) {
-					_loc2_ = 20;
+				if (qRate < 20) {
+					qRate = 20;
 				}
-				this.quality = Tool.MyMath.balanceRandom(_loc2_) * 5.1;
+				this.quality = Tool.MyMath.balanceRandom(qRate) * 5.1;
 				if (this.isBoss) {
 					this.quality = Tool.MyMath.balanceRandom(80) * 5.5;
 				}
@@ -144,30 +143,30 @@ module iData {
 				this.generateQualityStat(ratio);
 			}
 			/**生成品质属性 */
-			private generateQualityStat(ratio: number): any {
-				var _loc3_: number = 0;
-				var _loc4_: iData.iItem.Stat = <any>null;
-				var _loc5_: number = 0;
-				var _loc6_: iData.iItem.Stat = <any>null;
+			private generateQualityStat(ratio: number) {
+				var statIdx: number = 0;
+				var stat1: iData.iItem.Stat = null;
+				var value: number = 0;
+				var stat2: iData.iItem.Stat = null;
 				this.qualityStat = new Array<iData.iItem.Stat>();
-				var _loc2_: number = 0;
-				while (_loc2_ < this.quality) {
-					_loc3_ = (iData.iItem.StatList.list.length - 1) * Math.random();
+				var i: number = 0;
+				while (i < this.quality) {
+					statIdx = (iData.iItem.StatList.list.length - 1) * Math.random();
 					if (this.type == iData.iItem.EquipType.ACCESORY) {
-						_loc3_ = (iData.iItem.StatList.list.length - 2) * Math.random();
+						statIdx = (iData.iItem.StatList.list.length - 2) * Math.random();
 					}
 					if (this instanceof iData.iItem.Weapon) {
-						_loc3_ = iData.iItem.StatList.list.length * Math.random();
+						statIdx = iData.iItem.StatList.list.length * Math.random();
 					}
-					_loc4_ = iData.iItem.StatList.list[_loc3_ >> 0];
-					_loc5_ = _loc4_.value * Math.random() * Math.random() * ratio;
+					stat1 = iData.iItem.StatList.list[statIdx >> 0];
+					value = stat1.value * Math.random() * Math.random() * ratio;
 					if (this.quality == 5) {
-						_loc5_ = _loc4_.value * (Math.random() * Math.random() * 0.85 + 0.15) * ratio;
+						value = stat1.value * (Math.random() * Math.random() * 0.85 + 0.15) * ratio;
 					}
-					_loc5_++;
-					_loc6_ = new iData.iItem.Stat(_loc4_.name, _loc5_);
-					this.qualityStat.push(_loc6_);
-					_loc2_++;
+					value++;
+					stat2 = new iData.iItem.Stat(stat1.name, value);
+					this.qualityStat.push(stat2);
+					i++;
 				}
 			}
 			/**设置等级 */
@@ -197,35 +196,35 @@ module iData {
 			}
 			/**生成等级属性 */
 			private generateLevelStat() {
-				var _loc1_: Array<iData.iItem.Stat> = <any>null;
-				var _loc2_: number = 0;
+				var lvStats: Array<iData.iItem.Stat> = null;
+				var i: number = 0;
 				this.levelStat = new Array<iData.iItem.Stat>();
 				if (this.level == 0) {
 					return;
 				}
 				if (this.type != iData.iItem.EquipType.ACCESORY) {
 					if (this instanceof iData.iItem.Weapon) {
-						_loc1_ = iData.iItem.WeaponType[this.type.toUpperCase() + "_BASE"];
+						lvStats = iData.iItem.WeaponType[this.type.toUpperCase() + "_BASE"];
 					}
 					else {
-						_loc1_ = iData.iItem.EquipType[this.type.toUpperCase() + "_BASE"];
+						lvStats = iData.iItem.EquipType[this.type.toUpperCase() + "_BASE"];
 					}
-					_loc2_ = 0;
-					while (_loc2_ < _loc1_.length) {
+					i = 0;
+					while (i < lvStats.length) {
 						if (this instanceof iData.iItem.Weapon) {
-							this.levelStat.push(new iData.iItem.Stat(_loc1_[_loc2_].name, _loc1_[_loc2_].value * Math.pow(1.5, this.level - 1) * (1 + 0.2 * this.quality)));
+							this.levelStat.push(new iData.iItem.Stat(lvStats[i].name, lvStats[i].value * Math.pow(1.5, this.level - 1) * (1 + 0.2 * this.quality)));
 						}
 						else {
-							this.levelStat.push(new iData.iItem.Stat(_loc1_[_loc2_].name, _loc1_[_loc2_].value * Math.pow(1.3, this.level - 1) * (1 + 0.2 * this.quality)));
+							this.levelStat.push(new iData.iItem.Stat(lvStats[i].name, lvStats[i].value * Math.pow(1.3, this.level - 1) * (1 + 0.2 * this.quality)));
 						}
-						_loc2_++;
+						i++;
 					}
 				}
 				else {
-					_loc2_ = 0;
-					while (_loc2_ < this.qualityStat.length) {
-						this.levelStat.push(new iData.iItem.Stat(this.qualityStat[_loc2_].name, this.qualityStat[_loc2_].value * Math.pow(1.2, this.level - 1) * (1 + 0.2 * this.quality) * 0.4));
-						_loc2_++;
+					i = 0;
+					while (i < this.qualityStat.length) {
+						this.levelStat.push(new iData.iItem.Stat(this.qualityStat[i].name, this.qualityStat[i].value * Math.pow(1.2, this.level - 1) * (1 + 0.2 * this.quality) * 0.4));
+						i++;
 					}
 				}
 			}
@@ -287,93 +286,91 @@ module iData {
 			}
 			/**描述显示 */
 			public getDescription(): string {
-				var _loc2_: number = 0;
-				var _loc1_: any = <any>"<p align=\'center\'>" + this.getNameHTML();
+				var i: number = 0;
+				var desc: string = "<p align=\'center\'>" + this.getNameHTML();
 				if (this.level) {
-					_loc1_ = _loc1_ + (" +" + this.level);
+					desc = desc + (" +" + this.level);
 					if (this.level == 15) {
-						_loc1_ = _loc1_ + "(MAX)";
+						desc = desc + "(MAX)";
 					}
 				}
-				_loc1_ = _loc1_ + "</p>";
-				_loc1_ = _loc1_ + ("<p align=\'center\'><font size=\'16\'>" + Tool.MyMath.FirstLetterToUpper(this.getPostion()) + "," + Tool.MyMath.FirstLetterToUpper(this.getType()));
+				desc = desc + "</p>";
+				desc = desc + ("<p align=\'center\'><font size=\'16\'>" + Tool.MyMath.FirstLetterToUpper(this.getPostion()) + "," + Tool.MyMath.FirstLetterToUpper(this.getType()));
 				if (this instanceof iData.iItem.Weapon) {
 					//这里
 					var loc1 = this as iData.iItem.Weapon;
-					_loc1_ = _loc1_ + ("," + Tool.MyMath.FirstLetterToUpper(loc1.getCategory()));
+					desc = desc + ("," + Tool.MyMath.FirstLetterToUpper(loc1.getCategory()));
 				}
-				_loc1_ = _loc1_ + "</font></p>";
-				_loc1_ = _loc1_ + "<font size=\'20\'>";
-				_loc2_ = 0;
-				while (_loc2_ < this.basicStat.length) {
-					if (this.basicStat[_loc2_].name == iData.iItem.Stat.attackMin) {
-						_loc1_ = _loc1_ + ("  攻击 " + (this.basicStat[_loc2_].value >> 0) + "~" + (this.basicStat[_loc2_ + 1].value >> 0) + "<br/>");
-						_loc2_++;
+				desc = desc + "</font></p>";
+				desc = desc + "<font size=\'20\'>";
+				i = 0;
+				while (i < this.basicStat.length) {
+					if (this.basicStat[i].name == iData.iItem.Stat.attackMin) {
+						desc = desc + ("  攻击 " + (this.basicStat[i].value >> 0) + "~" + (this.basicStat[i + 1].value >> 0) + "<br/>");
+						i++;
 					}
 					else {
-						_loc1_ = _loc1_ + ("  " + Tool.MyMath.FirstLetterToUpper(this.basicStat[_loc2_].statTranslate()) + " " + (this.basicStat[_loc2_].value >> 0) + "<br/>");
+						desc = desc + ("  " + Tool.MyMath.FirstLetterToUpper(this.basicStat[i].statTranslate()) + " " + (this.basicStat[i].value >> 0) + "<br/>");
 					}
-					_loc2_++;
+					i++;
 				}
-				_loc1_ = _loc1_ + "<font color=\'#00AF64\'>";
-				_loc2_ = 0;
-				while (_loc2_ < this.qualityStat.length) {
-					_loc1_ = _loc1_ + ("  " + Tool.MyMath.FirstLetterToUpper(this.qualityStat[_loc2_].statTranslate()) + " +" + (this.qualityStat[_loc2_].value >> 0) + "<br/>");
-					_loc2_++;
+				desc = desc + "<font color=\'#00AF64\'>";
+				i = 0;
+				while (i < this.qualityStat.length) {
+					desc = desc + ("  " + Tool.MyMath.FirstLetterToUpper(this.qualityStat[i].statTranslate()) + " +" + (this.qualityStat[i].value >> 0) + "<br/>");
+					i++;
 				}
-				_loc1_ = _loc1_ + "</font><font color=\'#4b5ed7\'>";
-				_loc2_ = 0;
-				while (_loc2_ < this.levelStat.length) {
-					_loc1_ = _loc1_ + ("  " + Tool.MyMath.FirstLetterToUpper(this.levelStat[_loc2_].statTranslate()) + " +" + (this.levelStat[_loc2_].value >> 0) + "<br/>");
-					_loc2_++;
+				desc = desc + "</font><font color=\'#4b5ed7\'>";
+				i = 0;
+				while (i < this.levelStat.length) {
+					desc = desc + ("  " + Tool.MyMath.FirstLetterToUpper(this.levelStat[i].statTranslate()) + " +" + (this.levelStat[i].value >> 0) + "<br/>");
+					i++;
 				}
-				_loc1_ = _loc1_ + "</font></font>";
-				_loc1_ = _loc1_ + ("<p align=\'right\'>$ " + this.getMoney() + "</p>");
-				return _loc1_;
+				desc = desc + "</font></font>";
+				desc = desc + ("<p align=\'right\'>$ " + this.getMoney() + "</p>");
+				return desc;
 			}
 			/***出售描述 */
 			public getSellDesciption(): string {
-				var _loc2_: number = 0;
-				var _loc1_: any = <any>"<p align=\'center\'>" + this.getNameHTML();
+				var i: number = 0;
+				var sellDesc: string = "<p align=\'center\'>" + this.getNameHTML();
 				if (this.level) {
-					_loc1_ = _loc1_ + (" +" + this.level);
+					sellDesc = sellDesc + (" +" + this.level);
 				}
-				_loc1_ = _loc1_ + "</p>";
-				_loc1_ = _loc1_ + "<p align=\'center\' ><font color=\'#ff4040\'>FOR SALE</font></p>";
-				_loc1_ = _loc1_ + ("<p align=\'center\'><font size=\'16\'>" + Tool.MyMath.FirstLetterToUpper(this.getPostion()) + "," + Tool.MyMath.FirstLetterToUpper(this.getType()));
+				sellDesc = sellDesc + "</p>";
+				sellDesc = sellDesc + "<p align=\'center\' ><font color=\'#ff4040\'>FOR SALE</font></p>";
+				sellDesc = sellDesc + ("<p align=\'center\'><font size=\'16\'>" + Tool.MyMath.FirstLetterToUpper(this.getPostion()) + "," + Tool.MyMath.FirstLetterToUpper(this.getType()));
 				if (this instanceof iData.iItem.Weapon) {
-					//这里
-					var loc1 = this as iData.iItem.Weapon;
-					_loc1_ = _loc1_ + ("," + Tool.MyMath.FirstLetterToUpper(loc1.getCategory()));
+					sellDesc = sellDesc + ("," + Tool.MyMath.FirstLetterToUpper(this.getCategory()));
 				}
-				_loc1_ = _loc1_ + "</font></p>";
-				_loc1_ = _loc1_ + "<font size=\'20\'>";
-				_loc2_ = 0;
-				while (_loc2_ < this.basicStat.length) {
-					if (this.basicStat[_loc2_].name == iData.iItem.Stat.attackMin) {
-						_loc1_ = _loc1_ + ("  攻击 " + (this.basicStat[_loc2_].value >> 0) + "~" + (this.basicStat[_loc2_ + 1].value >> 0) + "<br/>");
-						_loc2_++;
+				sellDesc = sellDesc + "</font></p>";
+				sellDesc = sellDesc + "<font size=\'20\'>";
+				i = 0;
+				while (i < this.basicStat.length) {
+					if (this.basicStat[i].name == iData.iItem.Stat.attackMin) {
+						sellDesc = sellDesc + ("  攻击 " + (this.basicStat[i].value >> 0) + "~" + (this.basicStat[i + 1].value >> 0) + "<br/>");
+						i++;
 					}
 					else {
-						_loc1_ = _loc1_ + ("  " + Tool.MyMath.FirstLetterToUpper(this.basicStat[_loc2_].statTranslate()) + " " + (this.basicStat[_loc2_].value >> 0) + "<br/>");
+						sellDesc = sellDesc + ("  " + Tool.MyMath.FirstLetterToUpper(this.basicStat[i].statTranslate()) + " " + (this.basicStat[i].value >> 0) + "<br/>");
 					}
-					_loc2_++;
+					i++;
 				}
-				_loc1_ = _loc1_ + "<font color=\'#00AF64\'>";
-				_loc2_ = 0;
-				while (_loc2_ < this.qualityStat.length) {
-					_loc1_ = _loc1_ + ("  " + Tool.MyMath.FirstLetterToUpper(this.qualityStat[_loc2_].statTranslate()) + " +" + (this.qualityStat[_loc2_].value >> 0) + "<br/>");
-					_loc2_++;
+				sellDesc = sellDesc + "<font color=\'#00AF64\'>";
+				i = 0;
+				while (i < this.qualityStat.length) {
+					sellDesc = sellDesc + ("  " + Tool.MyMath.FirstLetterToUpper(this.qualityStat[i].statTranslate()) + " +" + (this.qualityStat[i].value >> 0) + "<br/>");
+					i++;
 				}
-				_loc1_ = _loc1_ + "</font><font color=\'#4b5ed7\'>";
-				_loc2_ = 0;
-				while (_loc2_ < this.levelStat.length) {
-					_loc1_ = _loc1_ + ("  " + Tool.MyMath.FirstLetterToUpper(this.levelStat[_loc2_].statTranslate()) + " +" + (this.levelStat[_loc2_].value >> 0) + "<br/>");
-					_loc2_++;
+				sellDesc = sellDesc + "</font><font color=\'#4b5ed7\'>";
+				i = 0;
+				while (i < this.levelStat.length) {
+					sellDesc = sellDesc + ("  " + Tool.MyMath.FirstLetterToUpper(this.levelStat[i].statTranslate()) + " +" + (this.levelStat[i].value >> 0) + "<br/>");
+					i++;
 				}
-				_loc1_ = _loc1_ + "</font></font>";
-				_loc1_ = _loc1_ + ("<p align=\'right\'>$ " + this.getSellMoney() + "</p>");
-				return _loc1_;
+				sellDesc = sellDesc + "</font></font>";
+				sellDesc = sellDesc + ("<p align=\'right\'>$ " + this.getSellMoney() + "</p>");
+				return sellDesc;
 			}
 
 			public getMoney(): number {
@@ -381,95 +378,95 @@ module iData {
 			}
 
 			public getSellMoney(): number {
-				var _loc1_: number = this.getMoney() * 10 * (1 + this.quality * this.quality);
-				return _loc1_;
+				var money: number = this.getMoney() * 10 * (1 + this.quality * this.quality);
+				return money;
 			}
 
 			public getNameHTML(): string {
-				var _loc1_: string = null;
+				var color: string = null;
 				switch (this.quality) {
 					case 1:
-						_loc1_ = iData.iItem.Equipment.GREEN;
+						color = iData.iItem.Equipment.GREEN;
 						break;
 					case 2:
-						_loc1_ = iData.iItem.Equipment.BLUE;
+						color = iData.iItem.Equipment.BLUE;
 						break;
 					case 3:
-						_loc1_ = iData.iItem.Equipment.YELLOW;
+						color = iData.iItem.Equipment.YELLOW;
 						break;
 					case 4:
-						_loc1_ = iData.iItem.Equipment.ORANGE;
+						color = iData.iItem.Equipment.ORANGE;
 						break;
 					case 5:
-						_loc1_ = iData.iItem.Equipment.PURPLE;
+						color = iData.iItem.Equipment.PURPLE;
 				}
-				return "<font color=\'" + _loc1_ + "\'>" + Tool.MyMath.FirstLetterToUpper(this.realName) + "</font>";
+				return "<font color=\'" + color + "\'>" + Tool.MyMath.FirstLetterToUpper(this.realName) + "</font>";
 			}
 			/**根据品质取得颜色 */
 			public getColor(): string {
-				var _loc1_: string = <any>null;
+				var color: string = null;
 				switch (this.quality) {
 					case 1:
-						_loc1_ = iData.iItem.Equipment.GREEN;
+						color = iData.iItem.Equipment.GREEN;
 						break;
 					case 2:
-						_loc1_ = iData.iItem.Equipment.BLUE;
+						color = iData.iItem.Equipment.BLUE;
 						break;
 					case 3:
-						_loc1_ = iData.iItem.Equipment.YELLOW;
+						color = iData.iItem.Equipment.YELLOW;
 						break;
 					case 4:
-						_loc1_ = iData.iItem.Equipment.ORANGE;
+						color = iData.iItem.Equipment.ORANGE;
 						break;
 					case 5:
-						_loc1_ = iData.iItem.Equipment.PURPLE;
+						color = iData.iItem.Equipment.PURPLE;
 				}
-				return _loc1_;
+				return color;
 			}
 
 			public getColorInHex(): number {
-				var _loc1_: number = 0;
+				var colorHex: number = 0;
 				switch (this.quality) {
 					case 0:
-						_loc1_ = iData.iItem.Equipment.GRAY_H;
+						colorHex = iData.iItem.Equipment.GRAY_H;
 						break;
 					case 1:
-						_loc1_ = iData.iItem.Equipment.GREEN_H;
+						colorHex = iData.iItem.Equipment.GREEN_H;
 						break;
 					case 2:
-						_loc1_ = iData.iItem.Equipment.BLUE_H;
+						colorHex = iData.iItem.Equipment.BLUE_H;
 						break;
 					case 3:
-						_loc1_ = iData.iItem.Equipment.YELLOW_H;
+						colorHex = iData.iItem.Equipment.YELLOW_H;
 						break;
 					case 4:
-						_loc1_ = iData.iItem.Equipment.ORANGE_H;
+						colorHex = iData.iItem.Equipment.ORANGE_H;
 						break;
 					case 5:
-						_loc1_ = iData.iItem.Equipment.PURPLE_H;
+						colorHex = iData.iItem.Equipment.PURPLE_H;
 				}
-				return _loc1_;
+				return colorHex;
 			}
 			/**保存 */
 			public save(): string {
-				var _loc2_: number = 0;
-				var _loc1_: any = <any>"";
-				_loc1_ = _loc1_ + (this.name + "#" + this.level + "#" + this.ratio + "#" + this.quality);
-				_loc1_ = _loc1_ + "#";
-				_loc2_ = 0;
-				while (_loc2_ < this.basicStat.length) {
-					_loc1_ = _loc1_ + (this.basicStat[_loc2_].save() + "%");
-					_loc2_++;
+				var i: number = 0;
+				var saveStr = "";
+				saveStr = saveStr + (this.name + "#" + this.level + "#" + this.ratio + "#" + this.quality);
+				saveStr = saveStr + "#";
+				i = 0;
+				while (i < this.basicStat.length) {
+					saveStr = saveStr + (this.basicStat[i].save() + "%");
+					i++;
 				}
 				if (this.quality > 0) {
-					_loc1_ = _loc1_ + "#";
-					_loc2_ = 0;
-					while (_loc2_ < this.qualityStat.length) {
-						_loc1_ = _loc1_ + (this.qualityStat[_loc2_].save() + "%");
-						_loc2_++;
+					saveStr = saveStr + "#";
+					i = 0;
+					while (i < this.qualityStat.length) {
+						saveStr = saveStr + (this.qualityStat[i].save() + "%");
+						i++;
 					}
 				}
-				return _loc1_;
+				return saveStr;
 			}
 
 		}

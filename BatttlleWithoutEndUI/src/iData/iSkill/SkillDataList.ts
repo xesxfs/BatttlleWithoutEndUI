@@ -45,19 +45,19 @@ module iData {
 					return false;
 				}
 				MainScene.battle.playerMp = MainScene.battle.playerMp - _loc2_[param1.level][0];
-				var _loc3_: number = iData.iSkill.SkillDataList.getCritMul();
-				var _loc4_: number = (iGlobal.Player.attack * _loc3_ * (1 + _loc2_[param1.level][1] * iGlobal.Player.str) - iData.iSkill.SkillDataList.monster.defence) * iData.iSkill.SkillDataList.monsterPro;
-				if (_loc4_ < 1) {
-					_loc4_ = 1;
+				var critMul: number = iData.iSkill.SkillDataList.getCritMul();
+				var monlostHp: number = (iGlobal.Player.attack * critMul * (1 + _loc2_[param1.level][1] * iGlobal.Player.str) - iData.iSkill.SkillDataList.monster.defence) * iData.iSkill.SkillDataList.monsterPro;
+				if (monlostHp < 1) {
+					monlostHp = 1;
 				}
-				MainScene.battle.monsterHp = MainScene.battle.monsterHp - _loc4_;
-				var _loc5_: number = _loc4_ * _loc2_[param1.level][2] / 100;
-				if (iGlobal.Player.hp - MainScene.battle.playerHp < _loc5_) {
-					_loc5_ = iGlobal.Player.hp - MainScene.battle.playerHp;
+				MainScene.battle.monsterHp = MainScene.battle.monsterHp - monlostHp;
+				var lostHp: number = monlostHp * _loc2_[param1.level][2] / 100;
+				if (iGlobal.Player.hp - MainScene.battle.playerHp < lostHp) {
+					lostHp = iGlobal.Player.hp - MainScene.battle.playerHp;
 				}
-				MainScene.battle.playerHp = MainScene.battle.playerHp + _loc5_;
-				iData.iSkill.SkillDataList.traceAttackInfo(param1.skillData.realName, _loc4_, _loc3_);
-				MainScene.allInfoPanel.addText("你回复了 <font color=\'" + iData.iItem.Equipment.GREEN + "\'>" + _loc5_ + " hp!</font>", iGlobal.Global.battle);
+				MainScene.battle.playerHp = MainScene.battle.playerHp + lostHp;
+				iData.iSkill.SkillDataList.traceAttackInfo(param1.skillData.realName, monlostHp, critMul);
+				MainScene.allInfoPanel.addText("你回复了 <font color=\'" + iData.iItem.Equipment.GREEN + "\'>" + lostHp + " hp!</font>", iGlobal.Global.battle);
 				return true;
 			}
 
@@ -765,10 +765,10 @@ module iData {
 				var _loc3_: any = <any>"";
 				_loc3_ = _loc3_ + "<font size=\'20\'>";
 				var _loc4_: Array<iData.iItem.Stat> = param1.skillData.statList[param2];
-				var _loc5_: number = 0;
-				while (_loc5_ < _loc4_.length) {
-					_loc3_ = _loc3_ + ("<li>" + _loc4_[_loc5_].statTranslate() + " +" + _loc4_[_loc5_].value + "</li>");
-					_loc5_++;
+				var i: number = 0;
+				while (i < _loc4_.length) {
+					_loc3_ = _loc3_ + ("<li>" + _loc4_[i].statTranslate() + " +" + _loc4_[i].value + "</li>");
+					i++;
 				}
 				_loc3_ = _loc3_ + "</font>";
 				return _loc3_;

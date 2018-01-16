@@ -1,11 +1,14 @@
-class MonsterInfoPanel extends eui.Component implements eui.UIComponent {
-	public constructor() {
-		super();
-	}
-	public mname: eui.Label;
-	public title: eui.Label;
-	public hp: eui.ProgressBar;
-	public cp: eui.Label;
+class MonsterInfoPanel extends BasicCell {
+
+
+	private beginX: number = 10;
+	private beginY: number = 10;
+	private yGap: number = 50;
+	private sXGap: number = 50;
+	private _name: StringCell;
+	private title: StringInfoCell;
+	private hp: Bar;
+	private cp: StringCell;
 
 	private buffSprite: egret.Sprite;
 	private bossIcon: egret.Sprite;
@@ -17,99 +20,139 @@ class MonsterInfoPanel extends eui.Component implements eui.UIComponent {
 	public PURPLE: string = "#BC38d3";
 	public PINK: string = "#EE6b9c";
 
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
+	public constructor() {
+		super(185, 135);
+		this.setPosition();
+	}
+	private setPosition() {
+		var monCell = new StringCell("怪物");
+		this.addChild(monCell);
+		monCell.x = this.beginX;
+		monCell.y = this.beginY;
+		this._name = new StringCell("Boss Red Fox", 120, 16);
+		this.addChild(this._name);
+		this._name.x = this.beginX + this.sXGap;
+		this._name.y = this.beginY;
+		this.createBossIcon();
+		this.title = new StringInfoCell("the Tanker", "Default", 120);
+		this.addChild(this.title);
+		this.title.x = this.beginX + this.sXGap;
+		this.title.y = this.beginY + 20;
+		var hpCell: StringCell = new StringCell("HP");
+		this.addChild(hpCell);
+		hpCell.x = this.beginX;
+		hpCell.y = this.beginY + this.yGap + 30;
+		this.hp = new Bar(100, 100, 12522257);
+		this.addChild(this.hp);
+		this.hp.x = this.beginX + 25;
+		this.hp.y = this.beginY + this.yGap + 43;
+		var cpCell: StringCell = new StringCell("战斗力");
+		this.addChild(cpCell);
+		cpCell.x = this.beginX;
+		cpCell.y = this.beginY + this.yGap * 2;
+		this.cp = new StringCell("100");
+		this.addChild(this.cp);
+		this.cp.x = this.beginX + this.sXGap;
+		this.cp.y = this.beginY + this.yGap * 2;
+		this.buffSprite = new egret.Sprite();
 	}
 
-
-	protected childrenCreated(): void {
-		super.childrenCreated();
+	private createBossIcon() {
+		this.bossIcon = new egret.Sprite();
+		this.bossIcon.addChild(RES.getRes("boss_icon"));
+		this.bossIcon.visible = false;
+		this.addChild(this.bossIcon);
+		this.bossIcon.x = this.beginX + 30;
+		this.bossIcon.y = this.beginY + 22;
+		this.bossIcon.width = 15;
+		this.bossIcon.height = 15;
 	}
+
 	public update() {
 		this.setCpRatioTitleAndName();
 		this.setTitle();
-		this.cp.text = (MainScene.battle.monster.CP + "");
+		this.cp.setText(MainScene.battle["monster"].CP + "");
 		this.updateHp();
 		this.updateBuff();
 		this.updateBoss();
 	}
 
-	private updateBoss(): any {
+	private updateBoss() {
 		if (MainScene.battle.monster instanceof iData.iMonster.Boss) {
-			// this.bossIcon.visible = true;
+			this.bossIcon.visible = true;
 			return;
 		}
-		// this.bossIcon.visible = false;
+		this.bossIcon.visible = false;
 	}
 
 	public updateHp() {
-		this.hp.maximum = MainScene.battle.monster.hp;
-		this.hp.value = MainScene.battle.monsterHp;
+		this.hp.Max = MainScene.battle.monster.hp;
+		this.hp.Value = MainScene.battle.monsterHp;
 	}
 
-	private setCpRatioTitleAndName(): any {
-		var _loc2_: string = null;
-		var _loc3_: string = null;
-		var _loc1_: number = MainScene.battle.monster.CP / iGlobal.Player.combatPower;
-		if (_loc1_ < 0.8) {
-			_loc2_ = this.PINK;
-			_loc3_ = "非常弱小的";
+	private setCpRatioTitleAndName() {
+		var color: string = null;
+		var title: string = null;
+		var cp: number = MainScene.battle.monster.CP / iGlobal.Player.combatPower;
+		if (cp < 0.8) {
+			color = this.PINK;
+			title = "非常弱小的";
 		}
-		else if (_loc1_ < 1) {
-			_loc2_ = this.PURPLE;
-			_loc3_ = "弱小的";
+		else if (cp < 1) {
+			color = this.PURPLE;
+			title = "弱小的";
 		}
-		else if (_loc1_ < 1.4) {
-			_loc2_ = this.BROWN;
-			_loc3_ = "普通的";
+		else if (cp < 1.4) {
+			color = this.BROWN;
+			title = "普通的";
 		}
-		else if (_loc1_ < 2) {
-			_loc2_ = this.GREEN;
-			_loc3_ = "强大的";
+		else if (cp < 2) {
+			color = this.GREEN;
+			title = "强大的";
 		}
-		else if (_loc1_ < 3) {
-			_loc2_ = this.YELLOW;
-			_loc3_ = "厉害的";
+		else if (cp < 3) {
+			color = this.YELLOW;
+			title = "厉害的";
 		}
 		else {
-			_loc2_ = this.RED;
-			_loc3_ = "BOSS";
+			color = this.RED;
+			title = "BOSS";
 		}
-		var _loc4_: string = "<font color=\'" + _loc2_ + "\'>" + _loc3_ + "</font> " + MainScene.battle["monster"].data.realName;
-		this.mname.textFlow = iGlobal.Global.htmlParse.parse(_loc4_);
+		var showText: string = "<font color=\'" + color + "\'>" + title + "</font> " + MainScene.battle.monster.data.realName;
+		this._name.setText(showText);
 	}
 
-	private setTitle(): any {
-		if (MainScene.battle["monster"].title) {
-			this.title.text = (MainScene.battle["monster"].title.name);
-			// this.title.setInfo(MainScene.battle["monster"].title.description);
+	private setTitle() {
+		if (MainScene.battle.monster.title) {
+			this.title.setText(MainScene.battle.monster.title.name);
+			this.title.setInfo(MainScene.battle.monster.title.description);
 			this.title.visible = true;
 		}
 		else {
-			this.title.text = ("");
+			this.title.setText("");
 			this.title.visible = false;
 		}
 	}
 
-	public updateBuff(): any {
-		var _loc3_: egret.Sprite = <any>null;
+	public updateBuff() {
+		var buffIcon: egret.Bitmap = null;
 		if (this.contains(this.buffSprite)) {
 			this.removeChild(this.buffSprite);
 		}
 		this.buffSprite = new egret.Sprite();
 		this.addChild(this.buffSprite);
-		// this.buffSprite.x = this.beginX;
-		// this.buffSprite.y = this.beginY + 50;
-		// var _loc1_: Array<iData.iSkill.iBuff.Buff> = <any>iPanel.iScene.MainScene.battle["monster"].buffList;
-		// var _loc2_: number = flash.checkInt(0);
-		// while (_loc2_ < _loc1_.length) {
-		// 	_loc3_ = new (<any>flash.getDefinitionByName("buff_" + _loc1_[_loc2_].name))();
-		// 	_loc3_.width = 30;
-		// 	_loc3_.height = 30;
-		// 	this.buffSprite.addChild(_loc3_);
-		// 	_loc3_.x = _loc2_ * 40;
-		// 	_loc2_++;
-		// }
+		this.buffSprite.x = this.beginX;
+		this.buffSprite.y = this.beginY + 50;
+		var length: Array<iData.iSkill.iBuff.Buff> = MainScene.battle.monster.buffList;
+		var i: number = (0);
+		while (i < length.length) {
+			buffIcon = new egret.Bitmap(RES.getRes("buff_" + length[i].name));
+			buffIcon.width = 30;
+			buffIcon.height = 30;
+			this.buffSprite.addChild(buffIcon);
+			buffIcon.x = i * 40;
+			i++;
+		}
 	}
 
 }

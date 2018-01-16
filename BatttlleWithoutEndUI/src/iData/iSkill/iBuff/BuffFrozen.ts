@@ -3,22 +3,19 @@ module iData {
 		export module iBuff {
 			export class BuffFrozen extends iData.iSkill.iBuff.Buff {
 
-				public constructor(param1:number)
-				{
-					super(param1);
+				public constructor(count: number) {
+					super(count);
 					this.name = "frozen";
-					this.count = param1;
+					this.count = count;
 				}
 
-				public run():any
-				{
+				public run() {
 					this.count--;
-					MainScene.allInfoPanel.addText(MainScene.battle.monster.nameHtml + "被<font color=\'#ff4040\'>冰冻了!</font>",iGlobal.Global.battle);
+					MainScene.allInfoPanel.addText(MainScene.battle.monster.nameHtml + "被<font color=\'#ff4040\'>冰冻了!</font>", iGlobal.Global.battle);
 				}
 
-				public combine(param1:iData.iSkill.iBuff.Buff):any
-				{
-					this.count = param1.count;
+				public combine(buff: iData.iSkill.iBuff.Buff) {
+					this.count = buff.count;
 				}
 
 			}

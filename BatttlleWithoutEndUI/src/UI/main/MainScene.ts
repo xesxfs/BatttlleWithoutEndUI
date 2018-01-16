@@ -6,7 +6,7 @@ class MainScene extends BaseScene {
 	public static playerInfoPanel: PlayInfoPanel;
 	public static monsterInfoPanel: MonsterInfoPanel;
 	public static petInfoPanel: PetInfoPanel;
-	public static battleSkillPanel: BattleSkillInfoPanel;
+	public static battleSkillPanel: BattleSkillPanel;
 	public static lootPanel: LootInfoPanel;
 	public static otherPanel: OtherPanel;
 
@@ -14,7 +14,7 @@ class MainScene extends BaseScene {
 	public playerInfoPanel: PlayInfoPanel;
 	public monsterInfoPanel: MonsterInfoPanel;
 	public petInfoPanel: PetInfoPanel;
-	public battleSkillPanel: BattleSkillInfoPanel;
+	public battleSkillPanel: BattleSkillPanel;
 	public lootPanel: LootInfoPanel;
 	public otherPanel: OtherPanel;
 

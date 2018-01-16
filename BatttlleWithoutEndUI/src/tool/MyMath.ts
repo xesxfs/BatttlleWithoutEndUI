@@ -6,13 +6,13 @@ module Tool {
 
 		}
 
-		public static balanceRandom(param1: number): number {
-
+		/**平衡随机 */
+		public static balanceRandom(brandom: number): number {
 			var _loc9_: number = 0;
 			var _loc11_: number = 0;
-			var _loc2_: number = param1;
-			if (param1 < 50) {
-				_loc2_ = Math.round(100 - param1);
+			var _loc2_: number = brandom;
+			if (brandom < 50) {
+				_loc2_ = Math.round(100 - brandom);
 			}
 			var _loc3_: number = (3 * _loc2_ - 100) / (100 - _loc2_);
 			var _loc4_: Array<any> = new Array();
@@ -32,11 +32,12 @@ module Tool {
 				}
 				_loc9_++;
 			}
+
 			var _loc10_: number = Math.random() * _loc5_[_loc6_ - 1];
 			_loc9_ = 0;
 			while (_loc9_ < _loc6_) {
 				if (_loc10_ < _loc5_[_loc9_]) {
-					if (param1 < 50) {
+					if (brandom < 50) {
 						return 1 - _loc8_ * _loc9_;
 					}
 					return _loc8_ * _loc9_;
@@ -79,10 +80,10 @@ module Tool {
 			// param1.graphics.endFill();
 		}
 
-		public static FirstLetterToUpper(param1: string): string {
-			var _loc2_: Array<any> = param1.split("");
-			_loc2_[0] = _loc2_[0].toUpperCase();
-			return _loc2_.join("");
+		public static FirstLetterToUpper(str: string): string {
+			var strs: Array<string> = str.split("");
+			strs[0] = strs[0].toUpperCase();
+			return strs.join("");
 		}
 
 		public static StringFormChange(param1: string, param2: string, param3: string): string {

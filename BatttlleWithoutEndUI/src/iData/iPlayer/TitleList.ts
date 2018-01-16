@@ -52,32 +52,32 @@ module iData {
 
 			}
 
-			public static add_fireball(): any {
+			public static add_fireball() {
 				iGlobal.Player.addSkill(iData.iSkill.SkillDataList.FIREBALL);
 			}
 
-			public static add_ice_spear(): any {
+			public static add_ice_spear() {
 				iGlobal.Player.addSkill(iData.iSkill.SkillDataList.ICE_SPEAR);
 			}
 
-			public static add_thunder(): any {
+			public static add_thunder() {
 				iGlobal.Player.addSkill(iData.iSkill.SkillDataList.THUNDER);
 			}
 
-			public static add_mana_shield(): any {
+			public static add_mana_shield() {
 				iGlobal.Player.addSkill(iData.iSkill.SkillDataList.MANA_SHIELD);
 			}
 
-			public static add_life_drain(): any {
+			public static add_life_drain() {
 				iGlobal.Player.addSkill(iData.iSkill.SkillDataList.LIFE_DRAIN);
 			}
 
-			public static add_corrosion(): any {
+			public static add_corrosion() {
 				iGlobal.Player.addSkill(iData.iSkill.SkillDataList.CORROSIVE_SHOT);
 			}
 
-			public static updateTitleInfo(param1: string, param2: number = 0, param3: number = 0): any {
-				switch (param1) {
+			public static updateTitleInfo(name: string, max: number = 0, count: number = 0): any {
+				switch (name) {
 					case iData.iSkill.SkillDataList.BLACKSMITHING.name:
 						iData.iPlayer.TitleList.master_of_blacksmithing.updateInfo();
 						break;
@@ -142,27 +142,27 @@ module iData {
 						iData.iPlayer.TitleList.master_of_lifeDrain.updateInfo();
 						break;
 					case "age":
-						iData.iPlayer.TitleList.adult.updateInfo(param2);
-						iData.iPlayer.TitleList.all_knowing.updateInfo(param2);
-						iData.iPlayer.TitleList.old.updateInfo(param2);
+						iData.iPlayer.TitleList.adult.updateInfo(max);
+						iData.iPlayer.TitleList.all_knowing.updateInfo(max);
+						iData.iPlayer.TitleList.old.updateInfo(max);
 						break;
 					case "age10":
-						iData.iPlayer.TitleList.who_reached_Lv_50_at_Age_10.updateInfo(param2);
+						iData.iPlayer.TitleList.who_reached_Lv_50_at_Age_10.updateInfo(max);
 						break;
 					case iData.iItem.Stat.str:
-						iData.iPlayer.TitleList.strong.updateInfo(param2);
+						iData.iPlayer.TitleList.strong.updateInfo(max);
 						break;
 					case iData.iItem.Stat.dex:
-						iData.iPlayer.TitleList.skillfull.updateInfo(param2);
+						iData.iPlayer.TitleList.skillfull.updateInfo(max);
 						break;
 					case iData.iItem.Stat.intelligence:
-						iData.iPlayer.TitleList.wise.updateInfo(param2);
+						iData.iPlayer.TitleList.wise.updateInfo(max);
 						break;
 					case iData.iItem.Stat.will:
-						iData.iPlayer.TitleList.tough.updateInfo(param2);
+						iData.iPlayer.TitleList.tough.updateInfo(max);
 						break;
 					case iData.iItem.Stat.luck:
-						iData.iPlayer.TitleList.lucky.updateInfo(param2);
+						iData.iPlayer.TitleList.lucky.updateInfo(max);
 						break;
 					case "begin":
 						iData.iPlayer.TitleList.beginner.updateInfo();
@@ -171,29 +171,29 @@ module iData {
 						iData.iPlayer.TitleList.reborn.updateInfo(0, 1);
 						break;
 					case "forge":
-						iData.iPlayer.TitleList.beginner_forger.updateInfo(param2, param3);
-						iData.iPlayer.TitleList.advanced_forger.updateInfo(param2, param3);
-						iData.iPlayer.TitleList.expert_forger.updateInfo(param2, param3);
-						iData.iPlayer.TitleList.god_blessed.updateInfo(param2, param3);
+						iData.iPlayer.TitleList.beginner_forger.updateInfo(max, count);
+						iData.iPlayer.TitleList.advanced_forger.updateInfo(max, count);
+						iData.iPlayer.TitleList.expert_forger.updateInfo(max, count);
+						iData.iPlayer.TitleList.god_blessed.updateInfo(max, count);
 						break;
 					case "endure":
-						iData.iPlayer.TitleList.who_experienced_death.updateInfo(param2);
-						iData.iPlayer.TitleList.who_transcended_death.updateInfo(param2);
+						iData.iPlayer.TitleList.who_experienced_death.updateInfo(max);
+						iData.iPlayer.TitleList.who_transcended_death.updateInfo(max);
 						break;
 					case "damage":
-						iData.iPlayer.TitleList.breaker.updateInfo(param2);
-						iData.iPlayer.TitleList.terminator.updateInfo(param2);
-						iData.iPlayer.TitleList.killer.updateInfo(param2, param3);
-						iData.iPlayer.TitleList.warlord.updateInfo(param2, param3);
+						iData.iPlayer.TitleList.breaker.updateInfo(max);
+						iData.iPlayer.TitleList.terminator.updateInfo(max);
+						iData.iPlayer.TitleList.killer.updateInfo(max, count);
+						iData.iPlayer.TitleList.warlord.updateInfo(max, count);
 						break;
 					case "kill":
-						iData.iPlayer.TitleList.boss_slayer.updateInfo(param2, param3);
+						iData.iPlayer.TitleList.boss_slayer.updateInfo(max, count);
 						break;
 					case "fail":
-						iData.iPlayer.TitleList.butterfingers.updateInfo(param2, param3);
+						iData.iPlayer.TitleList.butterfingers.updateInfo(max, count);
 						break;
 					case "crit":
-						iData.iPlayer.TitleList.weakness_discoverer.updateInfo(param2, param3);
+						iData.iPlayer.TitleList.weakness_discoverer.updateInfo(max, count);
 				}
 			}
 

@@ -31,70 +31,70 @@ module iData {
 			}
 			/**增加称号单位属性 */
 			protected addTitleStat() {
-				var _loc3_: iData.iMonster.StatMul = <any>null;
-				var _loc1_: number = this.title.statMulList.length;
-				var _loc2_: number = 0;
-				while (_loc2_ < _loc1_) {
-					_loc3_ = this.title.statMulList[_loc2_];
-					if (_loc3_.name == iData.iItem.Stat.attackMin) {
-						this.data.attack = new iData.iNumber.DamageNumber(this.data.attack.min * _loc3_.mul + _loc3_.add, this.data.attack.max);
+				var statMul: iData.iMonster.StatMul = null;
+				var length: number = this.title.statMulList.length;
+				var i: number = 0;
+				while (i < length) {
+					statMul = this.title.statMulList[i];
+					if (statMul.name == iData.iItem.Stat.attackMin) {
+						this.data.attack = new iData.iNumber.DamageNumber(this.data.attack.min * statMul.mul + statMul.add, this.data.attack.max);
 					}
-					else if (_loc3_.name == iData.iItem.Stat.attackMax) {
-						this.data.attack = new iData.iNumber.DamageNumber(this.data.attack.min, this.data.attack.max * _loc3_.mul + _loc3_.add);
+					else if (statMul.name == iData.iItem.Stat.attackMax) {
+						this.data.attack = new iData.iNumber.DamageNumber(this.data.attack.min, this.data.attack.max * statMul.mul + statMul.add);
 					}
-					else if (_loc3_.name == iData.iItem.Stat.ATTACK) {
-						this.data.attack = new iData.iNumber.DamageNumber(this.data.attack.min * _loc3_.mul + _loc3_.add, this.data.attack.max * _loc3_.mul + _loc3_.add);
+					else if (statMul.name == iData.iItem.Stat.ATTACK) {
+						this.data.attack = new iData.iNumber.DamageNumber(this.data.attack.min * statMul.mul + statMul.add, this.data.attack.max * statMul.mul + statMul.add);
 					}
 					else {
-						this.data[_loc3_.name] = this.data[_loc3_.name] * _loc3_.mul;
-						this.data[_loc3_.name] = this.data[_loc3_.name] + _loc3_.add;
+						this.data[statMul.name] = this.data[statMul.name] * statMul.mul;
+						this.data[statMul.name] = this.data[statMul.name] + statMul.add;
 					}
-					_loc2_++;
+					i++;
 				}
 			}
 
-			public addBuff(param1: iData.iSkill.iBuff.Buff): any {
-				var _loc2_: iData.iSkill.iBuff.Buff = this.isContainBuff(param1.name);
-				if (_loc2_ == null) {
-					this.buffList.push(param1);
+			public addBuff(buff: iData.iSkill.iBuff.Buff) {
+				var buf: iData.iSkill.iBuff.Buff = this.isContainBuff(buff.name);
+				if (buf == null) {
+					this.buffList.push(buff);
 				}
 				else {
-					_loc2_.combine(param1);
+					buf.combine(buff);
 				}
 				MainScene.monsterInfoPanel.updateBuff();
 			}
 
-			public runBuff(): any {
-				var _loc1_: number = this.buffList.length;
-				var _loc2_: number = 0;
-				while (_loc2_ < _loc1_) {
-					this.buffList[_loc2_].run();
-					_loc2_++;
+			public runBuff() {
+				var length: number = this.buffList.length;
+				var i: number = 0;
+				while (i < length) {
+					this.buffList[i].run();
+					i++;
 				}
 				this.removeBuff();
 			}
 
-			public removeBuff(): any {
-				var _loc1_: number = this.buffList.length;
-				var _loc2_: number = 0;
-				while (_loc2_ < _loc1_) {
-					if (this.buffList[_loc2_].isOver()) {
-						this.buffList.splice(_loc2_, 1);
+			public removeBuff() {
+				var length: number = this.buffList.length;
+				var i: number = 0;
+				while (i < length) {
+					if (this.buffList[i].isOver()) {
+						this.buffList.splice(i, 1);
 						MainScene.monsterInfoPanel.updateBuff();
 						return;
 					}
-					_loc2_++;
+					i++;
 				}
 			}
 
-			public isContainBuff(param1: string): iData.iSkill.iBuff.Buff {
-				var _loc2_: number = this.buffList.length;
-				var _loc3_: number = 0;
-				while (_loc3_ < _loc2_) {
-					if (this.buffList[_loc3_].name == param1) {
-						return this.buffList[_loc3_];
+			public isContainBuff(bName: string): iData.iSkill.iBuff.Buff {
+				var length: number = this.buffList.length;
+				var i: number = 0;
+				while (i < length) {
+					if (this.buffList[i].name == bName) {
+						return this.buffList[i];
 					}
-					_loc3_++;
+					i++;
 				}
 				return null;
 			}
@@ -120,43 +120,43 @@ module iData {
 			}
 
 			public get dropRate(): number {
-				var _loc1_: number = (this.CP / iGlobal.Player.combatPower + iGlobal.Global.map.mapData.modifier) * (1 + iGlobal.Player.luck / 300);
+				var rate: number = (this.CP / iGlobal.Player.combatPower + iGlobal.Global.map.mapData.modifier) * (1 + iGlobal.Player.luck / 300);
 				if (this.title) {
-					_loc1_ = _loc1_ * this.title.dropMul;
+					rate = rate * this.title.dropMul;
 				}
-				return _loc1_;
+				return rate;
 			}
 
 			public dropItem() {
-				var _loc1_: iData.iItem.EquipmentData = <any>null;
-				var _loc2_: iData.iItem.Equipment = <any>null;
-				var _loc3_: boolean = false;
+				var eData: iData.iItem.EquipmentData = null;
+				var equi: iData.iItem.Equipment = null;
+				var toggle: boolean = false;
 				if (Math.random() * 10 < 20 * this.dropRate) {
-					_loc1_ = iData.iItem.EquipmentList.list[iData.iItem.EquipmentList.list.length * Math.random() >> 0];
-					if (_loc1_ instanceof iData.iItem.WeaponData) {
-						var loc1 = _loc1_ as iData.iItem.WeaponData;
-						_loc2_ = new iData.iItem.Weapon(loc1, this.dropRate);
+					eData = iData.iItem.EquipmentList.list[iData.iItem.EquipmentList.list.length * Math.random() >> 0];
+					if (eData instanceof iData.iItem.WeaponData) {
+						var loc1 = eData as iData.iItem.WeaponData;
+						equi = new iData.iItem.Weapon(loc1, this.dropRate);
 					}
 					else {
-						_loc2_ = new iData.iItem.Equipment(_loc1_, this.dropRate);
+						equi = new iData.iItem.Equipment(eData, this.dropRate);
 					}
-					_loc3_ = false;
-					if (!iGlobal.Global["item" + _loc2_.quality + "_toggle"]) {
-						_loc3_ = true;
+					toggle = false;
+					if (!iGlobal.Global["item" + equi.quality + "_toggle"]) {
+						toggle = true;
 					}
-					if (!_loc3_) {
-						if ((_loc2_ instanceof iData.iItem.Weapon) || _loc2_.type == iData.iItem.EquipType.ACCESORY) {
-							if (<any>!iGlobal.Global[_loc2_.name + "_toggle"]) {
-								_loc3_ = true;
+					if (!toggle) {
+						if ((equi instanceof iData.iItem.Weapon) || equi.type == iData.iItem.EquipType.ACCESORY) {
+							if (<any>!iGlobal.Global[equi.name + "_toggle"]) {
+								toggle = true;
 							}
 						}
-						else if (<any>!iGlobal.Global[_loc2_.position + "_" + _loc2_.type + "_toggle"]) {
-							_loc3_ = true;
+						else if (<any>!iGlobal.Global[equi.position + "_" + equi.type + "_toggle"]) {
+							toggle = true;
 						}
 					}
-					if (!_loc3_ && iGlobal.Player.addItem(_loc2_)) {
+					if (!toggle && iGlobal.Player.addItem(equi)) {
 						if (MainScene.lootPanel) {
-							switch (_loc2_.quality) {
+							switch (equi.quality) {
 								case 0:
 									MainScene.lootPanel.basic++;
 									break;
@@ -178,10 +178,10 @@ module iData {
 						}
 					}
 					else {
-						_loc3_ = true;
+						toggle = true;
 					}
-					if (_loc3_) {
-						iGlobal.Player.addMoney(_loc2_.getMoney());
+					if (toggle) {
+						iGlobal.Player.addMoney(equi.getMoney());
 					}
 				}
 			}
@@ -190,34 +190,34 @@ module iData {
 			}
 
 			public get nameHtml(): string {
-				var _loc2_: string = <any>null;
-				var _loc3_: string = <any>null;
-				var _loc1_: number = this.CP / iGlobal.Player.combatPower;
-				if (_loc1_ < 0.8) {
-					_loc2_ = this.PINK;
-					_loc3_ = "WEAKEST";
+				var color: string = null;
+				var title: string = null;
+				var cp: number = this.CP / iGlobal.Player.combatPower;
+				if (cp < 0.8) {
+					color = this.PINK;
+					title = "WEAKEST";
 				}
-				else if (_loc1_ < 1) {
-					_loc2_ = this.PURPLE;
-					_loc3_ = "WEAK";
+				else if (cp < 1) {
+					color = this.PURPLE;
+					title = "WEAK";
 				}
-				else if (_loc1_ < 1.4) {
-					_loc2_ = this.BROWN;
-					_loc3_ = "NORMAL";
+				else if (cp < 1.4) {
+					color = this.BROWN;
+					title = "NORMAL";
 				}
-				else if (_loc1_ < 2) {
-					_loc2_ = this.GREEN;
-					_loc3_ = "STRONG";
+				else if (cp < 2) {
+					color = this.GREEN;
+					title = "STRONG";
 				}
-				else if (_loc1_ < 3) {
-					_loc2_ = this.YELLOW;
-					_loc3_ = "AWFUL";
+				else if (cp < 3) {
+					color = this.YELLOW;
+					title = "AWFUL";
 				}
 				else {
-					_loc2_ = this.RED;
-					_loc3_ = "BOSS";
+					color = this.RED;
+					title = "BOSS";
 				}
-				return "<font color=\'" + _loc2_ + "\'>" + this.data.realName + "</font>";
+				return "<font color=\'" + color + "\'>" + this.data.realName + "</font>";
 			}
 
 			public get attack(): number {
@@ -251,12 +251,12 @@ module iData {
 			}
 
 			public get protection(): number {
-				var _loc1_: number = this.data.protection;
-				var _loc2_: iData.iSkill.iBuff.Buff = this.isContainBuff("corrosion");
-				if (_loc2_ != null) {
-					_loc1_ = _loc1_ - _loc2_.count;
+				var pro: number = this.data.protection;
+				var buff: iData.iSkill.iBuff.Buff = this.isContainBuff("corrosion");
+				if (buff != null) {
+					pro = pro - buff.count;
 				}
-				return _loc1_;
+				return pro;
 			}
 
 		}

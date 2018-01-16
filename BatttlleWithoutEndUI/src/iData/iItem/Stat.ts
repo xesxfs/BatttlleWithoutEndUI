@@ -32,13 +32,13 @@ module iData {
 				this.value = value;
 			}
 
-			public static generate(param1: iData.iItem.RangeStat, param2: number): iData.iItem.Stat {
-				return new iData.iItem.Stat(param1.name, ((param1.valueMin + param1.changeRange * Math.random() * param2 * Math.random()) * 100 >> 0) / 100);
+			public static generate(range: iData.iItem.RangeStat, valueMul: number): iData.iItem.Stat {
+				return new iData.iItem.Stat(range.name, ((range.valueMin + range.changeRange * Math.random() * valueMul * Math.random()) * 100 >> 0) / 100);
 			}
 			/**加载 */
-			public static load(param1: string): iData.iItem.Stat {
-				var _loc2_: Array<any> = param1.split("$");
-				return new iData.iItem.Stat(_loc2_[0], _loc2_[1]);
+			public static load(stats: string): iData.iItem.Stat {
+				var stat: Array<any> = stats.split("$");
+				return new iData.iItem.Stat(stat[0], stat[1]);
 			}
 
 			public clone(): iData.iItem.Stat {
@@ -87,9 +87,9 @@ module iData {
 			}
 			/**保存 */
 			public save(): string {
-				var _loc1_: string = "";
-				_loc1_ = _loc1_ + (this.name + "$" + this.value);
-				return _loc1_;
+				var save: string = "";
+				save = save + (this.name + "$" + this.value);
+				return save;
 			}
 
 		}

@@ -11,7 +11,6 @@ class HelpPanel extends BasicCell {
 		var hideDown: Function = null;
 		hideDown = function () {
 			this.visible = false;
-			this["setBefore"]();
 		};
 		var title: StringCell = new StringCell("帮助", 200, 36);
 		this.addChild(title);

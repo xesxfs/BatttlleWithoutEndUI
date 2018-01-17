@@ -1,4 +1,4 @@
-class LootInfoPanel extends BasicCell {
+class LootPanel extends BasicCell {
 
 
 	private beginX: number = 10;

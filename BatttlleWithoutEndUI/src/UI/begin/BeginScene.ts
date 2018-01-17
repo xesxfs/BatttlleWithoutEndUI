@@ -17,10 +17,10 @@ class BeginScene extends BaseScene {
 		var onMouseDown: Function = null;
 		down = function () {
 			var next: Function = null;
-			next = function () {
-				// Tool.Effect.fadeIn(_loc1_);				
-				App.SceneManager.runScene(SceneConst.SaveScene);
-			};
+			// next = function () {
+			// Tool.Effect.fadeIn(_loc1_);				
+			App.SceneManager.runScene(SceneConst.SaveScene);
+			// };
 		}
 
 		var begin: FlickerButton = new FlickerButton("开始游戏", 200, 80, 40);

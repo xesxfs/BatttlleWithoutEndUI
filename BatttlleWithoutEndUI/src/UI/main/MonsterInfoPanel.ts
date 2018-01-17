@@ -59,7 +59,7 @@ class MonsterInfoPanel extends BasicCell {
 
 	private createBossIcon() {
 		this.bossIcon = new egret.Sprite();
-		this.bossIcon.addChild(RES.getRes("boss_icon"));
+		this.bossIcon.addChild(new egret.Bitmap(RES.getRes("boss_icon")));
 		this.bossIcon.visible = false;
 		this.addChild(this.bossIcon);
 		this.bossIcon.x = this.beginX + 30;
@@ -71,7 +71,7 @@ class MonsterInfoPanel extends BasicCell {
 	public update() {
 		this.setCpRatioTitleAndName();
 		this.setTitle();
-		this.cp.setText(MainScene.battle["monster"].CP + "");
+		this.cp.setText(MainScene.battle.monster.CP + "");
 		this.updateHp();
 		this.updateBuff();
 		this.updateBoss();

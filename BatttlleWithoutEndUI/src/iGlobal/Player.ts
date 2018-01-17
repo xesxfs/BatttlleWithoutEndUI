@@ -604,11 +604,11 @@ module iGlobal {
 		}
 
 		public static get magicBalance(): number {
-			var _loc1_: number = (iGlobal.Player.intelligence - 10) / 4 + 30;
-			if (_loc1_ > 99) {
-				_loc1_ = 99;
+			var balance: number = (iGlobal.Player.intelligence - 10) / 4 + 30;
+			if (balance > 99) {
+				balance = 99;
 			}
-			return _loc1_;
+			return balance;
 		}
 
 		public static get basicStr(): number {
@@ -640,18 +640,18 @@ module iGlobal {
 		}
 
 		private static formula_title_stat(param1: number, param2: string): number {
-			var _loc3_: number = 0;
-			var _loc4_: number = 0;
+			var length: number = 0;
+			var i: number = 0;
 			if (iGlobal.Player.title) {
-				_loc3_ = iGlobal.Player.title.statMulList.length;
-				_loc4_ = 0;
-				while (_loc4_ < _loc3_) {
-					if (iGlobal.Player.title.statMulList[_loc4_].name == param2) {
-						param1 = param1 * iGlobal.Player.title.statMulList[_loc4_].mul;
-						param1 = param1 + iGlobal.Player.title.statMulList[_loc4_].add;
+				length = iGlobal.Player.title.statMulList.length;
+				i = 0;
+				while (i < length) {
+					if (iGlobal.Player.title.statMulList[i].name == param2) {
+						param1 = param1 * iGlobal.Player.title.statMulList[i].mul;
+						param1 = param1 + iGlobal.Player.title.statMulList[i].add;
 						return param1;
 					}
-					_loc4_++;
+					i++;
 				}
 			}
 			return param1;
@@ -679,38 +679,38 @@ module iGlobal {
 		}
 
 		public static updateSkillInfo() {
-			var _loc2_: iData.iSkill.SkillData = null;
-			var _loc3_: number = 0;
-			var _loc5_: number = 0;
+			var skillData: iData.iSkill.SkillData = null;
+			var lv: number = 0;
+			var i: number = 0;
 			iGlobal.Player.skillStatus = new iData.BasicStatus(0, 0, 0, 0, 0, 0, 0);
-			var _loc1_: number = iGlobal.Player.skillList.length;
-			var _loc4_: number = 0;
-			while (_loc4_ < _loc1_) {
-				_loc2_ = iGlobal.Player.skillList[_loc4_].skillData;
-				_loc3_ = iGlobal.Player.skillList[_loc4_].level;
-				_loc5_ = 0;
-				while (_loc5_ < _loc2_.statList[_loc3_].length) {
-					iGlobal.Player.skillStatus[_loc2_.statList[_loc3_][_loc5_].name] = iGlobal.Player.skillStatus[_loc2_.statList[_loc3_][_loc5_].name] + _loc2_.statList[_loc3_][_loc5_].value;
-					_loc5_++;
+			var length: number = iGlobal.Player.skillList.length;
+			var si: number = 0;
+			while (si < length) {
+				skillData = iGlobal.Player.skillList[si].skillData;
+				lv = iGlobal.Player.skillList[si].level;
+				i = 0;
+				while (i < skillData.statList[lv].length) {
+					iGlobal.Player.skillStatus[skillData.statList[lv][i].name] = iGlobal.Player.skillStatus[skillData.statList[lv][i].name] + skillData.statList[lv][i].value;
+					i++;
 				}
-				if (_loc2_.effectList && iGlobal.Player.leftHand) {
-					if (iGlobal.Player.leftHand.category == _loc2_.category) {
-						_loc5_ = 0;
-						while (_loc5_ < _loc2_.effectList[_loc3_].length) {
-							if (_loc2_.effectList[_loc3_][_loc5_].name == iData.iItem.Stat.attackMin) {
-								iGlobal.Player.skillStatus.attack.min = iGlobal.Player.skillStatus.attack.min + _loc2_.effectList[_loc3_][_loc5_].value;
+				if (skillData.effectList && iGlobal.Player.leftHand) {
+					if (iGlobal.Player.leftHand.category == skillData.category) {
+						i = 0;
+						while (i < skillData.effectList[lv].length) {
+							if (skillData.effectList[lv][i].name == iData.iItem.Stat.attackMin) {
+								iGlobal.Player.skillStatus.attack.min = iGlobal.Player.skillStatus.attack.min + skillData.effectList[lv][i].value;
 							}
-							else if (_loc2_.effectList[_loc3_][_loc5_].name == iData.iItem.Stat.attackMax) {
-								iGlobal.Player.skillStatus.attack.max = iGlobal.Player.skillStatus.attack.max + _loc2_.effectList[_loc3_][_loc5_].value;
+							else if (skillData.effectList[lv][i].name == iData.iItem.Stat.attackMax) {
+								iGlobal.Player.skillStatus.attack.max = iGlobal.Player.skillStatus.attack.max + skillData.effectList[lv][i].value;
 							}
 							else {
-								iGlobal.Player.skillStatus[_loc2_.effectList[_loc3_][_loc5_].name] = iGlobal.Player.skillStatus[_loc2_.effectList[_loc3_][_loc5_].name] + _loc2_.effectList[_loc3_][_loc5_].value;
+								iGlobal.Player.skillStatus[skillData.effectList[lv][i].name] = iGlobal.Player.skillStatus[skillData.effectList[lv][i].name] + skillData.effectList[lv][i].value;
 							}
-							_loc5_++;
+							i++;
 						}
 					}
 				}
-				_loc4_++;
+				si++;
 			}
 			iGlobal.Player.updateInfoWindow();
 		}
@@ -801,9 +801,9 @@ module iGlobal {
 		}
 
 		private static updateXpBar() {
-			// if (MainScene.playerInfoPanel) {
-			// 	MainScene.playerInfoPanel.upDateExp();
-			// }
+			if (MainScene.playerInfoPanel) {
+				MainScene.playerInfoPanel.upDateExp();
+			}
 		}
 
 		private static updateSkillPanel() {
@@ -1329,7 +1329,7 @@ module iGlobal {
 iGlobal.Player.BAGMAX = 50;
 iGlobal.Player.PETMAX = 10;
 iGlobal.Player.caculate = 0;
-iGlobal.Player.playerName = "Jason";
+iGlobal.Player.playerName = "sowhat";
 iGlobal.Player.skillStatus = new iData.BasicStatus(0, 0, 0, 0, 0, 0, 0);
 iGlobal.Player.equipStatus = new iData.BasicStatus(0, 0, 0, 0, 0, 0, 0);
 iGlobal.Player.skillList = new Array<iData.iSkill.Skill>();

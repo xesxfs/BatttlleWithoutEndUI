@@ -1,4 +1,4 @@
-class PlayInfoPanel extends BasicCell {
+class PlayerInfoPanel extends BasicCell {
 	private beginX: number = 10;
 	private beginY: number = 10;
 	private sXGap: number = 40;
@@ -30,7 +30,7 @@ class PlayInfoPanel extends BasicCell {
 	public constructor() {
 		super(385, 220);
 		this.setPosition();
-		this.upDate();
+		this.update();
 	}
 
 	private setPosition() {
@@ -110,7 +110,7 @@ class PlayInfoPanel extends BasicCell {
 		this.cp.x = this.cp.x + 10;
 	}
 
-	public upDate() {
+	public update() {
 		if (iGlobal.Player.title) {
 			this._name.setText(iGlobal.Player.title.realName + "" + iGlobal.Player.playerName);
 		}
@@ -218,7 +218,7 @@ class PlayInfoPanel extends BasicCell {
 		this.mp.Max = iGlobal.Player.mp;
 	}
 
-	public upDateExp(): any {
+	public upDateExp() {
 		this.exp.Value = iGlobal.Player.xp;
 		this.exp.Max = iGlobal.Player.getLevelExp();
 	}

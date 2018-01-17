@@ -2,7 +2,7 @@ class MapPanel extends egret.Sprite {
 	private bg: egret.Sprite;
 	public constructor() {
 		super();
-		var _self_: any = undefined;
+		var _self_: any = this;
 		var backDown: Function = null;
 		var cell: MapCell = null;
 		backDown = function () {
@@ -22,7 +22,7 @@ class MapPanel extends egret.Sprite {
 			buttonGroup.addButton(cell);
 			if (iData.iMap.MapList.list[i].name == iGlobal.Global.map.mapData.name) {
 				cell.setAfter();
-				cell.onMouseDown(null);
+				// cell.onMouseDown(null);
 			}
 			i++;
 		}
@@ -31,6 +31,6 @@ class MapPanel extends egret.Sprite {
 		backButton.x = 0;
 		backButton.y = 0;
 		backButton.downFunction = backDown;
-		_self_ = this;
+
 	}
 }

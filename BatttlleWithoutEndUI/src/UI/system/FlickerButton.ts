@@ -8,18 +8,8 @@ class FlickerButton extends ButtonCell {
 		super("egret.Sprite", "egret.Sprite");
 		this.touchEnabled = true;
 		this.bg = new BasicCell(width, height);
-		let colorMatrix = [
-			.3, 0, 0, 0, 0,
-			0, .3, 0, 0, 0,
-			0, 0, .2, 0, 0,
-			0, 0, 0, 1, 0
-		];
-		let colorTransform1 = new egret.ColorMatrixFilter(colorMatrix);
-		// this.bg.filters = [colorTransform1]
 		// this.addChild(this.bg);
-
-
-
+		this.bg.filters = [ColorTransform.colorTransform]
 		var beforeText = iGlobal.Global.getTextField(fontSize);
 		beforeText.text = text;
 		this.before.addChild(beforeText);
@@ -36,6 +26,7 @@ class FlickerButton extends ButtonCell {
 	}
 
 	private overAnimation(e: egret.Event) {
+		egret.toColorString
 		this.after.visible = true;
 		if (this.count <= this.flickerTime) {
 			this.filters = [new egret.GlowFilter(5066061, 0.66, 13 + this.count, 13 + this.count)];

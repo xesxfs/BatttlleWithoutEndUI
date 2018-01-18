@@ -27,6 +27,8 @@ class OtherPanel extends eui.Component implements eui.UIComponent {
 		this.removeChildren();
 		this.array = new Array<Function>();
 		this.setFunction();
+		var bg: egret.Sprite = new BasicCell(200, 540);
+		this.addChild(bg);
 	}
 
 	private setFunction() {

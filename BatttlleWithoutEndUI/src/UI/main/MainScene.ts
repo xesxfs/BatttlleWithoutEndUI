@@ -47,8 +47,9 @@ class MainScene extends BaseScene {
 		this.setBattleSkillPanel();
 		this.setAllInfoPanel();
 		this.setLootPanel();
-		this.setOther();
+
 		this.setBattle();
+		this.setOther();
 		iGlobal.Global.shopPanel = new ShopPanel();
 		iGlobal.Global.helpPanel = new HelpPanel();
 		iGlobal.Global.specialShopPanel = new SpecialShopPanel();
@@ -83,9 +84,9 @@ class MainScene extends BaseScene {
 
 	private setOther() {
 		MainScene.otherPanel = new OtherPanel();
-		this.addChild(MainScene.otherPanel);
-		MainScene.otherPanel.x = 590;
-		MainScene.otherPanel.y = 10;
+		this.otherInfoGroup.addChild(MainScene.otherPanel);
+		// MainScene.otherPanel.x = 590;
+		// MainScene.otherPanel.y = 10;
 	}
 
 	private setBattleSkillPanel() {
@@ -119,8 +120,9 @@ class MainScene extends BaseScene {
 	private onMenusBtn(e: egret.TouchEvent) {
 		if (e.target instanceof eui.Button) {
 			// this.otherView.selectedIndex = parseInt(e.target.name);
-			this.otherPanel.onSelect(parseInt(e.target.name));
+			MainScene.otherPanel.onSelect(parseInt(e.target.name));
 			this.otherInfoGroup.x = (this.width - this.menuBtnsGroup.width) >> 1;
+			this.addChild(this.otherInfoGroup);
 		}
 
 	}

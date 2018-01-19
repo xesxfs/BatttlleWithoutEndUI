@@ -6,7 +6,7 @@ class RaceButton extends ButtonCell {
 	private text: egret.TextField;
 	private transform: egret.ColorMatrixFilter;
 	public constructor(b: string, a: string, race: iData.Race) {
-		super("egret.Sprite", "egret.Sprite");
+		super();
 		this.touchEnabled = true;
 		let bsp = RES.getRes(b);
 		bsp && (bsp = new egret.Bitmap(bsp)) && this.before.addChild(bsp);

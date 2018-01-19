@@ -4,10 +4,10 @@ class ButtonCell extends egret.Sprite {
 	public buttonGroup: ButtonGroup;
 	protected buttonDown: boolean = false;
 	public downFunction: Function;
-	public constructor(before: string, after: string) {
+	public constructor() {
 		super();
-		this.before = new (egret.getDefinitionByName(before))();
-		this.after = new (egret.getDefinitionByName(after))();
+		this.before = new egret.Sprite();
+		this.after = new egret.Sprite();
 		this.addChild(this.before);
 		this.addChild(this.after);
 		this.after.visible = false;

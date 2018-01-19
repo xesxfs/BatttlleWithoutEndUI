@@ -2,7 +2,7 @@ class PetSkillCell extends ButtonCell {
 	public petSkill: iData.iPet.iPetSkill.PetSkill;
 	private SIZE: number = 30;
 	public constructor(petSkill: iData.iPet.iPetSkill.PetSkill) {
-		super("egret.Sprite", "egret.Sprite");
+		super();
 		this.touchEnabled = true;
 
 		this.petSkill = petSkill;

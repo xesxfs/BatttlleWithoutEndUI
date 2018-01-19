@@ -5,7 +5,7 @@ class EquipCell extends ButtonCell {
 	private SIZE: number = 80;
 
 	public constructor(data: iData.iItem.Equipment = null, pos: string = "") {
-		super("egret.Sprite", "egret.Sprite");
+		super();
 		var icon: egret.Bitmap = null;
 		this.infoWindow = iGlobal.Global.itemInfoWindow;
 		this.position = pos;

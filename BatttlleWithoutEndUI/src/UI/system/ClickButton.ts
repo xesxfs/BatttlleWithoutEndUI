@@ -1,7 +1,7 @@
 class ClickButton extends ButtonCell {
 	private FIX: number = 20;
 	public constructor(icon: string, fix: number) {
-		super("egret.Sprite", "egret.Sprite");
+		super();
 		this.touchEnabled = true;
 		fix = (fix);
 		this.FIX = (fix);

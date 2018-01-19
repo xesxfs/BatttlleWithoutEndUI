@@ -6,7 +6,7 @@ class PeopleModel extends ButtonCell {
 	public p2: egret.Sprite;
 
 	public constructor(param1: number) {
-		super("egret.Sprite", "egret.Sprite");
+		super();
 		this.touchEnabled = true;
 		param1 = (param1);
 		this.age = (param1);

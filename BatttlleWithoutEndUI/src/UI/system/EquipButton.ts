@@ -2,7 +2,7 @@ class EquipButton extends ButtonCell {
 
 	private FIX: number = 20;
 	public constructor(param1: string) {
-		super("egret.Sprite", "egret.Sprite");
+		super();
 		// var _loc2_:egret.Sprite = <any>new doubleCircle();
 		// _loc2_.width = this.FIX;
 		// _loc2_.height = this.FIX;

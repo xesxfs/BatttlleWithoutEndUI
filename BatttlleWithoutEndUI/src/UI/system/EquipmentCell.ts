@@ -1,21 +1,19 @@
 class EquipmentCell extends AdvancedCell {
 	public equip: iData.iItem.Equipment;
 	protected filter_mc: egret.Sprite;
-	protected be_mc: egret.Sprite;
-	protected af_mc: egret.Sprite;
+	protected be_mc: egret.Bitmap;
+	protected af_mc: egret.Bitmap;
 	protected equipedInfoWindow: ItemInfoWindow;
 
-	public constructor(param1: iData.iItem.Equipment) {
+	public constructor(equip: iData.iItem.Equipment) {
 		super(200, 50);
-		this.equip = param1;
+		this.equip = equip;
 		this.touchEnabled = true;
 		this.init();
 	}
 
 	private init() {
 		this.filter_mc = new egret.Sprite();
-		this.be_mc = new egret.Sprite();
-		this.af_mc = new egret.Sprite();
 		this.filter_mc.graphics.beginFill(16777215);
 		this.filter_mc.graphics.drawCircle(15, 15, 14);
 		this.filter_mc.graphics.endFill();
@@ -23,10 +21,10 @@ class EquipmentCell extends AdvancedCell {
 		this.filter_mc.x = 10;
 		this.filter_mc.y = 10;
 		if (this.equip instanceof iData.iItem.Weapon) {
-			this.be_mc.addChild(new egret.Bitmap(RES.getRes("mc_" + this.equip.type)));
+			this.be_mc=(new egret.Bitmap(RES.getRes("mc_" + this.equip.type)));
 		}
 		else {
-			this.be_mc.addChild(new egret.Bitmap(RES.getRes("mc_" + this.equip.position + "_" + this.equip.type)));
+			this.be_mc=(new egret.Bitmap(RES.getRes("mc_" + this.equip.position + "_" + this.equip.type)));
 		}
 		this.before.addChild(this.be_mc);
 		this.be_mc.width = 30;
@@ -34,10 +32,10 @@ class EquipmentCell extends AdvancedCell {
 		this.be_mc.x = 10;
 		this.be_mc.y = 10;
 		if ((this.equip instanceof iData.iItem.Weapon)) {
-			this.af_mc.addChild(new egret.Bitmap(RES.getRes("mc_" + this.equip.type)));
+			this.af_mc=(new egret.Bitmap(RES.getRes("mc_" + this.equip.type)));
 		}
 		else {
-			this.af_mc.addChild(new egret.Bitmap(RES.getRes("mc_" + this.equip.position + "_" + this.equip.type)));
+			this.af_mc=(new egret.Bitmap(RES.getRes("mc_" + this.equip.position + "_" + this.equip.type)));
 		}
 		this.after.addChild(this.af_mc);
 		this.af_mc.width = 30;

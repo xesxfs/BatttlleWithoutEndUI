@@ -4,17 +4,18 @@ class AdvancedCell extends ButtonCell {
 	public text: egret.TextField;
 	public html: string;
 
-	public constructor(param1: number, param2: number) {
-		super("egret.Sprite", "egret.Sprite");
+	public constructor(w: number, h: number) {
+		super();
 		// param1 = flash.checkInt(param1);
 		// param2 = flash.checkInt(param2);
 		this.before.graphics.lineStyle(1, 13487565, 0.8);
 		this.before.graphics.beginFill(16777215, 0.95);
-		this.before.graphics.drawRect(0, 0, param1, param2);
+		this.before.graphics.drawRect(0, 0, w, h);
 		this.before.graphics.endFill();
+		
 		this.after.graphics.lineStyle(1, 13487565, 0.8);
 		this.after.graphics.beginFill(14922250, 0.95);
-		this.after.graphics.drawRect(0, 0, param1, param2);
+		this.after.graphics.drawRect(0, 0, w, h);
 		this.after.graphics.endFill();
 	}
 

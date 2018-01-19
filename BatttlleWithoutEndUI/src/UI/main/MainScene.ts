@@ -121,7 +121,7 @@ class MainScene extends BaseScene {
 		if (e.target instanceof eui.Button) {
 			// this.otherView.selectedIndex = parseInt(e.target.name);
 			MainScene.otherPanel.onSelect(parseInt(e.target.name));
-			this.otherInfoGroup.x = (this.width - this.menuBtnsGroup.width) >> 1;
+			// this.otherInfoGroup.x = (this.width - this.menuBtnsGroup.width);
 			this.addChild(this.otherInfoGroup);
 		}
 

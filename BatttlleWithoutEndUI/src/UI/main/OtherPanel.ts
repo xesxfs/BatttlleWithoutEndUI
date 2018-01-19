@@ -1,17 +1,4 @@
-class OtherPanel extends eui.Component implements eui.UIComponent {
-	public constructor() {
-		super();
-	}
-
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
-	}
-
-
-	protected childrenCreated(): void {
-		super.childrenCreated();
-		this.init();
-	}
+class OtherPanel extends egret.Sprite {
 
 	public itemWindow: ItemWindow;
 	public equipWindow: EquipWindow;
@@ -20,15 +7,40 @@ class OtherPanel extends eui.Component implements eui.UIComponent {
 	public titleWindow: TitleWindow;
 	public skillWindow: SkillWindow;
 	public otherWindow: OtherWindow;
-	public window: eui.Component;
+	public window:egret.DisplayObjectContainer;
 	private array: Array<Function>;
+	public constructor() {
+		super();
+		var buttonGroup: ButtonGroup = new ButtonGroup();
+		var list: Array<any> = ["item", "equip", "pet", "skill", "title", "system", "info"];
+		var list2: Array<any> = ["背包", "装备", "宠物", "技能", "称号", "设置", "其他"];
+		var i: number = (0);
+		var cell: ButtonCell = null;
+		while (i < list.length) {
+			cell = new MenuButton("before_" + list[i], "after_" + list[i], list2[i]);
+			cell.y = i * 40;
+			cell.x = -40;
+			this.addChild(cell);
+			buttonGroup.addButton(cell);
+			// this.array.push(cell);
+			i++;
+		}
+		this.init();
+		this.setFunction();
+	}
 
 	private init() {
-		this.removeChildren();
+		this.itemWindow = new ItemWindow();
+		this.equipWindow = new EquipWindow();
+		this.petWindow = new PetWindow();
+		this.skillWindow = new SkillWindow();
+		this.titleWindow = new TitleWindow();
+		this.systemWindow = new SystemWindow();
+		this.otherWindow = new OtherWindow();
 		this.array = new Array<Function>();
 		this.setFunction();
 		var bg: egret.Sprite = new BasicCell(200, 540);
-		this.addChild(bg);
+		this.addChildAt(bg, 0);
 	}
 
 	private setFunction() {

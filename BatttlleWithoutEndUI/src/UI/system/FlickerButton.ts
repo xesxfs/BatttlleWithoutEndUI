@@ -5,7 +5,7 @@ class FlickerButton extends ButtonCell {
 	private flickerTime: number = 30;
 
 	public constructor(text: string, width: number, height: number, fontSize: number = 32) {
-		super("egret.Sprite", "egret.Sprite");
+		super();
 		this.touchEnabled = true;
 		this.bg = new BasicCell(width, height);
 		// this.addChild(this.bg);
@@ -22,7 +22,7 @@ class FlickerButton extends ButtonCell {
 		this.after.addChild(afterText);
 		this.after.x = width / 2 - afterText.textWidth / 2;
 		this.after.y = height / 2 - afterText.textHeight / 2;
-		this.addEventListener(egret.Event.ENTER_FRAME, this.overAnimation, this);
+		// this.addEventListener(egret.Event.ENTER_FRAME, this.overAnimation, this);
 	}
 
 	private overAnimation(e: egret.Event) {

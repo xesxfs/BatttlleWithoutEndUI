@@ -9,7 +9,7 @@ class MapCell extends ButtonCell {
 	private infoWindow: ItemInfoWindow;
 
 	public constructor(data: iData.iMap.MapData) {
-		super("egret.Sprite", "egret.Sprite");
+		super();
 		this.infoWindow = iGlobal.Global.itemInfoWindow;
 		this.map = new iData.iMap.Map(data);
 		this.before.addChild(new egret.Bitmap(RES.getRes("map_icon")));

@@ -9,15 +9,15 @@ module iData {
 			public lvupCostList: Array<number>;
 			public desFunction: Function;
 
-			public constructor(param1: string, param2: string, param3: string, param4: Array<Array<iData.iItem.Stat>>, param5: Array<Array<iData.iItem.Stat>>, param6: Array<number>, param7: Function) {
+			public constructor(name: string, realName: string, category: string, setList: Array<Array<iData.iItem.Stat>>, param5: Array<Array<iData.iItem.Stat>>, lvupCostList: Array<number>, desFunc: Function) {
 
-				this.name = param1;
-				this.realName = param2;
-				this.category = param3;
-				this.statList = param4;
+				this.name = name;
+				this.realName = realName;
+				this.category = category;
+				this.statList = setList;
 				this.effectList = param5;
-				this.lvupCostList = param6;
-				this.desFunction = param7;
+				this.lvupCostList = lvupCostList;
+				this.desFunction = desFunc;
 			}
 
 		}

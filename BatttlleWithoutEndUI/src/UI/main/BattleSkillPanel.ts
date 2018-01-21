@@ -1,20 +1,7 @@
-class BattleSkillInfoPanel extends eui.Component implements eui.UIComponent {
-	public constructor() {
-		super();
-	}
+class BattleSkillPanel extends egret.Sprite {
 
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
-	}
-
-
-	protected childrenCreated(): void {
-		super.childrenCreated();
-		this.init();
-	}
-
-	private att: eui.Label;
-	private def: eui.Label;
+	private att: StringCell;
+	private def: StringCell;
 	private GAP: number = 35;
 	private yStart: number = 5;
 	private xStart1: number = 5;
@@ -24,12 +11,14 @@ class BattleSkillInfoPanel extends eui.Component implements eui.UIComponent {
 	private panel: egret.Sprite;
 	private bg: egret.Sprite;
 
-	private init() {
-		this.att = new eui.Label("攻击");
-		this.att.textColor = 0x000000;
+	public constructor() {
+		super();
+		this.init();
+	}
 
-		this.def = new eui.Label("防御");
-		this.def.textColor = 0x000000;
+	private init() {
+		this.att = new StringCell("攻击", 100, 24);
+		this.def = new StringCell("防御", 100, 24);
 		this.bg = new egret.Sprite();
 		this.addChild(this.bg);
 		this.panel = new egret.Sprite();

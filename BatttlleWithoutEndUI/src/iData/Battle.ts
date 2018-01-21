@@ -1,5 +1,5 @@
 module iData {
-	export class Battle  {
+	export class Battle {
 		public turn: number = 1;
 		public playerHp: number = 0;
 		public playerMp: number = 0;
@@ -15,7 +15,7 @@ module iData {
 
 		public constructor() {
 			this.timer = new egret.Timer(500);
-			this.timer.addEventListener(egret.TimerEvent.TIMER, this.run,this);
+			this.timer.addEventListener(egret.TimerEvent.TIMER, this.run, this);
 			this.timer.start();
 		}
 
@@ -96,11 +96,11 @@ module iData {
 			return false;
 		}
 
-		private playerDie(): any {
+		private playerDie() {
 			MainScene.allInfoPanel.addText("<font color=\'#ff4040\'>你被击败了!</font>", iGlobal.Global.battleIntro);
 		}
 
-		private giveTrophy(): any {
+		private giveTrophy() {
 			MainScene.allInfoPanel.addText(this.monster.nameHtml + "<font color=\'#21c4af\'>被击败了!</font>", iGlobal.Global.battleIntro);
 			iGlobal.Player.addExp(this.monster.exp);
 			iGlobal.Player.addMoney(this.monster.money);
@@ -125,14 +125,14 @@ module iData {
 				iGlobal.Player.ageup();
 			}
 			if (iGlobal.Player.caculate % 60 == 0) {
-				//iGlobal.Player.save();
+				iGlobal.Player.save();
 			}
-			// if (iGlobal.Global.shopPanel) {
-			// 	iGlobal.Global.shopPanel.updateTime();
-			// 	if (iGlobal.Player.caculate % 600 == 0) {
-			// 		iGlobal.Global.shopPanel.updateShop();
-			// 	}
-			// }
+			if (iGlobal.Global.shopPanel) {
+				iGlobal.Global.shopPanel.updateTime();
+				if (iGlobal.Player.caculate % 600 == 0) {
+					iGlobal.Global.shopPanel.updateShop();
+				}
+			}
 		}
 
 		/**进行回合 */
@@ -287,7 +287,7 @@ module iData {
 
 		private monsterAttackPet() {
 			var criRatio: number = 0;
-			var critMul: number=1;
+			var critMul: number = 1;
 			var damger: number = 0;
 			criRatio = this.monster.crit - this.pet.pro * 2;
 			if (criRatio > this.CR) {
@@ -297,7 +297,7 @@ module iData {
 				critMul = this.monster.crit_mul / 100;
 			}
 			damger = (this.monster.attack * critMul - this.pet.defence) * (1 - this.caculateProtection(this.pet.pro));
-			damger=Math.round(damger)
+			damger = Math.round(damger)
 			if (damger < 1) {
 				damger = 1;
 			}
@@ -364,7 +364,7 @@ module iData {
 				criMul = this.pet.crimul / 100;
 			}
 			var damger: number = (this.pet.attack * criMul - this.monster.defence) * (1 - this.caculateProtection(this.monster.protection));
-			damger=Math.round(damger);
+			damger = Math.round(damger);
 			if (damger < 1) {
 				damger = 1;
 			}
@@ -406,7 +406,7 @@ module iData {
 				criMul = this.monster.crit_mul / 100;
 			}
 			var damger: number = (this.monster.attack * criMul - iGlobal.Player.defence) * (1 - this.caculateProtection(iGlobal.Player.protection));
-			damger =Math.round(damger);
+			damger = Math.round(damger);
 			if (damger < 1) {
 				damger = 1;
 			}
@@ -430,7 +430,7 @@ module iData {
 				criMul = iGlobal.Player.crit_mul / 100;
 			}
 			var damger: number = (iGlobal.Player.attack * criMul - this.monster.defence) * (1 - this.caculateProtection(this.monster.protection - iGlobal.Player.protectionReduce - iGlobal.Player.protectionIgnore));
-			damger =Math.round(damger);
+			damger = Math.round(damger);
 			if (damger < 1) {
 				damger = 1;
 			}

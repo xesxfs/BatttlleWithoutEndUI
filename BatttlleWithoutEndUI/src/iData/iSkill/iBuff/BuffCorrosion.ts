@@ -3,20 +3,17 @@ module iData {
 		export module iBuff {
 			export class BuffCorrosion extends iData.iSkill.iBuff.Buff {
 
-				public constructor(param1:number)
-				{
-					super(param1);
+				public constructor(count: number) {
+					super(count);
 					this.name = "corrosion";
-					this.count = param1;
+					this.count = count;
 				}
 
-				public run():any
-				{
+				public run() {
 				}
 
-				public combine(param1:iData.iSkill.iBuff.Buff):any
-				{
-					this.count = this.count + param1.count;
+				public combine(buff: iData.iSkill.iBuff.Buff) {
+					this.count = this.count + buff.count;
 				}
 
 			}

@@ -11,21 +11,21 @@ module iData {
 			}
 			/**平均战力 */
 			public setAverageCp() {
-				var _loc3_: number = 0;
-				var _loc1_: number = 0;
-				var _loc2_: number = this.mapData.monsterList.length;
-				while (_loc3_ < _loc2_) {
-					_loc1_ = _loc1_ + this.mapData.monsterList[_loc3_].CP;
-					_loc3_++;
+				var i: number = 0;
+				var cp: number = 0;
+				var length: number = this.mapData.monsterList.length;
+				while (i < length) {
+					cp = cp + this.mapData.monsterList[i].CP;
+					i++;
 				}
-				this.averageCp = _loc1_ / _loc2_;
+				this.averageCp = cp / length;
 			}
 
 			/**获得一个Boss */
 			public getBoss(): iData.iMonster.Boss {
 				//在当前地图，怪物列表随机一个怪物，生成本地图的Boss
-				var _loc1_: iData.iMonster.Boss = new iData.iMonster.Boss(this.mapData.monsterList[Math.random() * this.mapData.monsterList.length >> 0]);
-				return _loc1_;
+				var boos: iData.iMonster.Boss = new iData.iMonster.Boss(this.mapData.monsterList[Math.random() * this.mapData.monsterList.length >> 0]);
+				return boos;
 			}
 
 		}

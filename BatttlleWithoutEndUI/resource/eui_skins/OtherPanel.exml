@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="OtherPanelSkin"  xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" >
 	<w:Config id="1607971b0ba" ></w:Config>
-	<ns1:ItemWindow id="itemWindow"/>
-	<ns1:EquipWindow id="equipWindow"/>
-	<ns1:PetWindow id="petWindow"/>
-	<ns1:SkillWindow id="skillWindow"/>
-	<ns1:TitleWindow id="titleWindow"/>
-	<ns1:SystemWindow id="systemWindow"/>
-	<ns1:OtherWindow id="otherWindow"/>
+
+
+
+
+
+
+
 </e:Skin>

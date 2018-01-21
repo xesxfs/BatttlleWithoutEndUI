@@ -5,10 +5,11 @@ class FlickerButton extends ButtonCell {
 	private flickerTime: number = 30;
 
 	public constructor(text: string, width: number, height: number, fontSize: number = 32) {
-		super("egret.Sprite", "egret.Sprite");
+		super();
 		this.touchEnabled = true;
-		// this.bg = new BasicCell(width, height);
+		this.bg = new BasicCell(width, height);
 		// this.addChild(this.bg);
+		this.bg.filters = [ColorTransform.colorTransform]
 		var beforeText = iGlobal.Global.getTextField(fontSize);
 		beforeText.text = text;
 		this.before.addChild(beforeText);
@@ -21,13 +22,16 @@ class FlickerButton extends ButtonCell {
 		this.after.addChild(afterText);
 		this.after.x = width / 2 - afterText.textWidth / 2;
 		this.after.y = height / 2 - afterText.textHeight / 2;
-		this.addEventListener(egret.Event.ENTER_FRAME, this.overAnimation, this);
+		// this.addEventListener(egret.Event.ENTER_FRAME, this.overAnimation, this);
 	}
 
 	private overAnimation(e: egret.Event) {
+		egret.toColorString
+		this.after.visible = true;
 		if (this.count <= this.flickerTime) {
 			this.filters = [new egret.GlowFilter(5066061, 0.66, 13 + this.count, 13 + this.count)];
 			// this.bg["transform"].colorTransform = new egret.ColorTransform(1 - 0.1 / this.flickerTime * this.count, 1 - 0.3 / this.flickerTime * this.count, 1 - 1 / this.flickerTime * this.count, 0.01 + 1 / this.flickerTime * this.count);
+			// ColorTransform.getColorTransform(1 - 0.1 / this.flickerTime * this.count, 1 - 0.3 / this.flickerTime * this.count, 1 - 1 / this.flickerTime * this.count, 0.01 + 1 / this.flickerTime * this.count);
 		}
 		if (this.count > this.flickerTime) {
 			this.flag = false;

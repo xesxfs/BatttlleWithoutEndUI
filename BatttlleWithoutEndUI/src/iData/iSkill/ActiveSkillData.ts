@@ -5,12 +5,12 @@ module iData {
 			public setList:Array<any>;
 			public behaveFunction:Function;
 
-			public constructor(param1:string,param2:string,param3:string,param4:string,param5:Array<Array<iData.iItem.Stat>>,param6:Array<Array<iData.iItem.Stat>>,param7:Array<number>,param8:Array<any>,param9:Function,param10:Function = null)
+			public constructor(param1:string,param2:string,type:string,param4:string,param5:Array<Array<iData.iItem.Stat>>,param6:Array<Array<iData.iItem.Stat>>,param7:Array<number>,setList:Array<any>,param9:Function,behave:Function = null)
 			{
 				super(param1,param2,param4,param5,param6,param7,param9);
-				this.type = param3;
-				this.setList = param8;
-				this.behaveFunction = param10;
+				this.type = type;
+				this.setList = setList;
+				this.behaveFunction = behave;
 			}
 
 		}

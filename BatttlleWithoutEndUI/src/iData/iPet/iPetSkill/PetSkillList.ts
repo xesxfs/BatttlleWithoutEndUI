@@ -27,8 +27,8 @@ module iData {
 
 				}
 
-				public static des_counterattack(param1: iData.iPet.iPetSkill.PetSkill): string {
-					var _loc2_: Array<any> = iData.iPet.iPetSkill.PetSkillList.getSetArray(param1);
+				public static des_counterattack(petSkill: iData.iPet.iPetSkill.PetSkill): string {
+					var _loc2_: Array<any> = iData.iPet.iPetSkill.PetSkillList.getSetArray(petSkill);
 					var _loc3_: any = <any>"当受伤时," + _loc2_[0] + "%的机会反击,反击伤害为宠物正常伤害的" + iData.iPet.iPetSkill.PetSkillList.yellowText(_loc2_[1]) + "%";
 					return _loc3_;
 				}
@@ -204,14 +204,14 @@ module iData {
 				}
 
 				public static getSetArray(param1: iData.iPet.iPetSkill.PetSkill): Array<any> {
-					var _loc2_: Array<any> = <any>null;
+					var setArray: Array<any> = null;
 					if (param1.level) {
-						_loc2_ = param1.skillData.setList[1];
+						setArray = param1.skillData.setList[1];
 					}
 					else {
-						_loc2_ = param1.skillData.setList[0];
+						setArray = param1.skillData.setList[0];
 					}
-					return _loc2_;
+					return setArray;
 				}
 
 				public static yellowText(param1: string): string {

@@ -3,9 +3,9 @@ module iData {
 		export class MonsterTitle {
 			public name: string;
 			public statMulList: Array<iData.iMonster.StatMul>;
-			public xpMul: number = NaN;
-			public goldMul: number = NaN;
-			public dropMul: number = NaN;
+			public xpMul: number = 0;
+			public goldMul: number = 0;
+			public dropMul: number = 0;
 
 			public constructor(name: string, statMul: Array<iData.iMonster.StatMul>, xpMul: number, goldMul: number, dropMul: number) {
 				this.name = name;
@@ -16,28 +16,28 @@ module iData {
 			}
 
 			public get description(): string {
-				var _loc1_: string = "";
-				var _loc2_: number = this.statMulList.length;
-				var _loc3_: number = 0;
-				while (_loc3_ < _loc2_) {
-					if (this.statMulList[_loc3_].add > 0) {
-						_loc1_ = _loc1_ + ("<font size=\'20\' color=\'" + iData.iItem.Equipment.GREEN + "\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[_loc3_].statTranslate()) + " +" + this.statMulList[_loc3_].add + "</font><br/>");
+				var desc: string = "";
+				var length: number = this.statMulList.length;
+				var i: number = 0;
+				while (i < length) {
+					if (this.statMulList[i].add > 0) {
+						desc = desc + ("<font size=\'20\' color=\'" + iData.iItem.Equipment.GREEN + "\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[i].statTranslate()) + " +" + this.statMulList[i].add + "</font><br/>");
 					}
-					else if (this.statMulList[_loc3_].add < 0) {
-						_loc1_ = _loc1_ + ("<font size=\'20\' color=\'#ff4040\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[_loc3_].statTranslate()) + " " + this.statMulList[_loc3_].add + "</font><br/>");
+					else if (this.statMulList[i].add < 0) {
+						desc = desc + ("<font size=\'20\' color=\'#ff4040\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[i].statTranslate()) + " " + this.statMulList[i].add + "</font><br/>");
 					}
-					if (this.statMulList[_loc3_].mul > 1) {
-						_loc1_ = _loc1_ + ("<font size=\'20\' color=\'" + iData.iItem.Equipment.GREEN + "\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[_loc3_].statTranslate()) + " x" + this.statMulList[_loc3_].mul + "</font><br/>");
+					if (this.statMulList[i].mul > 1) {
+						desc = desc + ("<font size=\'20\' color=\'" + iData.iItem.Equipment.GREEN + "\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[i].statTranslate()) + " x" + this.statMulList[i].mul + "</font><br/>");
 					}
-					else if (this.statMulList[_loc3_].mul < 1) {
-						_loc1_ = _loc1_ + ("<font size=\'20\' color=\'#ff4040\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[_loc3_].statTranslate()) + " x" + this.statMulList[_loc3_].mul + "</font><br/>");
+					else if (this.statMulList[i].mul < 1) {
+						desc = desc + ("<font size=\'20\' color=\'#ff4040\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[i].statTranslate()) + " x" + this.statMulList[i].mul + "</font><br/>");
 					}
-					_loc3_++;
+					i++;
 				}
-				if (_loc1_ == "") {
-					_loc1_ = "???";
+				if (desc == "") {
+					desc = "???";
 				}
-				return _loc1_;
+				return desc;
 			}
 
 		}

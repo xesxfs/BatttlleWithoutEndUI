@@ -20,10 +20,10 @@ module iData {
 				this.startStat.criMul = 130 + Math.random() * 70;
 				this.growStat = iData.iPet.PetStats.generatePetStats(petData.type.growMin, petData.type.growRange, param2);
 				this.currentStat = new iData.iPet.PetStats(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-				var _loc3_: number = 0;
-				while (_loc3_ < iData.iPet.PetStats.list.length) {
-					this.currentStat[iData.iPet.PetStats.list[_loc3_]] = this.startStat[iData.iPet.PetStats.list[_loc3_]];
-					_loc3_++;
+				var i: number = 0;
+				while (i < iData.iPet.PetStats.list.length) {
+					this.currentStat[iData.iPet.PetStats.list[i]] = this.startStat[iData.iPet.PetStats.list[i]];
+					i++;
 				}
 				this.generateSkill();
 				this.level = 1;
@@ -35,9 +35,9 @@ module iData {
 			}
 
 			public static load(petStr: string): iData.iPet.Pet {
-				var _loc3_: iData.iPet.Pet = <any>null;
+				var _loc3_: iData.iPet.Pet = null;
 				var _loc4_: number = 0;
-				var _loc5_: Array<any> = <any>null;
+				var _loc5_: Array<any> = null;
 				var _loc2_: Array<any> = petStr.split("#");
 				_loc4_ = 0;
 				while (_loc4_ < iData.iPet.PetDataList.list.length) {

@@ -35,25 +35,25 @@ module iData {
 		/*魔法伤害*/
 		public magicDamage: number = 0;
 
-		public constructor(param1: number, param2: number, param3: number, param4: number, param5: number, param6: number, param7: number, param8: number = 0, param9: number = 0, param10: number = 0, param11: number = 0, param12: number = 0, param13: number = 0, param14: number = 0, param15: number = 0, param16: number = 0, param17: number = 0, param18: number = 0) {
+		public constructor(hp: number, mp: number, str: number, dex: number, intelligence: number, will: number, luck: number, attMin: number = 0, attMax: number = 0, balance: number = 0, crit: number = 0, critMul: number = 0, defence: number = 0, protection: number = 0, param15: number = 0, protectionIgnore: number = 0, protectionReduce: number = 0, magicDamage: number = 0) {
 
-			this.hp = param1;
-			this.mp = param2;
-			this.str = param3;
-			this.dex = param4;
-			this.intelligence = param5;
-			this.will = param6;
-			this.luck = param7;
-			this.attack = new iData.iNumber.DamageNumber(param8, param9);
-			this.balance = param10;
-			this.crit = param11;
-			this.crit_mul = param12;
-			this.defence = param13;
-			this.protection = param14;
+			this.hp = hp;
+			this.mp = mp;
+			this.str = str;
+			this.dex = dex;
+			this.intelligence = intelligence;
+			this.will = will;
+			this.luck = luck;
+			this.attack = new iData.iNumber.DamageNumber(attMin, attMax);
+			this.balance = balance;
+			this.crit = crit;
+			this.crit_mul = critMul;
+			this.defence = defence;
+			this.protection = protection;
 			this.spellChance = param15;
-			this.protectionIgnore = param16;
-			this.protectionReduce = param17;
-			this.magicDamage = param18;
+			this.protectionIgnore = protectionIgnore;
+			this.protectionReduce = protectionReduce;
+			this.magicDamage = magicDamage;
 		}
 
 		public clone(): iData.BasicStatus {

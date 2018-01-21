@@ -61,7 +61,7 @@ class EquipmentItem extends eui.Component implements eui.UIComponent {
 	public remove() {
 		this.removeEventListener("touchTap", this.onclick, this);
 		this.parent && this.parent.removeChild(this);
-		MainScene.otherPanel.itemWindow.updateList();
+		// MainScene.otherPanel.itemWindow.updateList();
 		MainScene.otherPanel.itemWindow.updateBagText();
 		this.downFunction = null;
 	}

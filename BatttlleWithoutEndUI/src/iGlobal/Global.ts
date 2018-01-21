@@ -90,7 +90,7 @@ module iGlobal {
 		}
 
 		public static init(stage: egret.Stage) {
-			iGlobal.Global.stage =stage;
+			iGlobal.Global.stage = stage;
 			iGlobal.Global.stringInfoWindow = new StringInfoWindow();
 			App.LayerManager.msgLayer.addChild(iGlobal.Global.stringInfoWindow);
 			iGlobal.Global.itemInfoWindow = new ItemInfoWindow("");
@@ -103,6 +103,7 @@ module iGlobal {
 			// var _loc3_:flash.TextFormat = new flash.TextFormat("RTWS YueGothic Trial Regular",param1,param2);
 			var textField: egret.TextField = new egret.TextField();
 			textField.textAlign = egret.HorizontalAlign.CENTER;
+			textField.textAlign = egret.VerticalAlign.MIDDLE;
 			textField.size = size;
 			textField.textColor = color;
 			// _loc4_.embedFonts = true;

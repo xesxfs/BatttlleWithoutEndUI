@@ -3,23 +3,20 @@ module iData {
 		export module iBuff {
 			export class BuffPoison extends iData.iSkill.iBuff.Buff {
 
-				public constructor(param1:number)
-				{
-					super(param1);
-					param1 = param1;
+				public constructor(count: number) {
+					super(count);
+					count = count;
 					this.name = "poison";
-					this.count = param1;
+					this.count = count;
 				}
 
-				public run():any
-				{
+				public run() {
 					MainScene.battle.monsterHp = MainScene.battle.monsterHp - this.count;
-					MainScene.allInfoPanel.addText("<font color=\'#ff4040\'>毒</font>对" + MainScene.battle.monster.nameHtml + "造成了<font color=\'#ff4040\'>" + this.count + "</font>伤害 ",iGlobal.Global.battle);
+					MainScene.allInfoPanel.addText("<font color=\'#ff4040\'>毒</font>对" + MainScene.battle.monster.nameHtml + "造成了<font color=\'#ff4040\'>" + this.count + "</font>伤害 ", iGlobal.Global.battle);
 				}
 
-				public combine(param1:iData.iSkill.iBuff.Buff):any
-				{
-					this.count = this.count + param1.count;
+				public combine(buff: iData.iSkill.iBuff.Buff) {
+					this.count = this.count + buff.count;
 				}
 
 			}

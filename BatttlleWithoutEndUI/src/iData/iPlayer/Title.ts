@@ -40,7 +40,7 @@ module iData {
 				}
 			}
 
-			public updateInfo(max: number = 0, count: number = 0): any {
+			public updateInfo(max: number = 0, count: number = 0) {
 				if (max > this.max) {
 					this.max = max;
 				}
@@ -59,57 +59,56 @@ module iData {
 			}
 
 			public getDescription(): string {
-				var _loc1_: any = <any>"";
-				_loc1_ = _loc1_ + ("<p align=\'center\'>" + this.description + "</p>");
-				_loc1_ = _loc1_ + "--------------<br/>";
+				var desc: string = "";
+				desc = desc + ("<p align=\'center\'>" + this.description + "</p>");
+				desc = desc + "--------------<br/>";
 				if (this.maxFix != 0) {
-					_loc1_ = _loc1_ + ("记录:" + this.max + "<br/>");
-					_loc1_ = _loc1_ + "--------------<br/>";
+					desc = desc + ("记录:" + this.max + "<br/>");
+					desc = desc + "--------------<br/>";
 				}
 				if (this.countFix != 0) {
-					_loc1_ = _loc1_ + ("记录:" + this.count + "<br/>");
-					_loc1_ = _loc1_ + "--------------<br/>";
+					desc = desc + ("记录:" + this.count + "<br/>");
+					desc = desc + "--------------<br/>";
 				}
-				var _loc2_: number = this.statMulList.length;
-				var _loc3_: number = 0;
-				while (_loc3_ < _loc2_) {
-					if (this.statMulList[_loc3_].add > 0) {
-						_loc1_ = _loc1_ + ("<font size=\'20\' color=\'" + iData.iItem.Equipment.GREEN + "\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[_loc3_].statTranslate()) + " +" + this.statMulList[_loc3_].add + "</font><br/>");
+				var length: number = this.statMulList.length;
+				var i: number = 0;
+				while (i < length) {
+					if (this.statMulList[i].add > 0) {
+						desc = desc + ("<font size=\'20\' color=\'" + iData.iItem.Equipment.GREEN + "\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[i].statTranslate()) + " +" + this.statMulList[i].add + "</font><br/>");
 					}
-					else if (this.statMulList[_loc3_].add < 0) {
-						_loc1_ = _loc1_ + ("<font size=\'20\' color=\'#ff4040\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[_loc3_].statTranslate()) + " " + this.statMulList[_loc3_].add + "</font><br/>");
+					else if (this.statMulList[i].add < 0) {
+						desc = desc + ("<font size=\'20\' color=\'#ff4040\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[i].statTranslate()) + " " + this.statMulList[i].add + "</font><br/>");
 					}
-					if (this.statMulList[_loc3_].mul > 1) {
-						_loc1_ = _loc1_ + ("<font size=\'20\' color=\'" + iData.iItem.Equipment.GREEN + "\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[_loc3_].statTranslate()) + " x" + this.statMulList[_loc3_].mul + "</font><br/>");
+					if (this.statMulList[i].mul > 1) {
+						desc = desc + ("<font size=\'20\' color=\'" + iData.iItem.Equipment.GREEN + "\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[i].statTranslate()) + " x" + this.statMulList[i].mul + "</font><br/>");
 					}
-					else if (this.statMulList[_loc3_].mul < 1) {
-						_loc1_ = _loc1_ + ("<font size=\'20\' color=\'#ff4040\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[_loc3_].statTranslate()) + " x" + this.statMulList[_loc3_].mul + "</font><br/>");
+					else if (this.statMulList[i].mul < 1) {
+						desc = desc + ("<font size=\'20\' color=\'#ff4040\'>  " + Tool.MyMath.FirstLetterToUpper(this.statMulList[i].statTranslate()) + " x" + this.statMulList[i].mul + "</font><br/>");
 					}
-					_loc3_++;
+					i++;
 				}
-				return _loc1_;
+				return desc;
 			}
 
 			public save(): string {
-				var _loc1_: any = <any>"";
-				_loc1_ = _loc1_ + (this.max + "#" + this.count + "#");
+				var save: string = "";
+				save = save + (this.max + "#" + this.count + "#");
 				if (this.isGot) {
-					_loc1_ = _loc1_ + "1";
+					save = save + "1";
 				}
 				else {
-					_loc1_ = _loc1_ + "0";
+					save = save + "0";
 				}
-				return _loc1_;
+				return save;
 			}
 
-			public load(loadStr: string): any {
-				var _loc2_: Array<any> = loadStr.split("#");
-				this.max = _loc2_[0];
-				this.count = _loc2_[1];
-				if (_loc2_[2] == 0) {
+			public load(loadStr: string) {
+				var arr: Array<string> = loadStr.split("#");
+				this.max = parseInt(arr[0]);
+				this.count = parseInt(arr[1]);
+				if (parseInt(arr[2]) == 0) {
 					this.isGot = false;
-				}
-				else {
+				} else {
 					this.isGot = true;
 				}
 			}

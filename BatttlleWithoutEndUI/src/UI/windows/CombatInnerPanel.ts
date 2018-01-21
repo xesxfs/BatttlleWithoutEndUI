@@ -1,21 +1,15 @@
-class CombatPanel extends eui.Component implements eui.UIComponent {
+class CombatInnerPanel extends InnerPanel {
 	public constructor() {
 		super();
-	}
-
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
-	}
-
-
-	protected childrenCreated(): void {
-		super.childrenCreated();
 		this.init();
 	}
-	public listSprite: eui.Group;
+
+	public listSprite: egret.Sprite;
 	private Gap: number = 50;
 
 	public init() {
+		this.listSprite=new egret.Sprite();
+		this.addChild(this.listSprite);
 		var cell: ActiveSkillCell = null;
 		var combatIdx: number = 0;
 		var skillIdx: number = 0;

@@ -16,13 +16,14 @@ class ItemInnerPanel extends InnerPanel {
 		this.text.width = 200;
 		this.addChild(this.text);
 		this.update();
-		// this.addEventListener(tool.MyEvent.Update, flash.bind(this.onUpdate, this), null, true);
+		this.addEventListener(Tool.MyEvent.Update, this.onUpdate, this);
 	}
 
 
 	private setSelectedCell(cell: EquipmentCell) {
+		let _self__ = this
 		this.selectCell = cell;
-		// _self__.dispatchEvent(new tool.MyEvent(tool.MyEvent.Change));
+		this.dispatchEvent(new Tool.MyEvent(Tool.MyEvent.Change));
 	}
 
 	public update() {
@@ -64,12 +65,12 @@ class ItemInnerPanel extends InnerPanel {
 			i++;
 		}
 
-		this.contentH = length * this.Gap;
+		this.contentH = (length + 1) * this.Gap;
 	}
 
 	private updateText() {
 		this.text.textFlow = iGlobal.Global.htmlParse.parse("<p align=\'center\'>" + iGlobal.Player.itemList.length + "/" + iGlobal.Player.BAGMAX + "</p>");
-		this.text.y = iGlobal.Player.itemList.length * 50;
+		this.text.y = iGlobal.Player.itemList.length * this.Gap;
 	}
 
 	public addOneCell() {
@@ -83,7 +84,7 @@ class ItemInnerPanel extends InnerPanel {
 		cell.y = (iGlobal.Player.itemList.length - 1) * this.Gap;
 		this.buttonGroup.addButton(cell);
 		cell.downFunction = onDown;
-		this.contentH = iGlobal.Player.itemList.length*this.Gap;
+		this.contentH = (iGlobal.Player.itemList.length + 1) * this.Gap;
 	}
 
 	private onUpdate(e: egret.Event) {

@@ -1,28 +1,77 @@
-class SkillCell extends eui.Component implements eui.UIComponent {
-	public constructor(skill: iData.iSkill.Skill) {
-		super();
-		this.skill = skill;
-	}
-	private skill: iData.iSkill.Skill;
-	public text: eui.Label;
-	public lvupButton: eui.Button;
+class SkillCell extends BasicCell {
+	public infoWindow: ItemInfoWindow;
+	public text: egret.TextField;
+	public skill: iData.iSkill.Skill;
+	protected bg: egret.Sprite;
+	protected mc: egret.Bitmap;
+	protected yellow: number = 14922250;
+	protected lvupButton: EquipButton;
 
-
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
-	}
-
-
-	protected childrenCreated(): void {
-		super.childrenCreated();
+	public constructor(param1: iData.iSkill.Skill) {
+		super(200, 50);
+		this.touchEnabled = true;
+		this.skill = param1;
+		this.bg = new egret.Sprite();
+		this.bg.graphics.lineStyle(1, 13487565, 0.8);
+		this.bg.graphics.beginFill(16777215, 0.95);
+		this.bg.graphics.drawRect(0, 0, 200, 50);
+		this.bg.graphics.endFill();
+		this.addChildAt(this.bg, 0);
 		this.setInfo();
-		this.lvupButton.addEventListener("touchTap", this.onlevelUpDown, this);
+		this.setLvupButton();
 		this.update();
+		this.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onMouseOver, this);
+		this.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.onMouseOut, this);
+	}
 
+	private setInfo() {
+		this.mc = new egret.Bitmap(RES.getRes("mc_" + Tool.MyMath.StringFormChange(this.skill.skillData.name.toLowerCase(), " ", "_")));
+		this.addChild(this.mc);
+		this.mc.width = 30;
+		this.mc.height = 30;
+		this.mc.x = 10;
+		this.mc.y = 10;
+		this.text = iGlobal.Global.getTextField(24);
+		this.text.width = 140;
+		this.text.text = this.skill.skillData.realName + " " + (15 - this.skill.level).toString(16).toUpperCase();
+		this.addChild(this.text);
+		this.text.x = 50;
+		this.text.y = 10;
+		this.infoWindow = new ItemInfoWindow(this.skill.getDescription());
+	}
+
+	public onMouseOver(param1: egret.TouchEvent) {
+		// this.filters = [new flash.GlowFilter(5066061, 0.66, 13, 13)];
+		if (this.parent) {
+			this.parent.addChildAt(this, this.parent.numChildren - 1);
+		}
+		this.addInfoWindow();
+	}
+
+	public onMouseOut(param1: egret.TouchEvent) {
+		// this.filters = [];
+		this.removeInfoWindow();
+	}
+
+	private setLvupButton() {
+		var _self__: any = this;
+		var lvupDown: Function = null;
+		lvupDown = function () {
+			this["setBefore"]();
+			_self__.skill.levelup();
+			_self__.dispatchEvent(new Tool.MyEvent(Tool.MyEvent.Update));
+		};
+		this.lvupButton = new EquipButton("lvup");
+		this.addChild(this.lvupButton);
+		this.lvupButton.x = 172;
+		this.lvupButton.y = 15;
+		this.lvupButton.downFunction = lvupDown;
 	}
 
 	public update() {
 		this.text.text = this.skill.skillData.realName + " " + (15 - this.skill.level).toString(16).toUpperCase();
+		this.removeInfoWindow();
+		this.infoWindow = new ItemInfoWindow(this.skill.getDescription());
 		if (this.skill.canLevelup()) {
 			this.lvupButton.visible = true;
 		}
@@ -31,33 +80,20 @@ class SkillCell extends eui.Component implements eui.UIComponent {
 		}
 	}
 
-	public setInfo() {
-		this.text.text = this.skill.skillData.realName + " " + (15 - this.skill.level).toString(16).toUpperCase();
+	protected addInfoWindow() {
+		this.addChild(this.infoWindow);
+		this.infoWindow.x = -135;
+		this.infoWindow.y = 0;
+		var _loc1_: egret.Point = this.localToGlobal(0, 0);
+		if (_loc1_.y + this.infoWindow.height > iGlobal.Global.stage.stageHeight) {
+			_loc1_ = this.globalToLocal(0, iGlobal.Global.stage.stageHeight - this.infoWindow.height);
+			this.infoWindow.y = _loc1_.y;
+		}
 	}
 
-
-	private onlevelUpDown() {
-		// if (flash.As3is(param1.target, doubleCircle) || flash.As3is(param1.target, mc_lvup)) {
-		// 	return;
-		// }
-		// this["setBefore"]();
-		this.skill.levelup();
-		MainScene.otherPanel.skillWindow.passivePanel.update();
+	protected removeInfoWindow() {
+		if (this.contains(this.infoWindow)) {
+			this.removeChild(this.infoWindow);
+		}
 	}
-
-	public updateEquip() {
-		// if (iGlobal.Player.isSkillEquiped(this.skill)) {
-		// 	this.bg["transform"].colorTransform = new flash.ColorTransform(0.9, 0.7, 0, 1, 0, 0, 0, 0);
-		// 	this.mc["transform"].colorTransform = new flash.ColorTransform(1, 1, 1, 1, 255, 255, 255, 0);
-		// 	this.text["transform"].colorTransform = new flash.ColorTransform(1, 1, 1, 1, 255, 255, 255, 0);
-		// }
-		// else {
-		// 	this.bg["transform"].colorTransform = new flash.ColorTransform();
-		// 	this.mc["transform"].colorTransform = new flash.ColorTransform();
-		// 	this.text["transform"].colorTransform = new flash.ColorTransform();
-		// }
-	}
-
-
-
 }

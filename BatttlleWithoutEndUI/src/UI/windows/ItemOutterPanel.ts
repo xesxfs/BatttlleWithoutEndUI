@@ -1,10 +1,10 @@
 class ItemOutterPanel extends OutterPanel {
 	public constructor() {
-		super(360, 100);
+		super(200, 540);
 	}
 
 	public setInner() {
-		this.innerPanle = new ItemInnerPanel();
-		this.viewport = this.innerPanle;
+		this.innerPanel = new ItemInnerPanel();
+		this.viewport = this.innerPanel;
 	}
 }

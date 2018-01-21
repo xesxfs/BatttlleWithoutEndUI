@@ -1,4 +1,4 @@
-class SystemWindow extends eui.Component implements eui.UIComponent {
+class SystemWindow extends IWindow {
 	private startX: number = 10;
 	private startY: number = 10;
 	private gapY: number = 30;
@@ -16,17 +16,12 @@ class SystemWindow extends eui.Component implements eui.UIComponent {
 	private lootGapX: number = 65;
 	public constructor() {
 		super();
-	}
-
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
-	}
-
-
-	protected childrenCreated(): void {
-		super.childrenCreated();
+		var bgs: egret.Sprite = new BasicCell(200, 540);
+		this.addChild(bgs);
 		this.init();
 	}
+
+
 
 	private init() {
 		this.setToggle();

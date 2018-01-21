@@ -4,9 +4,9 @@ module Tool {
 		public static Update:string;
 		public static MyScroll:string;
 
-		public constructor(param1:string)
+		public constructor(even:string)
 		{
-			super(param1);
+			super(even);
 		}
 
 	}

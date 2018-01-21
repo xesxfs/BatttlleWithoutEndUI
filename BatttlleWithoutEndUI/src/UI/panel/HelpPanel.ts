@@ -7,10 +7,10 @@ class HelpPanel extends BasicCell {
 	}
 
 	private init() {
-		var _self_ = null;
+		var _self_ = this;
 		var hideDown: Function = null;
 		hideDown = function () {
-			this.visible = false;
+			_self_.visible = false;
 		};
 		var title: StringCell = new StringCell("帮助", 200, 36);
 		this.addChild(title);
@@ -21,7 +21,7 @@ class HelpPanel extends BasicCell {
 		hide.x = 420;
 		hide.y = 5;
 		hide.downFunction = hideDown;
-		_self_ = this;
+		
 		var text = iGlobal.Global.getTextField(20);
 		text.width = 500;
 		text.x = 25;

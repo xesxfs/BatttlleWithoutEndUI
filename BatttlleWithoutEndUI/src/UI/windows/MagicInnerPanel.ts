@@ -1,18 +1,12 @@
-class MagicPanel extends eui.Component implements eui.UIComponent {
+class MagicInnerPanel extends InnerPanel {
 	public constructor() {
 		super();
-	}
-
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
+		this.listSprite = new egret.Sprite();
+		this.addChild(this.listSprite);
 	}
 
 
-	protected childrenCreated(): void {
-		super.childrenCreated();
-		this.init();
-	}
-	public listSprite: eui.Group;
+	public listSprite: egret.Sprite;
 	public Gap: number = 50;
 
 	private init() {

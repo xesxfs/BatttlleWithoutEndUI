@@ -1,21 +1,15 @@
-class PassivePanel extends eui.Component implements eui.UIComponent {
+class PassiveInnerPanel extends InnerPanel {
 	public constructor() {
 		super();
-	}
-
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
-	}
-
-
-	protected childrenCreated(): void {
-		super.childrenCreated();
 		this.init();
 	}
-	public listSprite: eui.Group;
+
+	public listSprite: egret.Sprite;
 	private Gap: number = 50;
 
 	private init() {
+		this.listSprite = new egret.Sprite();
+		this.addChild(this.listSprite);
 		var cell: SkillCell = null;
 		var pIdx: number = (0);
 		var idx: number = (0);

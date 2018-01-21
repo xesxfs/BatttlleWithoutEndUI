@@ -1,21 +1,19 @@
-class PetWindow extends eui.Component implements eui.UIComponent {
+class PetWindow extends IWindow {
 	public constructor() {
 		super();
+		this.textBag = iGlobal.Global.getTextField(32, 7631988);
+		var outterPanel: PetOutterPanel = new PetOutterPanel();
+		this.addChild(outterPanel);
+		outterPanel.x = 0;
+		outterPanel.y = 40;
+		this.panel = outterPanel.innerPanel as PetInnerPanel;
+		this.setBagText();
+		this.addEventListener(Tool.MyEvent.Update, this.updateBagText, this);
 	}
-
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
-	}
-	public textBag: eui.Label;
-	private Gap: number = 50;
-	public selectCell: PetCell;
-	public petGroups: eui.Group;
+	private panel: PetInnerPanel;
+	private textBag: egret.TextField;
 
 
-
-	protected childrenCreated(): void {
-		super.childrenCreated();
-	}
 
 	private updateBagText(param1: egret.Event = null) {
 		this.textBag.textFlow = iGlobal.Global.htmlParse.parse("<p align=\'center\'>" + iGlobal.Player.petList.length + "/" + iGlobal.Player.PETMAX + "</p>");
@@ -24,24 +22,17 @@ class PetWindow extends eui.Component implements eui.UIComponent {
 	private setBagText() {
 		this.textBag.width = 200;
 		this.textBag.textFlow = iGlobal.Global.htmlParse.parse("<p align=\'center\'>" + iGlobal.Player.petList.length + "/" + iGlobal.Player.PETMAX + "</p>");
-	}
+		var tbg: egret.Sprite = new BasicCell(200, 40);
+		this.addChild(tbg);
+		tbg.x = 0;
+		tbg.y = 0;
+		this.textBag.width = 200;
+		tbg.addChild(this.textBag);
 
-
-	private updateList() {
-		var petCell: PetCell = null;
-		var length: number = iGlobal.Player.petList.length;
-		var index: number = (0);
-		this.petGroups.removeChildren();
-		while (index < length) {
-			petCell = new PetCell(iGlobal.Player.petList[index]);
-			petCell.y = index * this.Gap;
-			index++;
-			this.petGroups.addChild(petCell);
-		}
 	}
 
 	public update() {
-		this.updateList();
+		this.panel.update();
 		this.updateBagText();
 	}
 

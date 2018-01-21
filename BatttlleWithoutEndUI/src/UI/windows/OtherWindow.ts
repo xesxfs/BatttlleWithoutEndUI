@@ -1,21 +1,15 @@
-class OtherWindow extends eui.Component implements eui.UIComponent {
+class OtherWindow extends IWindow {
 	public mapPanel: MapPanel;
 	private rebirth: ClickButton;
 	public constructor() {
 		super();
-	}
-
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
-	}
-
-
-	protected childrenCreated(): void {
-		super.childrenCreated();
 		this.init();
 	}
 
-	private init(){
+
+	private init() {
+		var bsp: egret.Sprite = new BasicCell(200, 540);
+		this.addChild(bsp);
 		this.setHelp();
 		this.setMap();
 		this.setShop();

@@ -17,7 +17,7 @@ class ItemWindow extends IWindow {
 		outterPanel.x = 0;
 		outterPanel.y = 40;
 		outterPanel.setInner();
-		this.panel = outterPanel.innerPanle as ItemInnerPanel;
+		this.panel = outterPanel.innerPanel as ItemInnerPanel;
 		this.setForge();
 		this.onItemChange();
 		this.setBagText();
@@ -25,8 +25,8 @@ class ItemWindow extends IWindow {
 		this.item_mc.touchChildren = false;
 		this.text.touchEnabled = false;
 		this.text.touchChildren = false;
-		// this.addEventListener(tool.MyEvent.Change, flash.bind(this.onItemChange, this), null, true);
-		// this.addEventListener(tool.MyEvent.Update, flash.bind(this.updateBagText, this), null, true);
+		this.addEventListener(Tool.MyEvent.Change, this.onItemChange, this);
+		this.addEventListener(Tool.MyEvent.Update, this.updateBagText, this);
 
 	}
 
@@ -230,7 +230,7 @@ class ItemWindow extends IWindow {
 		};
 
 		var forging: Function = function () {
-			
+
 			var lv: number = (0);
 			var rate: number = (0);
 			// var _loc4_: flash.Sound = <any>null;
@@ -310,7 +310,7 @@ class ItemWindow extends IWindow {
 				iGlobal.Player.removeItem(_self__.panel.selectCell.equip);
 				MainScene.allInfoPanel.addText("<font color=\'#ff4040\'>强化</font>" + _self__.panel.selectCell.equip.getNameHTML() + "<font color=\'" + _self__.panel.selectCell.equip.getColor + _self__.panel.selectCell.equip + "\'>+" + _self__.panel.selectCell.equip.level + 1 + " <font color=\'#ff4040\'>失败. 物品消!</font>");
 				_self__.panel.selectCell = null;
-						_self__.panel.update();
+				_self__.panel.update();
 				_self__.onItemChange();
 				_self__.updateBagText();
 			}
@@ -366,9 +366,6 @@ class ItemWindow extends IWindow {
 		this.updateBagText();
 	}
 
-	public forging() {
-
-	}
 
 	private getSuccessRate(): number {
 		var level: number = (this.panel.selectCell.equip.level + 1);

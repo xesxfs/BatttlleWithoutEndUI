@@ -1,5 +1,5 @@
 class OutterPanel extends eui.Scroller {
-	public innerPanle: InnerPanel;
+	public innerPanel: InnerPanel;
 	public constructor(w: number, h: number) {
 		super();
 		this.width = w;
@@ -10,7 +10,7 @@ class OutterPanel extends eui.Scroller {
 
 
 	public setInner() {
-		this.innerPanle = new InnerPanel();
-		this.viewport = this.innerPanle;
+		this.innerPanel = new InnerPanel();
+		this.viewport = this.innerPanel;
 	}
 }

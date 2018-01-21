@@ -1,7 +1,5 @@
-class EquipWindow extends eui.Component implements eui.UIComponent {
-	public constructor() {
-		super();
-	}
+class EquipWindow extends IWindow {
+
 
 	private SC: number = 0.4;
 	private SY: number = 100;
@@ -29,20 +27,15 @@ class EquipWindow extends eui.Component implements eui.UIComponent {
 	private def: StringCell;
 	private pro: StringCell;
 
-	protected partAdded(partName: string, instance: any): void {
-		super.partAdded(partName, instance);
-	}
-
-
-	protected childrenCreated(): void {
-		super.childrenCreated();
-		var _loc1_: egret.Sprite = <any>new BasicCell(200, 540);
-		this.addChild(_loc1_);
-		var _loc2_: egret.Bitmap = new egret.Bitmap(RES.getRes("people_use1"));
-		this.addChild(_loc2_);
-		_loc2_.scaleX = this.SC;
-		_loc2_.scaleY = this.SC;
-		_loc2_.y = this.SY;
+	public constructor() {
+		super();
+		var bgs: egret.Sprite = new BasicCell(200, 540);
+		this.addChild(bgs);
+		var p1: egret.Bitmap = new egret.Bitmap(RES.getRes("people_use1"));
+		this.addChild(p1);
+		p1.scaleX = this.SC;
+		p1.scaleY = this.SC;
+		p1.y = this.SY;
 		this.bg2 = new egret.Sprite();
 		this.addChild(this.bg2);
 		this.bg2.addChild(new egret.Bitmap(RES.getRes("people_use2")));

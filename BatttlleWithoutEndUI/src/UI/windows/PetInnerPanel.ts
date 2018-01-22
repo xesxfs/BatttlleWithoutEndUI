@@ -7,7 +7,7 @@ class PetInnerPanel extends InnerPanel {
 	public constructor() {
 		super();
 		this.update();
-		this.addEventListener(Tool.MyEvent.Update, this.onUpdate, this);
+		Emitter.addEventListener(Tool.MyEvent.Update, this.onUpdate, this);
 	}
 
 	private onUpdate(e: egret.Event) {

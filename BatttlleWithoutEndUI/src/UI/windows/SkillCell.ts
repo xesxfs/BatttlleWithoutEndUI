@@ -59,7 +59,7 @@ class SkillCell extends BasicCell {
 		lvupDown = function () {
 			this["setBefore"]();
 			_self__.skill.levelup();
-			_self__.dispatchEvent(new Tool.MyEvent(Tool.MyEvent.Update));
+			Emitter.dispatchEvent(Tool.MyEvent.Update);
 		};
 		this.lvupButton = new EquipButton("lvup");
 		this.addChild(this.lvupButton);

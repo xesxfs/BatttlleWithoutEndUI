@@ -25,8 +25,8 @@ class ItemWindow extends IWindow {
 		this.item_mc.touchChildren = false;
 		this.text.touchEnabled = false;
 		this.text.touchChildren = false;
-		this.addEventListener(Tool.MyEvent.Change, this.onItemChange, this);
-		this.addEventListener(Tool.MyEvent.Update, this.updateBagText, this);
+		Emitter.addEventListener(Tool.MyEvent.Change, this.onItemChange, this);
+		Emitter.addEventListener(Tool.MyEvent.Update, this.updateBagText, this);
 
 	}
 

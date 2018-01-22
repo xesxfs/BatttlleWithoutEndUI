@@ -17,7 +17,7 @@ class TitleInnerPanel extends InnerPanel {
 			i++;
 		}
 		this.contentH = (l + 1) * this.Gap;
-		this.addEventListener(Tool.MyEvent.Update, this.onUpdate, this);
+		Emitter.addEventListener(Tool.MyEvent.Update, this.onUpdate, this);
 	}
 
 	public onUpdate(e: egret.Event = null) {

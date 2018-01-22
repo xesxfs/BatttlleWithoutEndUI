@@ -8,7 +8,7 @@ class PetWindow extends IWindow {
 		outterPanel.y = 40;
 		this.panel = outterPanel.innerPanel as PetInnerPanel;
 		this.setBagText();
-		this.addEventListener(Tool.MyEvent.Update, this.updateBagText, this);
+		Emitter.addEventListener(Tool.MyEvent.Update, this.updateBagText, this);
 	}
 	private panel: PetInnerPanel;
 	private textBag: egret.TextField;

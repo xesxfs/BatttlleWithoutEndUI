@@ -16,14 +16,14 @@ class ItemInnerPanel extends InnerPanel {
 		this.text.width = 200;
 		this.addChild(this.text);
 		this.update();
-		this.addEventListener(Tool.MyEvent.Update, this.onUpdate, this);
+		Emitter.addEventListener(Tool.MyEvent.Update, this.onUpdate, this);
 	}
 
 
 	private setSelectedCell(cell: EquipmentCell) {
 		let _self__ = this
 		this.selectCell = cell;
-		this.dispatchEvent(new Tool.MyEvent(Tool.MyEvent.Change));
+		Emitter.dispatchEvent(Tool.MyEvent.Change);
 	}
 
 	public update() {

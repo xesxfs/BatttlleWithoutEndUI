@@ -25,7 +25,7 @@ class TitleCell extends BasicCell {
 	private onMouseDown(param1: egret.Event) {
 		var _self__: any = this;
 		iGlobal.Player.setTitle(this.title);
-		// _self__.dispatchEvent(new tool.MyEvent(tool.MyEvent.Update));
+		Emitter.dispatchEvent(Tool.MyEvent.Update);
 	}
 
 	private setListener() {
@@ -55,7 +55,7 @@ class TitleCell extends BasicCell {
 		this.setListener();
 	}
 
-	private setInfo(): any {
+	private setInfo() {
 		this.text = new StringCell(this.title.realName.toUpperCase(), 180, 24);
 		this.addChild(this.text);
 		this.text.x = 10;
@@ -64,7 +64,7 @@ class TitleCell extends BasicCell {
 	}
 
 	public onMouseOver(param1: egret.TouchEvent) {
-		this.filters = [new egret.GlowFilter(5066061, 0.66, 13, 13)];
+		// this.filters = [new egret.GlowFilter(5066061, 0.66, 13, 13)];
 		if (this.parent) {
 			this.parent.addChildAt(this, this.parent.numChildren - 1);
 		}
@@ -72,7 +72,7 @@ class TitleCell extends BasicCell {
 	}
 
 	public onMouseOut(param1: egret.TouchEvent) {
-		this.filters = [];
+		// this.filters = [];
 		this.removeInfoWindow();
 	}
 
@@ -93,6 +93,5 @@ class TitleCell extends BasicCell {
 			this.removeChild(this.infoWindow);
 		}
 	}
-
 
 }

@@ -51,7 +51,7 @@ class SkillWindow extends IWindow {
 		this.combatPanel = new CombatOutterPanel();
 		this.magicPanel = new MagicOutterPanel();
 		this.passivePanel = new PassiveOutterPanel();
-		this.addEventListener(Tool.MyEvent.Update, this.onUpdate, this);
+		Emitter.addEventListener(Tool.MyEvent.Update, this.onUpdate, this);
 		combat.downFunction = combatDown;
 		magic.downFunction = magicDown;
 		passive.downFunction = passiveDown;

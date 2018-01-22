@@ -27,18 +27,18 @@ class PeopleModel extends ButtonCell {
 		this.drawPeople(this.p2, 16777215);
 	}
 
-	private drawPeople(param1: egret.Sprite, param2: number): any {
-		param2 = (param2);
-		var _loc3_: number = (this.age - 10);
-		param1.y = 15 - _loc3_ * 3;
-		param1.graphics.beginFill(param2, 1);
-		param1.graphics.drawCircle(25, 30, 10);
-		param1.graphics.drawRect(15, 40, 20, 30 + _loc3_);
-		param1.graphics.drawRect(15, 70 + _loc3_, 5, 8 + _loc3_ * 2);
-		param1.graphics.drawRect(30, 70 + _loc3_, 5, 8 + _loc3_ * 2);
-		param1.graphics.drawRect(9, 40, 5, 15 + _loc3_ * 2);
-		param1.graphics.drawRect(36, 40, 5, 15 + _loc3_ * 2);
-		param1.graphics.endFill();
+	private drawPeople(sp: egret.Sprite, color: number): any {
+		color = (color);
+		var ageMul: number = (this.age - 10);
+		sp.y = 15 - ageMul * 3;
+		sp.graphics.beginFill(color, 1);
+		sp.graphics.drawCircle(25, 30, 10);
+		sp.graphics.drawRect(15, 40, 20, 30 + ageMul);
+		sp.graphics.drawRect(15, 70 + ageMul, 5, 8 + ageMul * 2);
+		sp.graphics.drawRect(30, 70 + ageMul, 5, 8 + ageMul * 2);
+		sp.graphics.drawRect(9, 40, 5, 15 + ageMul * 2);
+		sp.graphics.drawRect(36, 40, 5, 15 + ageMul * 2);
+		sp.graphics.endFill();
 	}
 
 	public setBefore() {

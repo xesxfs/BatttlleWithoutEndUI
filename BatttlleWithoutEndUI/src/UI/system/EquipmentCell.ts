@@ -86,7 +86,7 @@ class EquipmentCell extends AdvancedCell {
 		equipDown = function () {
 			iGlobal.Player.removeItem(_self__.equip);
 			iGlobal.Player.equip(_self__.equip);
-			_self__.dispatchEvent(new Tool.MyEvent(Tool.MyEvent.Update));
+			Emitter.dispatchEvent(Tool.MyEvent.Update);
 		};
 		var equipButton: EquipButton = new EquipButton("equip");
 		this.addChild(equipButton);
@@ -101,7 +101,7 @@ class EquipmentCell extends AdvancedCell {
 		moneyDown = function () {
 			iGlobal.Player.removeItem(_self__.equip);
 			iGlobal.Player.addMoney(_self__.equip.getMoney());
-			_self__.dispatchEvent(new Tool.MyEvent(Tool.MyEvent.Update));
+			Emitter.dispatchEvent(Tool.MyEvent.Update);
 		};
 		var moneyButton: EquipButton = new EquipButton("money");
 		this.addChild(moneyButton);

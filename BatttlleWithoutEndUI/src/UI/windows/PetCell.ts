@@ -46,7 +46,7 @@ class PetCell extends AdvancedCell {
 		equipDown = function () {
 			iGlobal.Player.removePet(_self__.pet);
 			iGlobal.Player.setPet(_self__.pet);
-			// _self__.dispatchEvent(new tool.MyEvent(tool.MyEvent.Update));
+			Emitter.dispatchEvent(Tool.MyEvent.Update);
 		};
 		var equipButton: EquipButton = new EquipButton("equip");
 		this.addChild(equipButton);
@@ -60,7 +60,7 @@ class PetCell extends AdvancedCell {
 		var moneyDown: Function = null;
 		moneyDown = function () {
 			iGlobal.Player.removePet(_self__.pet);
-			// _self__.dispatchEvent(new tool.MyEvent(tool.MyEvent.Update));
+			Emitter.dispatchEvent(Tool.MyEvent.Update);
 		};
 		var moneyButton: EquipButton = new EquipButton("money");
 		this.addChild(moneyButton);

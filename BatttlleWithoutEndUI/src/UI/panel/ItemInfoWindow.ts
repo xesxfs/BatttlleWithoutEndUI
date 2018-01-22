@@ -16,7 +16,7 @@ class ItemInfoWindow extends InfoWindow {
 	}
 
 	public set TEXT(txt: string) {
-		this.text.text = txt;
+		this.text.textFlow = iGlobal.Global.htmlParse.parse(txt);
 		this.draw(0, 0);
 	}
 

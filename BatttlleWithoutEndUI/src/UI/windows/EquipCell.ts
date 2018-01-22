@@ -6,6 +6,7 @@ class EquipCell extends ButtonCell {
 
 	public constructor(data: iData.iItem.Equipment = null, pos: string = "") {
 		super();
+		this.touchEnabled = true;
 		var icon: egret.Bitmap = null;
 		this.infoWindow = iGlobal.Global.itemInfoWindow;
 		this.position = pos;
@@ -49,17 +50,17 @@ class EquipCell extends ButtonCell {
 		icon.width = this.SIZE;
 		icon.height = this.SIZE;
 		// this.downFunction = flash.bind(this.setBefore, this);
-		// this.addEventListener(egret.TouchEvent.TOUCH_MOVE, flash.bind(this.onMouseMove, this), null);
+		this.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onMouseMove, this);
 	}
 
-	// public onMouseMove(param1: flash.MouseEvent) {
-	// 	var _loc2_: egret.Point = flash.localToGlobal(this, new egret.Point(this["mouseX"] + 15, this["mouseY"] + 15));
-	// 	this.infoWindow.x = _loc2_.x;
-	// 	this.infoWindow.y = _loc2_.y;
-	// 	if (_loc2_.x + 135 > iGlobal.Global.stage.stageWidth) {
-	// 		this.infoWindow.x = this.infoWindow.x - 135;
-	// 	}
-	// }
+	public onMouseMove(e: egret.TouchEvent) {
+		var p: egret.Point = this.localToGlobal(e.localX + 15, e.localY + 15);
+		this.infoWindow.x = p.x;
+		this.infoWindow.y = p.y;
+		if (p.x + 135 > iGlobal.Global.stage.stageWidth) {
+			this.infoWindow.x = this.infoWindow.x - 135;
+		}
+	}
 
 	public setBefore() {
 		super.setBefore();

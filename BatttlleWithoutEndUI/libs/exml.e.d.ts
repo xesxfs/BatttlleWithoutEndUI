@@ -32,8 +32,6 @@ declare module skins{
 	class ItemRendererSkin extends eui.Skin{
 	}
 }
-declare class ItemWindowSkin extends eui.Skin{
-}
 declare class LootInfoPanelSkin extends eui.Skin{
 }
 declare class MagicPanelSkin extends eui.Skin{

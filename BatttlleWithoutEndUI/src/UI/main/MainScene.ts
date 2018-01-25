@@ -1,6 +1,7 @@
 class MainScene extends BaseScene {
 	public constructor() {
 		super();
+		this.skinName="MainSceneSkin";
 	}
 	public static allInfoPanel: AllInfoPanel;
 	public static playerInfoPanel: PlayerInfoPanel;
@@ -17,11 +18,8 @@ class MainScene extends BaseScene {
 	public battleSkillPanel: BattleSkillPanel;
 	public lootPanel: LootPanel;
 	public otherPanel: OtherPanel;
-
 	public static battle: iData.Battle;
-
 	private testBtn: eui.Button;
-
 	public itemBtn: eui.Button;
 	public equipBtn: eui.Button;
 	public petBtn: eui.Button;
@@ -31,7 +29,7 @@ class MainScene extends BaseScene {
 	public otherBtn: eui.Button;
 	public menuBtnsGroup: eui.Group;
 	public otherInfoGroup: eui.Group;
-	// private otherView: eui.ViewStack;
+
 
 
 	protected childrenCreated(): void {

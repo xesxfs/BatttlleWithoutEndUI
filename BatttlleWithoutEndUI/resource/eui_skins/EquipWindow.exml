@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="EquipWindowSkin"  xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
-	<w:Config id="1604b5b55bd" ></w:Config>
-	<e:Image source="people_use2_png" blendMode="normal" y="30" x="98"/>
-	<e:Image source="people_use1_png" horizontalCenter="0" y="91"/>
-</e:Skin>

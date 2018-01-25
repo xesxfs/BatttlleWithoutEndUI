@@ -1,6 +1,7 @@
 class BeginScene extends BaseScene {
 	public constructor() {
 		super();
+		this.skinName = "BeginSceneSkin";
 	}
 
 	protected childrenCreated(): void {

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="AllInfoPanelSkin" width="436" height="716" xmlns:e="http://ns.egret.com/eui"
-        xmlns:w="http://ns.egret.com/wing">
-	<w:Config id="160273015de"></w:Config>
-	<e:Rect id="rmask" width="100%" height="100%" fillAlpha="0" strokeWeight="2" mask="textGroup" />
-	<e:Scroller id="textScroller" width="100%" height="100%">
-		<e:Group id="textGroup" width="100%" height="100%" x="0" y="0" scaleX="1" scaleY="1" />
-	</e:Scroller>
-</e:Skin>

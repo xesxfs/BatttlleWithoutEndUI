@@ -7,24 +7,68 @@ class OtherPanel extends egret.Sprite {
 	public titleWindow: TitleWindow;
 	public skillWindow: SkillWindow;
 	public otherWindow: OtherWindow;
-	public window:egret.DisplayObjectContainer;
-	private array: Array<Function>;
+	public window: egret.DisplayObjectContainer;
+	private array: Array<MenuButton>;
 	public constructor() {
 		super();
+		var _self__ = this;
+		this.array = [];
 		var buttonGroup: ButtonGroup = new ButtonGroup();
-		var list: Array<any> = ["item", "equip", "pet", "skill", "title", "system", "info"];
-		var list2: Array<any> = ["背包", "装备", "宠物", "技能", "称号", "设置", "其他"];
+		var buttonGroup1 = new ButtonGroup();
+		var list: Array<string> = ["item", "equip", "pet", "skill", "title", "system", "info"];
+		var list2: Array<string> = ["背包", "装备", "宠物", "技能", "称号", "设置", "其他"];
 		var i: number = (0);
-		var cell: ButtonCell = null;
+		var cell: MenuButton = null;
+		var left: ButtonCell = null;
+		var leftDown: Function = null;
+		var right: ButtonCell = null;
+		var rightDown: Function = null;
+		var onEnterFrame: Function = null;
+		var b: number;
+		leftDown = function () {
+			right.visible = true;
+			left.visible = false;
+			b = _self__.stage.stageWidth-200
+			_self__.addEventListener(egret.Event.ENTER_FRAME, onEnterFrame, _self__);
+
+		};
+		rightDown = function () {
+			left.visible = true;
+			right.visible = false;
+			b = _self__.stage.stageWidth;
+			_self__.addEventListener(egret.Event.ENTER_FRAME, onEnterFrame, _self__);
+
+		};
+		onEnterFrame = function (e: egret.Event) {
+			_self__.x = _self__.x + (b - _self__.x) * 0.5;
+			if (Math.abs(_self__.x - b) < 1) {
+				_self__.x = b;
+				_self__.removeEventListener(egret.Event.ENTER_FRAME, onEnterFrame, _self__);
+			}
+		};
+
 		while (i < list.length) {
 			cell = new MenuButton("before_" + list[i], "after_" + list[i], list2[i]);
-			cell.y = i * 40;
+			cell.y = (i + 1) * 50;
 			cell.x = -40;
 			this.addChild(cell);
 			buttonGroup.addButton(cell);
-			// this.array.push(cell);
+			this.array.push(cell);
 			i++;
 		}
+
+		left = new MenuButton("after_arrow_left", "before_arrow_left", "向左");
+		this.addChild(left);
+		left.x = -40;
+		left.downFunction = leftDown;
+		right = new MenuButton("after_arrow_right", "before_arrow_right", "向右");
+		this.addChild(right);
+		right.x = -40;
+		right.visible = false;
+		right.downFunction = rightDown;
+		buttonGroup.addButton(left);
+		buttonGroup.addButton(right);
+
 		this.init();
 		this.setFunction();
 	}
@@ -37,7 +81,6 @@ class OtherPanel extends egret.Sprite {
 		this.titleWindow = new TitleWindow();
 		this.systemWindow = new SystemWindow();
 		this.otherWindow = new OtherWindow();
-		this.array = new Array<Function>();
 		this.setFunction();
 		var bg: egret.Sprite = new BasicCell(200, 540);
 		this.addChildAt(bg, 0);
@@ -64,22 +107,22 @@ class OtherPanel extends egret.Sprite {
 		};
 		addWindow2 = function () {
 			removeWindow();
-			_self__.window = _self__.skillWindow;
+			_self__.window = _self__.petWindow;
 			addWindow();
 		};
 		addWindow3 = function () {
 			removeWindow();
-			_self__.window = _self__.titleWindow;
+			_self__.window = _self__.skillWindow;
 			addWindow();
 		};
 		addWindow4 = function () {
 			removeWindow();
-			_self__.window = _self__.systemWindow;
+			_self__.window = _self__.titleWindow;
 			addWindow();
 		};
 		addWindow5 = function () {
 			removeWindow();
-			_self__.window = _self__.petWindow;
+			_self__.window = _self__.systemWindow;
 			addWindow();
 		};
 		addWindow6 = function () {
@@ -96,20 +139,15 @@ class OtherPanel extends egret.Sprite {
 			_self__.addChild(_self__.window);
 			_self__.window.y = 40;
 		};
-		this.array[0] = addWindow0;
-		this.array[1] = addWindow1;
-		this.array[2] = addWindow2;
-		this.array[3] = addWindow3;
-		this.array[4] = addWindow4;
-		this.array[5] = addWindow5;
-		this.array[6] = addWindow6;
+		this.array[0].downFunction = addWindow0;
+		this.array[1].downFunction = addWindow1;
+		this.array[2].downFunction = addWindow2;
+		this.array[3].downFunction = addWindow3;
+		this.array[4].downFunction = addWindow4;
+		this.array[5].downFunction = addWindow5;
+		this.array[6].downFunction = addWindow6;
 	}
 
-	public onSelect(downIndex: number) {
-		if (downIndex >= 0 && downIndex < this.array.length) {
-			this.array[downIndex]();
-		}
-	}
 
 }
 

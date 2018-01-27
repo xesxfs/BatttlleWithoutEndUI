@@ -34,11 +34,12 @@ class AllInfoInnerPanel extends InnerPanel {
 			this.list[i].x = 10;
 			i++;
 		}
-		if (this.height > 360 && this.list.length < 100) {
-			this.y = this.y - 20;
+		if (this.listSprite.height > this.height && this.list.length < 100) {
+			// this.y = this.y - 20;
+			this.scrollV += 20;
 		}
 		this.drawBg();
-		this.contentH = this.height;
+		this.contentH = this.listSprite.height;
 	}
 
 	private getTime(): string {

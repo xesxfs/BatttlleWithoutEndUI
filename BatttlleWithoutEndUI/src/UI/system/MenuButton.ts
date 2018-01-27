@@ -5,6 +5,7 @@ class MenuButton extends ButtonCell {
 
 	public constructor(bf: string, af: string, text: string) {
 		super();
+		this.touchEnabled = true;
 		this.bg = new BasicCell(40, 40);
 		this.before.addChild(new egret.Bitmap(RES.getRes(bf)));
 		this.after.addChild(new egret.Bitmap(RES.getRes(af)));

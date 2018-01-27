@@ -35,8 +35,8 @@ class RaceButton extends ButtonCell {
 		this.text.width = 200;
 		this.text.text = this.race.name.toUpperCase();
 		this.addChild(this.text);
-		this.text.x = 100;
-		this.text.y = 5;
+		this.text.x = 5;
+		this.text.y = 100;
 		this.text.visible = false;
 	}
 

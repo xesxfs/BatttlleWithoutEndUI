@@ -31,7 +31,7 @@ class RaceScene extends BaseScene {
 	private ageGrowText: egret.TextField;
 	private chosenRace: iData.Race;
 	private chosenAge: number = 10;
-	private px: number = 100;
+	private px: number = 50;
 	private py: number = 150;
 	private pg: number = 100;
 
@@ -72,20 +72,20 @@ class RaceScene extends BaseScene {
 		this.human.y = this.py;
 		this.human.downFunction = aa;
 		this.addChild(this.elf);
-		this.elf.x = this.px;
-		this.elf.y = this.py + this.pg;
+		this.elf.x = this.px + this.pg;
+		this.elf.y = this.py;
 		this.elf.downFunction = aa;
 		this.addChild(this.giant);
-		this.giant.x = this.px;
-		this.giant.y = this.py + this.pg * 2;
+		this.giant.x = this.px + this.pg * 2;
+		this.giant.y = this.py;
 		this.giant.downFunction = aa;
 		this.addChild(this.undeath);
-		this.undeath.x = this.px;
-		this.undeath.y = this.py + this.pg * 3;
+		this.undeath.x = this.px + this.pg * 3;
+		this.undeath.y = this.py;
 		this.undeath.downFunction = aa;
 		this.addChild(this.dwarf);
-		this.dwarf.x = this.px;
-		this.dwarf.y = this.py + this.pg * 4;
+		this.dwarf.x = this.px + this.pg * 4;
+		this.dwarf.y = this.py;
 		this.dwarf.downFunction = aa;
 		var buttonGroup: ButtonGroup = new ButtonGroup();
 		buttonGroup.addButton(this.human);
@@ -100,12 +100,12 @@ class RaceScene extends BaseScene {
 		var p: PeopleModel = null;
 		this.agePanel = new egret.Sprite();
 		this.addChild(this.agePanel);
-		this.agePanel.y = 200;
-		this.agePanel.x = 380;
+		this.agePanel.y = 350;
+		this.agePanel.x = 80;
 		var buttonGroup2: ButtonGroup = new ButtonGroup();
 		var i: number = (0);
 		while (i < 8) {
-			var aa: Function = <any>function () {
+			var aa: Function = function () {
 				if (_self__.infoPanel.visible == false) {
 					_self__.infoPanel.visible = true;
 					Tool.Effect.fadeIn(_self__.infoPanel, 10);
@@ -161,8 +161,8 @@ class RaceScene extends BaseScene {
 		};
 		this.infoPanel = new egret.Sprite();
 		this.addChild(this.infoPanel);
-		this.infoPanel.x = 380;
-		this.infoPanel.y = 150;
+		this.infoPanel.x = 80;
+		this.infoPanel.y = 320;
 		this.ageText = iGlobal.Global.getTextField();
 		this.ageText.text = "年龄:10";
 		this.infoPanel.addChild(this.ageText);

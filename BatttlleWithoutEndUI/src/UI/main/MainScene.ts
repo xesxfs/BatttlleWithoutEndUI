@@ -1,7 +1,7 @@
 class MainScene extends BaseScene {
 	public constructor() {
 		super();
-		this.skinName="MainSceneSkin";
+		this.skinName = "MainSceneSkin";
 	}
 	public static allInfoPanel: AllInfoPanel;
 	public static playerInfoPanel: PlayerInfoPanel;
@@ -61,49 +61,51 @@ class MainScene extends BaseScene {
 
 	private setPlayerInfo() {
 		MainScene.playerInfoPanel = new PlayerInfoPanel();
-		this.addChild(MainScene.playerInfoPanel);
+		this.addChildAt(MainScene.playerInfoPanel, 0);
 		MainScene.playerInfoPanel.x = 10;
 		MainScene.playerInfoPanel.y = 10;
 	}
 
 	private setMonsterInfo() {
 		MainScene.monsterInfoPanel = new MonsterInfoPanel();
-		this.addChild(MainScene.monsterInfoPanel);
+		this.addChildAt(MainScene.monsterInfoPanel, 0);
 		MainScene.monsterInfoPanel.x = 400;
 		MainScene.monsterInfoPanel.y = 10;
 	}
 
 	private setPetInfo() {
 		MainScene.petInfoPanel = new PetInfoPanel();
-		this.addChild(MainScene.petInfoPanel);
+		this.addChildAt(MainScene.petInfoPanel, 0);
 		MainScene.petInfoPanel.x = 400;
 		MainScene.petInfoPanel.y = 150;
 	}
 
 	private setOther() {
 		MainScene.otherPanel = new OtherPanel();
-		this.otherInfoGroup.addChild(MainScene.otherPanel);
-		// MainScene.otherPanel.x = 590;
-		// MainScene.otherPanel.y = 10;
+		this.addChild(MainScene.otherPanel);
+		MainScene.otherPanel.x = this.stage.stageWidth;
+		// this.stage.stageWidth
+		// this.stage.width;
+		MainScene.otherPanel.y = (this.stage.height - MainScene.otherPanel.height) >> 1;
 	}
 
 	private setBattleSkillPanel() {
 		MainScene.battleSkillPanel = new BattleSkillPanel();
-		this.addChild(MainScene.battleSkillPanel);
+		this.addChildAt(MainScene.battleSkillPanel, 0);
 		MainScene.battleSkillPanel.x = 415;
 		MainScene.battleSkillPanel.y = 235;
 	}
 
 	private setAllInfoPanel() {
 		MainScene.allInfoPanel = new AllInfoPanel();
-		this.addChild(MainScene.allInfoPanel);
+		this.addChildAt(MainScene.allInfoPanel, 0);
 		MainScene.allInfoPanel.x = 10;
 		MainScene.allInfoPanel.y = 235;
 	}
 
 	private setLootPanel() {
 		MainScene.lootPanel = new LootPanel();
-		this.addChild(MainScene.lootPanel);
+		this.addChildAt(MainScene.lootPanel, 0);
 		MainScene.lootPanel.x = 415;
 		MainScene.lootPanel.y = 405;
 	}
@@ -118,7 +120,7 @@ class MainScene extends BaseScene {
 	private onMenusBtn(e: egret.TouchEvent) {
 		if (e.target instanceof eui.Button) {
 			// this.otherView.selectedIndex = parseInt(e.target.name);
-			MainScene.otherPanel.onSelect(parseInt(e.target.name));
+			// MainScene.otherPanel.onSelect(parseInt(e.target.name));
 			// this.otherInfoGroup.x = (this.width - this.menuBtnsGroup.width);
 			this.addChild(this.otherInfoGroup);
 		}

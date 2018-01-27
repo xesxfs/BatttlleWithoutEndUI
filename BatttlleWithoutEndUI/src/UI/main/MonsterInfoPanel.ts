@@ -11,7 +11,7 @@ class MonsterInfoPanel extends BasicCell {
 	private cp: StringCell;
 
 	private buffSprite: egret.Sprite;
-	private bossIcon: egret.Sprite;
+	private bossIcon: egret.Bitmap;
 	public RED: string = "#ff4040";
 	public BLUE: string = "#4a60d7";
 	public YELLOW: string = "#FFA640";
@@ -58,8 +58,7 @@ class MonsterInfoPanel extends BasicCell {
 	}
 
 	private createBossIcon() {
-		this.bossIcon = new egret.Sprite();
-		this.bossIcon.addChild(new egret.Bitmap(RES.getRes("boss_icon")));
+		this.bossIcon = new egret.Bitmap(RES.getRes("boss_icon"));	
 		this.bossIcon.visible = false;
 		this.addChild(this.bossIcon);
 		this.bossIcon.x = this.beginX + 30;

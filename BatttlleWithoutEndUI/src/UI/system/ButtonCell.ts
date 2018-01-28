@@ -21,7 +21,7 @@ class ButtonCell extends egret.Sprite {
 
 		// if (!this.buttonDown) {
 
-		console.log("TOUCH_BEGIN");
+	
 		if (!this.buttonDown) {
 
 			this.setAfter();
@@ -32,7 +32,7 @@ class ButtonCell extends egret.Sprite {
 
 		// if (!this.buttonDown) {
 
-		console.log("TOUCH_RELEASE_OUTSIDE");
+
 		if (!this.buttonDown) {
 
 			this.setBefore();
@@ -40,7 +40,7 @@ class ButtonCell extends egret.Sprite {
 	}
 
 	public onMouseDown(e: egret.TouchEvent) {
-		console.log("TOUCH_END");
+
 		if (this.buttonGroup) {
 			this.buttonGroup.setDown(this);
 		}

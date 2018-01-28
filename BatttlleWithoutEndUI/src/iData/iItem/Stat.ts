@@ -38,7 +38,7 @@ module iData {
 			/**加载 */
 			public static load(stats: string): iData.iItem.Stat {
 				var stat: Array<any> = stats.split("$");
-				return new iData.iItem.Stat(stat[0], stat[1]);
+				return new iData.iItem.Stat(stat[0], parseInt(stat[1]));
 			}
 
 			public clone(): iData.iItem.Stat {

@@ -1,7 +1,10 @@
 module iGlobal {
 	export class Player {
+		/**背包最大数 */
 		public static BAGMAX: number;
+		/***宠物最大数 */
 		public static PETMAX: number;
+		/***计时器 */
 		public static caculate: number;
 		public static playerName: string;
 		public static lv: number = 0;
@@ -24,6 +27,7 @@ module iGlobal {
 		/**当前携带的宠物 */
 		public static pet: iData.iPet.Pet;
 		public static title: iData.iPlayer.Title;
+		/***ap 消耗 */
 		public static apCost: number = 0;
 		public static storeLv: number = 0;
 		public static head: iData.iItem.Equipment;
@@ -62,7 +66,7 @@ module iGlobal {
 			iGlobal.Player.updateAllInfo();
 			iGlobal.Player.save();
 		}
-
+		/***计算初始状态 */
 		private static caculateInitStat() {
 			iGlobal.Player.basicStatus = iGlobal.Player.race.caculateStat(iGlobal.Player.age);
 		}
@@ -99,17 +103,17 @@ module iGlobal {
 			iData.iPlayer.TitleList.updateTitleInfo("age", iGlobal.Player.age);
 			MainScene.otherPanel.otherWindow.updateBirth();
 		}
-
+		/***战斗力 */
 		public static get combatPower(): number {
-			var _loc1_: number = iGlobal.Player.basicStatus.hp + iGlobal.Player.skillStatus.hp;
-			var _loc2_: number = iGlobal.Player.basicStatus.mp + iGlobal.Player.skillStatus.mp;
-			var _loc3_: number = iGlobal.Player.basicStatus.str + iGlobal.Player.skillStatus.str;
-			var _loc4_: number = iGlobal.Player.basicStatus.intelligence + iGlobal.Player.skillStatus.intelligence;
-			var _loc5_: number = iGlobal.Player.basicStatus.dex + iGlobal.Player.skillStatus.dex;
-			var _loc6_: number = iGlobal.Player.basicStatus.will + iGlobal.Player.skillStatus.will;
-			var _loc7_: number = iGlobal.Player.basicStatus.luck + iGlobal.Player.skillStatus.luck;
-			var _loc8_: any = _loc1_ + 0.5 * _loc2_ + _loc3_ + 0.2 * _loc4_ + 0.1 * _loc5_ + 0.5 * _loc6_ + 0.1 * _loc7_ + iGlobal.Player.apCost;
-			return _loc1_ + 0.5 * _loc2_ + _loc3_ + 0.2 * _loc4_ + 0.1 * _loc5_ + 0.5 * _loc6_ + 0.1 * _loc7_ + iGlobal.Player.apCost;
+			var hp: number = iGlobal.Player.basicStatus.hp + iGlobal.Player.skillStatus.hp;
+			var mp: number = iGlobal.Player.basicStatus.mp + iGlobal.Player.skillStatus.mp;
+			var str: number = iGlobal.Player.basicStatus.str + iGlobal.Player.skillStatus.str;
+			var inteligence: number = iGlobal.Player.basicStatus.intelligence + iGlobal.Player.skillStatus.intelligence;
+			var dex: number = iGlobal.Player.basicStatus.dex + iGlobal.Player.skillStatus.dex;
+			var will: number = iGlobal.Player.basicStatus.will + iGlobal.Player.skillStatus.will;
+			var luck: number = iGlobal.Player.basicStatus.luck + iGlobal.Player.skillStatus.luck;
+			var cp: number = hp + 0.5 * mp + str + 0.2 * inteligence + 0.1 * dex + 0.5 * will + 0.1 * luck + iGlobal.Player.apCost;
+			return cp;
 		}
 
 		public static addItem(equipmentData: iData.iItem.Equipment): boolean {
@@ -129,14 +133,14 @@ module iGlobal {
 			return true;
 		}
 
-		public static addPet(param1: iData.iPet.Pet): boolean {
+		public static addPet(pet: iData.iPet.Pet): boolean {
 			if (iGlobal.Player.petList.length >= iGlobal.Player.PETMAX) {
 				MainScene.allInfoPanel.addText("宠物栏满了!", iGlobal.Global.item);
 				return false;
 			}
-			iGlobal.Player.petList.push(param1);
+			iGlobal.Player.petList.push(pet);
 			if (MainScene.allInfoPanel) {
-				MainScene.allInfoPanel.addText("你获得了" + param1.name + "!", iGlobal.Global.item);
+				MainScene.allInfoPanel.addText("你获得了" + pet.name + "!", iGlobal.Global.item);
 			}
 			if (MainScene.otherPanel) {
 				MainScene.otherPanel.petWindow.update();
@@ -144,11 +148,11 @@ module iGlobal {
 			return true;
 		}
 
-		public static removeItem(param1: iData.iItem.Equipment): boolean {
+		public static removeItem(equipment: iData.iItem.Equipment): boolean {
 			var length: number = iGlobal.Player.itemList.length;
 			var index: number = 0;
 			while (index < length) {
-				if (iGlobal.Player.itemList[index] == param1) {
+				if (iGlobal.Player.itemList[index] == equipment) {
 					iGlobal.Player.itemList.splice(index, 1);
 					return true;
 				}
@@ -157,132 +161,132 @@ module iGlobal {
 			return false;
 		}
 
-		public static addSkill(param1: iData.iSkill.SkillData) {
-			var _loc2_: number = iGlobal.Player.skillList.length;
-			var _loc3_: number = 0;
-			while (_loc3_ < _loc2_) {
-				if (iGlobal.Player.skillList[_loc3_].skillData.name == param1.name) {
+		public static addSkill(sillData: iData.iSkill.SkillData) {
+			var length: number = iGlobal.Player.skillList.length;
+			var i: number = 0;
+			while (i < length) {
+				if (iGlobal.Player.skillList[i].skillData.name == sillData.name) {
 					return;
 				}
-				_loc3_++;
+				i++;
 			}
-			if (param1 instanceof iData.iSkill.PassiveSkillData) {
-				iGlobal.Player.skillList.push(new iData.iSkill.PassiveSkill(param1 as iData.iSkill.PassiveSkillData));
+			if (sillData instanceof iData.iSkill.PassiveSkillData) {
+				iGlobal.Player.skillList.push(new iData.iSkill.PassiveSkill(sillData as iData.iSkill.PassiveSkillData));
 			}
 			else {
-				iGlobal.Player.skillList.push(new iData.iSkill.ActiveSkill(param1 as iData.iSkill.ActiveSkillData));
+				iGlobal.Player.skillList.push(new iData.iSkill.ActiveSkill(sillData as iData.iSkill.ActiveSkillData));
 			}
 			if (MainScene.allInfoPanel) {
-				MainScene.allInfoPanel.addText("你获得了技能<font color=\'#ff4040\'>" + param1.name + "</font>");
+				MainScene.allInfoPanel.addText("你获得了技能<font color=\'#ff4040\'>" + sillData.name + "</font>");
 			}
 		}
 
-		public static getSkill(param1: iData.iSkill.SkillData): iData.iSkill.Skill {
-			var _loc2_: number = iGlobal.Player.skillList.length;
-			var _loc3_: number = 0;
-			while (_loc3_ < _loc2_) {
-				if (iGlobal.Player.skillList[_loc3_].skillData.name == param1.name) {
-					return iGlobal.Player.skillList[_loc3_];
+		public static getSkill(skillData: iData.iSkill.SkillData): iData.iSkill.Skill {
+			var length: number = iGlobal.Player.skillList.length;
+			var i: number = 0;
+			while (i < length) {
+				if (iGlobal.Player.skillList[i].skillData.name == skillData.name) {
+					return iGlobal.Player.skillList[i];
 				}
-				_loc3_++;
+				i++;
 			}
 			return null;
 		}
 
-		public static isSkillEquiped(param1: iData.iSkill.Skill): boolean {
-			var _loc2_: number = iGlobal.Player.equipSkillList.length;
-			var _loc3_: number = 0;
-			while (_loc3_ < _loc2_) {
-				if (iGlobal.Player.equipSkillList[_loc3_] == param1) {
+		public static isSkillEquiped(skill: iData.iSkill.Skill): boolean {
+			var length: number = iGlobal.Player.equipSkillList.length;
+			var i: number = 0;
+			while (i < length) {
+				if (iGlobal.Player.equipSkillList[i] == skill) {
 					return true;
 				}
-				_loc3_++;
+				i++;
 			}
 			return false;
 		}
 
-		public static equipSkill(param1: iData.iSkill.Skill): boolean {
-			if (iGlobal.Player.isSkillEquiped(param1)) {
+		public static equipSkill(skill: iData.iSkill.Skill): boolean {
+			if (iGlobal.Player.isSkillEquiped(skill)) {
 				return false;
 			}
-			var _loc2_: number = iGlobal.Player.skillList.length;
-			var _loc3_: number = 0;
-			while (_loc3_ < _loc2_) {
-				if (iGlobal.Player.skillList[_loc3_] == param1) {
-					iGlobal.Player.equipSkillList.push(param1);
+			var length: number = iGlobal.Player.skillList.length;
+			var i: number = 0;
+			while (i < length) {
+				if (iGlobal.Player.skillList[i] == skill) {
+					iGlobal.Player.equipSkillList.push(skill);
 					iGlobal.Player.updateBattleSkillWindow();
 					return true;
 				}
-				_loc3_++;
+				i++;
 			}
 			return false;
 		}
 
-		public static unequipSkill(param1: iData.iSkill.Skill): boolean {
-			var _loc2_: number = iGlobal.Player.equipSkillList.length;
-			var _loc3_: number = 0;
-			while (_loc3_ < _loc2_) {
-				if (iGlobal.Player.equipSkillList[_loc3_] == param1) {
-					iGlobal.Player.equipSkillList.splice(_loc3_, 1);
+		public static unequipSkill(skill: iData.iSkill.Skill): boolean {
+			var length: number = iGlobal.Player.equipSkillList.length;
+			var i: number = 0;
+			while (i < length) {
+				if (iGlobal.Player.equipSkillList[i] == skill) {
+					iGlobal.Player.equipSkillList.splice(i, 1);
 					iGlobal.Player.updateBattleSkillWindow();
 					return true;
 				}
-				_loc3_++;
+				i++;
 			}
 			return false;
 		}
 
-		/**人物当前技能列表 */
+		/**人物当前攻击技能列表 */
 		public static get attackSkillList(): Array<iData.iSkill.ActiveSkill> {
-			var _loc3_: string = <any>null;
-			var _loc1_: Array<iData.iSkill.ActiveSkill> = new Array<iData.iSkill.ActiveSkill>();
-			var _loc2_: number = iGlobal.Player.equipSkillList.length;
+			var categoryName: string = null;
+			var skillList: Array<iData.iSkill.ActiveSkill> = new Array<iData.iSkill.ActiveSkill>();
+			var length: number = iGlobal.Player.equipSkillList.length;
 			if (iGlobal.Player.leftHand) {
-				_loc3_ = iGlobal.Player.leftHand.category;
+				categoryName = iGlobal.Player.leftHand.category;
 			}
 			else {
-				_loc3_ = iData.iItem.WeaponCategory.MELEE;
+				categoryName = iData.iItem.WeaponCategory.MELEE;
 			}
-			var _loc4_: number = 0;
-			while (_loc4_ < _loc2_) {
-				if ((iGlobal.Player.equipSkillList[_loc4_].skillData as iData.iSkill.ActiveSkillData).type == iData.iSkill.SkillType.ATTACK) {
-					if (iGlobal.Player.equipSkillList[_loc4_].skillData.category == iData.iSkill.SkillCategory.ALL || iGlobal.Player.equipSkillList[_loc4_].skillData.category == iData.iSkill.SkillCategory.MAGIC || iGlobal.Player.equipSkillList[_loc4_].skillData.category == _loc3_) {
-						_loc1_.push(iGlobal.Player.equipSkillList[_loc4_]);
+			var i: number = 0;
+			while (i < length) {
+				if ((iGlobal.Player.equipSkillList[i].skillData as iData.iSkill.ActiveSkillData).type == iData.iSkill.SkillType.ATTACK) {
+					if (iGlobal.Player.equipSkillList[i].skillData.category == iData.iSkill.SkillCategory.ALL || iGlobal.Player.equipSkillList[i].skillData.category == iData.iSkill.SkillCategory.MAGIC || iGlobal.Player.equipSkillList[i].skillData.category == categoryName) {
+						skillList.push(iGlobal.Player.equipSkillList[i]);
 					}
 				}
-				_loc4_++;
+				i++;
 			}
-			return _loc1_;
+			return skillList;
 		}
-
+		/***防御技能 */
 		public static get defenceSkillList(): Array<iData.iSkill.ActiveSkill> {
-			var _loc3_: string = <any>null;
-			var _loc1_: Array<iData.iSkill.ActiveSkill> = new Array<iData.iSkill.ActiveSkill>();
-			var _loc2_: number = iGlobal.Player.equipSkillList.length;
+			var categoryName: string = null;
+			var list: Array<iData.iSkill.ActiveSkill> = new Array<iData.iSkill.ActiveSkill>();
+			var length: number = iGlobal.Player.equipSkillList.length;
 			if (iGlobal.Player.leftHand) {
-				_loc3_ = iGlobal.Player.leftHand.category;
+				categoryName = iGlobal.Player.leftHand.category;
 			}
 			else {
-				_loc3_ = iData.iItem.WeaponCategory.MELEE;
+				categoryName = iData.iItem.WeaponCategory.MELEE;
 			}
-			var _loc4_: number = 0;
-			while (_loc4_ < _loc2_) {
-				if ((iGlobal.Player.equipSkillList[_loc4_].skillData as iData.iSkill.ActiveSkillData).type == iData.iSkill.SkillType.DEFENCE) {
-					if (iGlobal.Player.equipSkillList[_loc4_].skillData.category == iData.iSkill.SkillCategory.ALL || iGlobal.Player.equipSkillList[_loc4_].skillData.category == iData.iSkill.SkillCategory.MAGIC || iGlobal.Player.equipSkillList[_loc4_].skillData.category == _loc3_) {
-						_loc1_.push(iGlobal.Player.equipSkillList[_loc4_]);
+			var i: number = 0;
+			while (i < length) {
+				if ((iGlobal.Player.equipSkillList[i].skillData as iData.iSkill.ActiveSkillData).type == iData.iSkill.SkillType.DEFENCE) {
+					if (iGlobal.Player.equipSkillList[i].skillData.category == iData.iSkill.SkillCategory.ALL || iGlobal.Player.equipSkillList[i].skillData.category == iData.iSkill.SkillCategory.MAGIC || iGlobal.Player.equipSkillList[i].skillData.category == categoryName) {
+						list.push(iGlobal.Player.equipSkillList[i]);
 					}
 				}
-				_loc4_++;
+				i++;
 			}
-			return _loc1_;
+			return list;
 		}
-
-		public static equip(param1: iData.iItem.Equipment) {
-			if (param1 instanceof iData.iItem.Weapon) {
-				switch (param1.position) {
+		/**装备 */
+		public static equip(equipment: iData.iItem.Equipment) {
+			if (equipment instanceof iData.iItem.Weapon) {
+				switch (equipment.position) {
 					case iData.iItem.Weapon.ONEHAND:
 						iGlobal.Player.unequip("leftHand");
-						iGlobal.Player.leftHand = (param1 as iData.iItem.Weapon);
+						iGlobal.Player.leftHand = (equipment as iData.iItem.Weapon);
 						iGlobal.Player.updateSkillInfo();
 						break;
 					case iData.iItem.Weapon.OFFHAND:
@@ -290,77 +294,77 @@ module iGlobal {
 						if (iGlobal.Player.leftHand && iGlobal.Player.leftHand.position == iData.iItem.Weapon.TWOHAND) {
 							iGlobal.Player.unequip("leftHand");
 						}
-						iGlobal.Player.rightHand = (param1 as iData.iItem.Weapon);
+						iGlobal.Player.rightHand = (equipment as iData.iItem.Weapon);
 						break;
 					case iData.iItem.Weapon.TWOHAND:
 						iGlobal.Player.unequip("leftHand");
 						iGlobal.Player.unequip("rightHand");
-						iGlobal.Player.leftHand = (param1 as iData.iItem.Weapon);
+						iGlobal.Player.leftHand = (equipment as iData.iItem.Weapon);
 						iGlobal.Player.updateSkillInfo();
 				}
 			}
 			else {
-				if (iGlobal.Player[param1.position]) {
-					iGlobal.Player.unequip(param1.position);
+				if (iGlobal.Player[equipment.position]) {
+					iGlobal.Player.unequip(equipment.position);
 				}
-				iGlobal.Player[param1.position] = param1;
+				iGlobal.Player[equipment.position] = equipment;
 			}
 			iGlobal.Player.updateEquipInfo();
 			iGlobal.Player.updateBattleSkillWindow();
 		}
-
-		public static unequip(param1: string): any {
-			if (iGlobal.Player[param1]) {
-				iGlobal.Player.addItem(iGlobal.Player[param1]);
-				iGlobal.Player[param1] = null;
+		/***卸下 */
+		public static unequip(position: string) {
+			if (iGlobal.Player[position]) {
+				iGlobal.Player.addItem(iGlobal.Player[position]);
+				iGlobal.Player[position] = null;
 				iGlobal.Player.updateEquipInfo();
 				iGlobal.Player.updateSkillInfo();
 			}
 			iGlobal.Player.updateBattleSkillWindow();
 		}
 
-		public static addTitle(param1: iData.iPlayer.Title): any {
-			iGlobal.Player.titleList.push(param1);
+		public static addTitle(title: iData.iPlayer.Title) {
+			iGlobal.Player.titleList.push(title);
 		}
 
-		public static setTitle(param1: iData.iPlayer.Title): any {
-			if (iGlobal.Player.title == param1) {
+		public static setTitle(title: iData.iPlayer.Title) {
+			if (iGlobal.Player.title == title) {
 				iGlobal.Player.title = null;
 			}
 			else {
-				iGlobal.Player.title = param1;
+				iGlobal.Player.title = title;
 			}
 			iGlobal.Player.updateInfoWindow();
 		}
 
-		public static setPet(param1: iData.iPet.Pet): any {
-			if (iGlobal.Player.pet == param1) {
+		public static setPet(pet: iData.iPet.Pet): any {
+			if (iGlobal.Player.pet == pet) {
 				iGlobal.Player.pet = null;
 			}
 			else {
 				if (iGlobal.Player.pet) {
 					iGlobal.Player.addPet(iGlobal.Player.pet);
 				}
-				iGlobal.Player.pet = param1;
+				iGlobal.Player.pet = pet;
 			}
 			iGlobal.Player.updatePetInfoWindow();
 			iGlobal.Player.updateEquipWindow();
 		}
 
-		public static removePet(param1: iData.iPet.Pet): boolean {
-			var _loc2_: number = iGlobal.Player.petList.length;
-			var _loc3_: number = 0;
-			while (_loc3_ < _loc2_) {
-				if (iGlobal.Player.petList[_loc3_] == param1) {
-					iGlobal.Player.petList.splice(_loc3_, 1);
+		public static removePet(pet: iData.iPet.Pet): boolean {
+			var length: number = iGlobal.Player.petList.length;
+			var i: number = 0;
+			while (i < length) {
+				if (iGlobal.Player.petList[i] == pet) {
+					iGlobal.Player.petList.splice(i, 1);
 					return true;
 				}
-				_loc3_++;
+				i++;
 			}
 			return false;
 		}
 
-		public static addAp(nAp: number): any {
+		public static addAp(nAp: number) {
 			iGlobal.Player.ap = iGlobal.Player.ap + nAp;
 			iGlobal.Player.updateInfoWindow();
 			iGlobal.Player.updateSkillPanel();
@@ -408,27 +412,27 @@ module iGlobal {
 		}
 
 		public static loseExp() {
-			var _loc1_: number = iGlobal.Player.xp / 100;
-			MainScene.allInfoPanel.addText("你<font color=\'#ff4040\'>失去了" + _loc1_ + "</font>经验.", iGlobal.Global.exp);
-			iGlobal.Player.xp = iGlobal.Player.xp - _loc1_;
+			var lose: number = iGlobal.Player.xp / 100;
+			MainScene.allInfoPanel.addText("你<font color=\'#ff4040\'>失去了" + lose + "</font>经验.", iGlobal.Global.exp);
+			iGlobal.Player.xp = iGlobal.Player.xp - lose;
 			iGlobal.Player.updateXpBar();
 			if (MainScene.lootPanel) {
-				MainScene.lootPanel.exp = MainScene.lootPanel.exp - _loc1_;
+				MainScene.lootPanel.exp = MainScene.lootPanel.exp - lose;
 			}
 		}
 
-		public static addExp(param1: number) {
+		public static addExp(exp: number) {
 			if (iGlobal.Player.getLevelExp() < 0) {
 				return;
 			}
-			iGlobal.Player.xp = iGlobal.Player.xp + param1;
-			MainScene.allInfoPanel.addText("你获得了<font color=\'#4a60d7\'>" + param1 + "</font>经验.", iGlobal.Global.exp);
+			iGlobal.Player.xp = iGlobal.Player.xp + exp;
+			MainScene.allInfoPanel.addText("你获得了<font color=\'#4a60d7\'>" + exp + "</font>经验.", iGlobal.Global.exp);
 			if (iGlobal.Player.xp > iGlobal.Player.getLevelExp()) {
 				iGlobal.Player.levelUp();
 			}
 			iGlobal.Player.updateXpBar();
 			if (MainScene.lootPanel) {
-				MainScene.lootPanel.exp = MainScene.lootPanel.exp + param1;
+				MainScene.lootPanel.exp = MainScene.lootPanel.exp + exp;
 			}
 		}
 
@@ -489,35 +493,35 @@ module iGlobal {
 		}
 
 		public static get attMin(): number {
-			var _loc2_: string = <any>null;
-			var _loc1_: number = iGlobal.Player.basicStatus.attack.min + iGlobal.Player.skillStatus.attack.min + iGlobal.Player.equipStatus.attack.min + iGlobal.Player.str / 3;
+			var category: string = null;
+			var min: number = iGlobal.Player.basicStatus.attack.min + iGlobal.Player.skillStatus.attack.min + iGlobal.Player.equipStatus.attack.min + iGlobal.Player.str / 3;
 			if (iGlobal.Player.leftHand) {
-				_loc2_ = iGlobal.Player.leftHand.category;
+				category = iGlobal.Player.leftHand.category;
 			}
 			else {
-				_loc2_ = iData.iItem.WeaponCategory.MELEE;
+				category = iData.iItem.WeaponCategory.MELEE;
 			}
-			if (_loc2_ == iData.iItem.WeaponCategory.RANGED) {
-				_loc1_ = _loc1_ + iGlobal.Player.dex / 3;
+			if (category == iData.iItem.WeaponCategory.RANGED) {
+				min = min + iGlobal.Player.dex / 3;
 			}
-			_loc1_ = iGlobal.Player.formula_title_stat(_loc1_, iData.iItem.Stat.ATTACK);
-			return Math.round(_loc1_);
+			min = iGlobal.Player.formula_title_stat(min, iData.iItem.Stat.ATTACK);
+			return Math.round(min);
 		}
 
 		public static get attMax(): number {
-			var _loc2_: string = <any>null;
-			var _loc1_: number = iGlobal.Player.basicStatus.attack.max + iGlobal.Player.skillStatus.attack.max + iGlobal.Player.equipStatus.attack.max + iGlobal.Player.str / 2.5;
+			var category: string = null;
+			var max: number = iGlobal.Player.basicStatus.attack.max + iGlobal.Player.skillStatus.attack.max + iGlobal.Player.equipStatus.attack.max + iGlobal.Player.str / 2.5;
 			if (iGlobal.Player.leftHand) {
-				_loc2_ = iGlobal.Player.leftHand.category;
+				category = iGlobal.Player.leftHand.category;
 			}
 			else {
-				_loc2_ = iData.iItem.WeaponCategory.MELEE;
+				category = iData.iItem.WeaponCategory.MELEE;
 			}
-			if (_loc2_ == iData.iItem.WeaponCategory.RANGED) {
-				_loc1_ = _loc1_ + iGlobal.Player.dex / 2.5;
+			if (category == iData.iItem.WeaponCategory.RANGED) {
+				max = max + iGlobal.Player.dex / 2.5;
 			}
-			_loc1_ = iGlobal.Player.formula_title_stat(_loc1_, iData.iItem.Stat.ATTACK);
-			return Math.round(_loc1_);
+			max = iGlobal.Player.formula_title_stat(max, iData.iItem.Stat.ATTACK);
+			return Math.round(max);
 		}
 		/**当前人物血量 */
 		public static get hp(): number {
@@ -529,58 +533,58 @@ module iGlobal {
 		}
 		/***力量 */
 		public static get str(): number {
-			var _loc1_: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.str), iData.iItem.Stat.str);
-			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.str, _loc1_);
-			return _loc1_;
+			var str: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.str), iData.iItem.Stat.str);
+			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.str, str);
+			return str;
 		}
 		/**敏捷 */
 		public static get dex(): number {
-			var _loc1_: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.dex), iData.iItem.Stat.dex);
-			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.dex, _loc1_);
-			return Math.round(_loc1_);
+			var dex: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.dex), iData.iItem.Stat.dex);
+			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.dex, dex);
+			return Math.round(dex);
 		}
-
+		/***智力 */
 		public static get intelligence(): number {
-			var _loc1_: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.intelligence), iData.iItem.Stat.intelligence);
-			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.intelligence, _loc1_);
-			return Math.round(_loc1_);
+			var intelligence: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.intelligence), iData.iItem.Stat.intelligence);
+			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.intelligence, intelligence);
+			return Math.round(intelligence);
 		}
-
+		/***意志 */
 		public static get will(): number {
-			var _loc1_: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.will), iData.iItem.Stat.will);
-			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.will, _loc1_);
-			return Math.round(_loc1_);
+			var will: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.will), iData.iItem.Stat.will);
+			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.will, will);
+			return Math.round(will);
 		}
-
+		/***幸运 */
 		public static get luck(): number {
-			var _loc1_: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.luck), iData.iItem.Stat.luck);
-			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.luck, _loc1_);
-			return Math.round(_loc1_);
+			var luck: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.luck), iData.iItem.Stat.luck);
+			iData.iPlayer.TitleList.updateTitleInfo(iData.iItem.Stat.luck, luck);
+			return Math.round(luck);
 		}
-
+		/***防御 */
 		public static get defence(): number {
 			return iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.defence), iData.iItem.Stat.defence);
 		}
-
+		/***护甲 */
 		public static get protection(): number {
 			return Math.round(
 				iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.protection), iData.iItem.Stat.protection));
 		}
-
+		/***平衡 */
 		public static get balance(): number {
-			var _loc1_: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.balance) + (iGlobal.Player.dex - 10) / 4, iData.iItem.Stat.balance);
-			if (_loc1_ > 100) {
-				_loc1_ = 100;
+			var balance: number = iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.balance) + (iGlobal.Player.dex - 10) / 4, iData.iItem.Stat.balance);
+			if (balance > 100) {
+				balance = 100;
 			}
-			return Math.round(_loc1_);
+			return Math.round(balance);
 		}
-
+		/***暴击 */
 		public static get crit(): number {
 			return Math.round
 				(iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.crit) + iGlobal.Player.will / 5 + iGlobal.Player.luck / 5,
 					iData.iItem.Stat.crit));
 		}
-
+		/***暴击率 */
 		public static get crit_mul(): number {
 			return Math.round
 				(iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.crit_mul) + 100, iData.iItem.Stat.crit_mul));
@@ -590,7 +594,7 @@ module iGlobal {
 		public static get spellChance(): number {
 			return iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.spellChance) + iGlobal.Player.intelligence / 20, iData.iItem.Stat.spellChance);
 		}
-
+		/**无视护甲 */
 		public static get protectionIgnore(): number {
 			return iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.protectionIgnore), iData.iItem.Stat.protectionIgnore);
 		}
@@ -598,11 +602,11 @@ module iGlobal {
 		public static get protectionReduce(): number {
 			return iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.protectionReduce), iData.iItem.Stat.protectionReduce);
 		}
-
+		/***魔法伤害 */
 		public static get magicDamage(): number {
 			return iGlobal.Player.formula_title_stat(iGlobal.Player.formula_StatAddUp(iData.iItem.Stat.magicDamage) + iGlobal.Player.intelligence / 20, iData.iItem.Stat.magicDamage);
 		}
-
+		/***魔法平衡 */
 		public static get magicBalance(): number {
 			var balance: number = (iGlobal.Player.intelligence - 10) / 4 + 30;
 			if (balance > 99) {
@@ -630,35 +634,35 @@ module iGlobal {
 		public static get basicLuck(): number {
 			return iGlobal.Player.formula_BasicStatAddUp(iData.iItem.Stat.luck);
 		}
-
-		private static formula_statAdd(param1: iData.BasicStatus, param2: iData.BasicStatus, param3: string): number {
-			return param1[param3] + param2[param3];
+		/**叠加 */
+		private static formula_statAdd(b1: iData.BasicStatus, b2: iData.BasicStatus, n: string): number {
+			return b1[n] + b2[n];
 		}
 
-		private static formula_StatAddUp(param1: string): number {
-			return iGlobal.Player.basicStatus[param1] + iGlobal.Player.skillStatus[param1] + iGlobal.Player.equipStatus[param1];
+		private static formula_StatAddUp(stat: string): number {
+			return iGlobal.Player.basicStatus[stat] + iGlobal.Player.skillStatus[stat] + iGlobal.Player.equipStatus[stat];
 		}
-
-		private static formula_title_stat(param1: number, param2: string): number {
+		/***称号属性 */
+		private static formula_title_stat(value: number, name: string): number {
 			var length: number = 0;
 			var i: number = 0;
 			if (iGlobal.Player.title) {
 				length = iGlobal.Player.title.statMulList.length;
 				i = 0;
 				while (i < length) {
-					if (iGlobal.Player.title.statMulList[i].name == param2) {
-						param1 = param1 * iGlobal.Player.title.statMulList[i].mul;
-						param1 = param1 + iGlobal.Player.title.statMulList[i].add;
-						return param1;
+					if (iGlobal.Player.title.statMulList[i].name == name) {
+						value = value * iGlobal.Player.title.statMulList[i].mul;
+						value = value + iGlobal.Player.title.statMulList[i].add;
+						return value;
 					}
 					i++;
 				}
 			}
-			return param1;
+			return value;
 		}
 
-		private static formula_BasicStatAddUp(param1: string): number {
-			return iGlobal.Player.basicStatus[param1] + iGlobal.Player.skillStatus[param1];
+		private static formula_BasicStatAddUp(name: string): number {
+			return iGlobal.Player.basicStatus[name] + iGlobal.Player.skillStatus[name];
 		}
 
 		private static updateInfoWindow() {
@@ -715,74 +719,74 @@ module iGlobal {
 			iGlobal.Player.updateInfoWindow();
 		}
 
-		private static updateEquipInfo(): any {
-			var _loc3_: number = 0;
-			var _loc4_: Array<iData.iItem.Stat> = <any>null;
-			var _loc5_: number = 0;
+		private static updateEquipInfo() {
+			var blength: number = 0;
+			var stat: Array<iData.iItem.Stat> = null;
+			var j: number = 0;
 			iGlobal.Player.equipStatus = new iData.BasicStatus(0, 0, 0, 0, 0, 0, 0);
-			var _loc1_: Array<any> = ["leftHand", "rightHand", "feet", "head", "necklace", "ring", "body"];
-			var _loc2_: number = 0;
-			while (_loc2_ < _loc1_.length) {
-				if (iGlobal.Player[_loc1_[_loc2_]]) {
-					_loc3_ = (iGlobal.Player[_loc1_[_loc2_]] as iData.iItem.Equipment).basicStat.length;
-					_loc4_ = (iGlobal.Player[_loc1_[_loc2_]] as iData.iItem.Equipment).basicStat;
-					_loc5_ = 0;
-					while (_loc5_ < _loc3_) {
-						if (_loc4_[_loc5_].name == iData.iItem.Stat.attackMin) {
-							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + _loc4_[_loc5_].value;
+			var positions: Array<any> = ["leftHand", "rightHand", "feet", "head", "necklace", "ring", "body"];
+			var i: number = 0;
+			while (i < positions.length) {
+				if (iGlobal.Player[positions[i]]) {
+					blength = (iGlobal.Player[positions[i]] as iData.iItem.Equipment).basicStat.length;
+					stat = (iGlobal.Player[positions[i]] as iData.iItem.Equipment).basicStat;
+					j = 0;
+					while (j < blength) {
+						if (stat[j].name == iData.iItem.Stat.attackMin) {
+							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + stat[j].value;
 						}
-						else if (_loc4_[_loc5_].name == iData.iItem.Stat.attackMax) {
-							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + _loc4_[_loc5_].value;
+						else if (stat[j].name == iData.iItem.Stat.attackMax) {
+							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + stat[j].value;
 						}
-						else if (_loc4_[_loc5_].name == iData.iItem.Stat.ATTACK) {
-							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + _loc4_[_loc5_].value;
-							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + _loc4_[_loc5_].value;
+						else if (stat[j].name == iData.iItem.Stat.ATTACK) {
+							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + stat[j].value;
+							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + stat[j].value;
 						}
 						else {
-							iGlobal.Player.equipStatus[_loc4_[_loc5_].name] = iGlobal.Player.equipStatus[_loc4_[_loc5_].name] + _loc4_[_loc5_].value;
+							iGlobal.Player.equipStatus[stat[j].name] = iGlobal.Player.equipStatus[stat[j].name] + stat[j].value;
 						}
-						_loc5_++;
+						j++;
 					}
-					_loc3_ = (iGlobal.Player[_loc1_[_loc2_]] as iData.iItem.Equipment).qualityStat.length;
-					_loc4_ = (iGlobal.Player[_loc1_[_loc2_]] as iData.iItem.Equipment).qualityStat;
-					_loc5_ = 0;
-					while (_loc5_ < _loc3_) {
-						if (_loc4_[_loc5_].name == iData.iItem.Stat.attackMin) {
-							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + _loc4_[_loc5_].value;
+					blength = (iGlobal.Player[positions[i]] as iData.iItem.Equipment).qualityStat.length;
+					stat = (iGlobal.Player[positions[i]] as iData.iItem.Equipment).qualityStat;
+					j = 0;
+					while (j < blength) {
+						if (stat[j].name == iData.iItem.Stat.attackMin) {
+							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + stat[j].value;
 						}
-						else if (_loc4_[_loc5_].name == iData.iItem.Stat.attackMax) {
-							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + _loc4_[_loc5_].value;
+						else if (stat[j].name == iData.iItem.Stat.attackMax) {
+							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + stat[j].value;
 						}
-						else if (_loc4_[_loc5_].name == iData.iItem.Stat.ATTACK) {
-							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + _loc4_[_loc5_].value;
-							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + _loc4_[_loc5_].value;
+						else if (stat[j].name == iData.iItem.Stat.ATTACK) {
+							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + stat[j].value;
+							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + stat[j].value;
 						}
 						else {
-							iGlobal.Player.equipStatus[_loc4_[_loc5_].name] = iGlobal.Player.equipStatus[_loc4_[_loc5_].name] + _loc4_[_loc5_].value;
+							iGlobal.Player.equipStatus[stat[j].name] = iGlobal.Player.equipStatus[stat[j].name] + stat[j].value;
 						}
-						_loc5_++;
+						j++;
 					}
-					_loc3_ = (iGlobal.Player[_loc1_[_loc2_]] as iData.iItem.Equipment).levelStat.length;
-					_loc4_ = (iGlobal.Player[_loc1_[_loc2_]] as iData.iItem.Equipment).levelStat;
-					_loc5_ = 0;
-					while (_loc5_ < _loc3_) {
-						if (_loc4_[_loc5_].name == iData.iItem.Stat.attackMin) {
-							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + _loc4_[_loc5_].value;
+					blength = (iGlobal.Player[positions[i]] as iData.iItem.Equipment).levelStat.length;
+					stat = (iGlobal.Player[positions[i]] as iData.iItem.Equipment).levelStat;
+					j = 0;
+					while (j < blength) {
+						if (stat[j].name == iData.iItem.Stat.attackMin) {
+							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + stat[j].value;
 						}
-						else if (_loc4_[_loc5_].name == iData.iItem.Stat.attackMax) {
-							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + _loc4_[_loc5_].value;
+						else if (stat[j].name == iData.iItem.Stat.attackMax) {
+							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + stat[j].value;
 						}
-						else if (_loc4_[_loc5_].name == iData.iItem.Stat.ATTACK) {
-							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + _loc4_[_loc5_].value;
-							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + _loc4_[_loc5_].value;
+						else if (stat[j].name == iData.iItem.Stat.ATTACK) {
+							iGlobal.Player.equipStatus.attack.min = iGlobal.Player.equipStatus.attack.min + stat[j].value;
+							iGlobal.Player.equipStatus.attack.max = iGlobal.Player.equipStatus.attack.max + stat[j].value;
 						}
 						else {
-							iGlobal.Player.equipStatus[_loc4_[_loc5_].name] = iGlobal.Player.equipStatus[_loc4_[_loc5_].name] + _loc4_[_loc5_].value;
+							iGlobal.Player.equipStatus[stat[j].name] = iGlobal.Player.equipStatus[stat[j].name] + stat[j].value;
 						}
-						_loc5_++;
+						j++;
 					}
 				}
-				_loc2_++;
+				i++;
 			}
 			iGlobal.Player.updateInfoWindow();
 			iGlobal.Player.updateEquipWindow();
@@ -1185,7 +1189,7 @@ module iGlobal {
 						_loc16_ = 0;
 						while (_loc16_ < _loc7_.length) {
 							if (_loc7_[_loc16_] != "") {
-								iGlobal.Player[_loc7_[_loc16_]] = _loc7_[_loc16_ + 1];
+								iGlobal.Player[_loc7_[_loc16_]] = parseInt(_loc7_[_loc16_ + 1]);
 							}
 							_loc16_ = _loc16_ + 2;
 						}
@@ -1248,7 +1252,7 @@ module iGlobal {
 						_loc16_ = 0;
 						while (_loc16_ < _loc12_.length) {
 							if (_loc12_[_loc16_] != "") {
-								iGlobal.Player.basicStatus[_loc12_[_loc16_]] = _loc12_[_loc16_ + 1];
+								iGlobal.Player.basicStatus[_loc12_[_loc16_]] = parseInt(_loc12_[_loc16_ + 1]);
 							}
 							_loc16_ = _loc16_ + 2;
 						}

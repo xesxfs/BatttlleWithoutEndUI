@@ -155,6 +155,7 @@ class ItemWindow extends IWindow {
 		bag.y = 0;
 		this.textBag.width = 200;
 		this.textBag.textFlow = iGlobal.Global.htmlParse.parser("<p align=\'center\'>" + iGlobal.Player.itemList.length + "/" + iGlobal.Player.BAGMAX + "</p>");
+		this.textBag.textAlign = egret.HorizontalAlign.CENTER;
 		bag.addChild(this.textBag);
 		var value: StringInfoButton = new StringInfoButton("价值", "按价值排列");
 		bag.addChild(value);

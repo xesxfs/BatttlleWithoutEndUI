@@ -49,7 +49,7 @@ class OtherPanel extends egret.Sprite {
 
 		while (i < list.length) {
 			cell = new MenuButton("before_" + list[i], "after_" + list[i], list2[i]);
-			cell.y = (i + 1) * 50;
+			cell.y = (i + 1) * 40;
 			cell.x = -40;
 			this.addChild(cell);
 			buttonGroup.addButton(cell);

@@ -2,16 +2,7 @@
 <e:Skin class="MainSceneSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui"
         xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<w:Config id="1601b1a39ed"></w:Config>
-	<e:Group id="menuBtnsGroup" width="100%" height="112.67" anchorOffsetY="0" x="0" y="1020.65">
-		<e:Rect width="100%" height="100%" fillAlpha="0" strokeWeight="2" scaleX="1" scaleY="1" />
-		<e:Button id="itemBtn" label="Item" y="39" width="60" x="4" name="0" />
-		<e:Button id="equipBtn" label="Equip" x="87" y="39" anchorOffsetX="0" width="78" name="1" />
-		<e:Button id="petBtn" label="Pet" x="478" y="39" anchorOffsetX="0" width="60" name="5" />
-		<e:Button id="skillBtn" label="Skill" x="185" y="39" anchorOffsetX="0" width="72" name="2" />
-		<e:Button id="titleBtn" label="Title" x="286" y="39" anchorOffsetX="0" width="63" name="3" />
-		<e:Button id="systemBtn" label="System" x="370" y="39" anchorOffsetX="0" width="86" name="4" />
-		<e:Button id="otherBtn" label="Other" y="39" anchorOffsetX="0" width="72" x="567" name="6"  height="72"/>
-	</e:Group>
+
 
 
 </e:Skin>

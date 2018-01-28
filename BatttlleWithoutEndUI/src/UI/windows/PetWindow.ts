@@ -22,6 +22,7 @@ class PetWindow extends IWindow {
 	private setBagText() {
 		this.textBag.width = 200;
 		this.textBag.textFlow = iGlobal.Global.htmlParse.parse("<p align=\'center\'>" + iGlobal.Player.petList.length + "/" + iGlobal.Player.PETMAX + "</p>");
+		this.textBag.textAlign = egret.HorizontalAlign.CENTER
 		var tbg: egret.Sprite = new BasicCell(200, 40);
 		this.addChild(tbg);
 		tbg.x = 0;

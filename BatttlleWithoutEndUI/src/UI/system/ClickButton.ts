@@ -11,8 +11,8 @@ class ClickButton extends ButtonCell {
 		// _loc3_["transform"].colorTransform = new egret.ColorTransform(1, 1, 1, 1, 255, 255, 255, 0);
 		this.before.addChild(_loc3_);
 		var bf = new egret.Bitmap(RES.getRes(icon));
-		this.before.addChild(bf);
-		this.setMcPosition(bf);
+		// this.before.addChild(bf);
+		// this.setMcPosition(bf);
 		var _loc5_ = new egret.Bitmap(RES.getRes("doubleCircle"));;
 		_loc5_.width = this.FIX;
 		_loc5_.height = this.FIX;
@@ -20,8 +20,8 @@ class ClickButton extends ButtonCell {
 		var af = new egret.Bitmap(RES.getRes(icon));
 		// _loc6_["transform"].colorTransform = new egret.ColorTransform(1, 1, 1, 1, 255, 255, 255, 0);	
 		egret.ColorMatrixFilter
-		this.after.addChild(af);
-		this.setMcPosition(af);
+		// this.after.addChild(af);
+		// this.setMcPosition(af);
 		var colorMatrix = [
 			0.3, 0.6, 0, 0, 0,
 			0.3, 0.6, 0, 0, 0,
@@ -29,7 +29,7 @@ class ClickButton extends ButtonCell {
 			0, 0, 0, 1, 0
 		];
 		var colorFlilter = new egret.ColorMatrixFilter(colorMatrix);
-		this.after.filters = [colorFlilter];
+		// this.after.filters = [colorFlilter];
 
 
 	}

@@ -10,25 +10,7 @@ class MainScene extends BaseScene {
 	public static battleSkillPanel: BattleSkillPanel;
 	public static lootPanel: LootPanel;
 	public static otherPanel: OtherPanel;
-
-	public allInfoPanel: AllInfoPanel;
-	public playerInfoPanel: PlayerInfoPanel;
-	public monsterInfoPanel: MonsterInfoPanel;
-	public petInfoPanel: PetInfoPanel;
-	public battleSkillPanel: BattleSkillPanel;
-	public lootPanel: LootPanel;
-	public otherPanel: OtherPanel;
 	public static battle: iData.Battle;
-	private testBtn: eui.Button;
-	public itemBtn: eui.Button;
-	public equipBtn: eui.Button;
-	public petBtn: eui.Button;
-	public skillBtn: eui.Button;
-	public titleBtn: eui.Button;
-	public systemBtn: eui.Button;
-	public otherBtn: eui.Button;
-	public menuBtnsGroup: eui.Group;
-	public otherInfoGroup: eui.Group;
 
 
 
@@ -38,14 +20,12 @@ class MainScene extends BaseScene {
 
 	private init() {
 		iGlobal.Global.init(this.stage);
-		this.menuBtnsGroup.addEventListener("touchTap", this.onMenusBtn, this);
 		this.setPlayerInfo();
 		this.setMonsterInfo();
 		this.setPetInfo();
 		this.setBattleSkillPanel();
 		this.setAllInfoPanel();
 		this.setLootPanel();
-
 		this.setBattle();
 		this.setOther();
 		iGlobal.Global.shopPanel = new ShopPanel();
@@ -116,16 +96,6 @@ class MainScene extends BaseScene {
 
 	}
 
-
-	private onMenusBtn(e: egret.TouchEvent) {
-		if (e.target instanceof eui.Button) {
-			// this.otherView.selectedIndex = parseInt(e.target.name);
-			// MainScene.otherPanel.onSelect(parseInt(e.target.name));
-			// this.otherInfoGroup.x = (this.width - this.menuBtnsGroup.width);
-			this.addChild(this.otherInfoGroup);
-		}
-
-	}
 
 	/**从场景中移除*/
 	protected onRemove() {
